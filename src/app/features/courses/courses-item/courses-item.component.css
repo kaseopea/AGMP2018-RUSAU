@@ -1,3 +1,16 @@
 .course-item {
   margin: 10px 0;
 }
+.course-item-meta {
+
+}
+.course-item-meta .meta-item {
+  color: #666;
+  margin: 0 15px;
+}
+.course-item-meta .meta-item:nth-child(1) {
+  margin-left: 0;
+}
+.course-item-meta .meta-item-icon {
+  color: #999;
+}
