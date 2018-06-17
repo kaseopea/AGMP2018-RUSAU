@@ -1,25 +1,7 @@
 <app-header></app-header>
 <div class="container">
   <app-breadcrumbs></app-breadcrumbs>
-  <div class="row">
-    <div class="col">
-        <form>
-            <div class="form-row align-items-center">
-              <div class="col-sm-auto my-1">
-                <label class="sr-only" for="search">Search</label>
-                <input type="text" class="form-control" id="search" placeholder="Name, fragment or date">
-              </div>
-              <div class="col-sm-1 my-1">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-            </div>
-          </form>
-    </div>
-    <div class="col text-right">
-      <button type="button" class="btn btn-success"><i class="fas fa-plus-square"></i> New course</button>
-    </div>
-  </div>
-  <app-courses-list></app-courses-list>
+  <router-outlet></router-outlet>
 </div>
 <app-footer></app-footer>
 

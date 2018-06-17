@@ -4,10 +4,12 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogoComponent } from './logo/logo.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { ProtectedModule } from '../protected/protected.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    ProtectedModule
   ],
   exports: [
     HeaderComponent,
