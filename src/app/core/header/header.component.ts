@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../protected/user-profile/user';
+import { UserProfile } from '../../protected/user-profile/user-profile';
 
 @Component({
   selector: 'app-header',
@@ -7,12 +8,8 @@ import { User } from '../../protected/user-profile/user';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public profile: User = {
-    id: 101,
-    username: 'kaseopea',
-    firstName: 'Vitali',
-    lastName: 'Rusau'
-  };
+  public profile: UserProfile = new UserProfile(101, 'kaseopea', 'Vitali', 'Rusau');
+
   constructor() { }
 
   ngOnInit() {
