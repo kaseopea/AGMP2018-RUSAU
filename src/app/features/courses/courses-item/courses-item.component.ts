@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { CourseItem } from '../model/course-item.model';
+import { ICourse } from '../interfaces/icourse';
 
 @Component({
   selector: 'app-courses-item',
@@ -7,7 +7,7 @@ import { CourseItem } from '../model/course-item.model';
   styleUrls: ['./courses-item.component.css']
 })
 export class CoursesItemComponent implements OnInit {
-  @Input() public courseItem: CourseItem;
+  @Input() public courseItem: ICourse;
   @Output() delHandler = new EventEmitter<number>();
 
   constructor() { }

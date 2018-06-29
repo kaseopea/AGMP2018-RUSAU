@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { CourseItem } from './model/course-item.model';
+import { ICourse } from './interfaces/icourse';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
-  private coursesList: CourseItem[];
+  private coursesList: ICourse[];
 
   constructor() {
     this.coursesList = [
@@ -17,7 +18,7 @@ export class CoursesService {
     ];
   }
 
-  public getCourses(): CourseItem[] {
+  public getCourses(): ICourse[] {
     return this.coursesList;
   }
 
