@@ -4,6 +4,7 @@ import { CoursesListComponent } from './courses-list/courses-list.component';
 import { CoursesItemComponent } from './courses-item/courses-item.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { SearchCoursesComponent } from './search-courses/search-courses.component';
+import { LoadMoreBtnComponent } from './load-more-btn/load-more-btn.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { SearchCoursesComponent } from './search-courses/search-courses.componen
     CoursesListComponent,
     CoursesItemComponent,
     AddCourseComponent,
-    SearchCoursesComponent
+    SearchCoursesComponent,
+    LoadMoreBtnComponent
   ]
 })
 export class CoursesModule { }

@@ -1,6 +1,6 @@
-import { CourseItem } from "./course-item";
+import { ICourse } from '../interfaces/icourse';
 
-export class Course implements CourseItem{
+export class CourseItem implements ICourse {
   constructor(public id, public title, public created, public duration, public description) {
       this.id = id;
       this.title = title;

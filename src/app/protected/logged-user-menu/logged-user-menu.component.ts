@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from '../user-profile/user';
+import { UserProfile } from '../user-profile/model/user-profile.model';
 
 @Component({
   selector: 'app-logged-user-menu',
@@ -7,7 +7,7 @@ import { User } from '../user-profile/user';
   styleUrls: ['./logged-user-menu.component.css']
 })
 export class LoggedUserMenuComponent implements OnInit {
-  @Input() public userProfile: User;
+  @Input() public userProfile: UserProfile;
 
   constructor() { }
 
