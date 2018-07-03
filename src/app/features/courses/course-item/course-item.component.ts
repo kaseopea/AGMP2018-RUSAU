@@ -2,11 +2,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CourseItem } from '../model/course-item.model';
 
 @Component({
-  selector: 'app-courses-item',
-  templateUrl: './courses-item.component.html',
-  styleUrls: ['./courses-item.component.css']
+  selector: 'app-course-item',
+  templateUrl: './course-item.component.html',
+  styleUrls: ['./course-item.component.css']
 })
-export class CoursesItemComponent implements OnInit {
+export class CourseItemComponent implements OnInit {
   @Input() public courseItem: CourseItem;
   @Output() delHandler = new EventEmitter<number>();
 
