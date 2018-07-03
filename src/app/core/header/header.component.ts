@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserProfile } from '../../protected/user-profile/model/user-profile.model';
+import { USERPROFILE_MOCK } from '../../mocks/userProfileMock';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.profile = new UserProfile(101, 'kaseopea', 'Vitali', 'Rusau');
+    this.profile = USERPROFILE_MOCK;
   }
 
 }
