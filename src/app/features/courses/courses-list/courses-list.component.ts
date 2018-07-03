@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy } from '@angular/core';
 import { CourseItem } from '../model/course-item.model';
-import { CoursesService } from '../courses.service';
+import { CoursesService } from '../services/courses.service';
 
 @Component({
   selector: 'app-courses-list',
