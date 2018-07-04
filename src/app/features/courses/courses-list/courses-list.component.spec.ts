@@ -9,6 +9,7 @@ import { COURSES_MOCK } from '../../../mocks/coursesMock';
 describe('CoursesListComponent', () => {
   let component: CoursesListComponent;
   let fixture: ComponentFixture<CoursesListComponent>;
+  const courseToDelete: any = COURSES_MOCK[0];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -27,5 +28,10 @@ describe('CoursesListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should delete course with course id ' + courseToDelete.id, () => {
+    component.onDeleted(courseToDelete.id);
+    expect(component.coursesList).not.toContain(courseToDelete);
   });
 });
