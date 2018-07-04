@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserProfile } from '../../protected/user-profile/model/user-profile.model';
+import { IUser } from '../../protected/user-profile/interfaces/iuser';
 import { USERPROFILE_MOCK } from '../../mocks/userProfileMock';
 
 @Component({
@@ -8,7 +8,7 @@ import { USERPROFILE_MOCK } from '../../mocks/userProfileMock';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public profile: UserProfile;
+  public profile: IUser;
 
   constructor() { }
 

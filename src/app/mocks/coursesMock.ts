@@ -1,6 +1,7 @@
 import { CourseItem } from '../features/courses/model/course-item.model';
+import { ICourse } from '../features/courses/interfaces/icourse';
 
-export const COURSES_MOCK: CourseItem[] = [
+export const COURSES_MOCK: ICourse[] = [
   new CourseItem(
     1,
     'Complete Intro to Web Development, v2',

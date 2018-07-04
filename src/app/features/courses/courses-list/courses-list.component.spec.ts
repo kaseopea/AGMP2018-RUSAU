@@ -5,11 +5,12 @@ import { CourseItemComponent } from '../course-item/course-item.component';
 import { LoadMoreBtnComponent } from '../load-more-btn/load-more-btn.component';
 import { CoursesService } from '../services/courses.service';
 import { COURSES_MOCK } from '../../../mocks/coursesMock';
+import { ICourse } from '../interfaces/icourse';
 
 describe('CoursesListComponent', () => {
   let component: CoursesListComponent;
   let fixture: ComponentFixture<CoursesListComponent>;
-  const courseToDelete: any = COURSES_MOCK[0];
+  const courseToDelete: ICourse = COURSES_MOCK[0];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CourseItem } from '../model/course-item.model';
+import { ICourse } from '../interfaces/icourse';
 
 import { COURSES_MOCK } from '../../../mocks/coursesMock';
 
@@ -7,13 +7,13 @@ import { COURSES_MOCK } from '../../../mocks/coursesMock';
   providedIn: 'root'
 })
 export class CoursesService {
-  private coursesList: CourseItem[];
+  private coursesList: ICourse[];
 
   constructor() {
     this.coursesList = COURSES_MOCK;
   }
 
-  public getCourses(): CourseItem[] {
+  public getCourses(): ICourse[] {
     return this.coursesList;
   }
 
