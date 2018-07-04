@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy } from '@angular/core';
-import { CourseItem } from '../model/course-item.model';
-import { CoursesService } from '../services/courses.service';
+import { ICourse } from '../interfaces/icourse';
+import { CoursesService } from '../courses.service';
 
 @Component({
   selector: 'app-courses-list',
@@ -8,7 +8,7 @@ import { CoursesService } from '../services/courses.service';
   styleUrls: ['./courses-list.component.css']
 })
 export class CoursesListComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
-  public coursesList: CourseItem[];
+  public coursesList: ICourse[];
 
   constructor(private coursesService: CoursesService) {
     console.log(`# CoursesListComponent constructor`);
