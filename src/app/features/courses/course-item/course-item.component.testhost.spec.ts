@@ -1,33 +1,40 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
+import {Component, DebugElement} from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { ICourse } from '../interfaces/icourse';
 import { CourseItemComponent } from './course-item.component';
 import { COURSES_MOCK } from '../../../mocks/coursesMock';
 
-describe('CourseItemComponent Standalone', () => {
-    let component: CourseItemComponent;
-    let fixture: ComponentFixture<CourseItemComponent>;
+@Component({
+    template: `<app-course-item [courseItem]="courseItem" (delHandler)="onDeleted($event)"></app-course-item>`
+})
+class TestHostComponent {
+    public courseItem: ICourse = COURSES_MOCK[0];
+    public deletedId: number;
+    public onDeleted(id: number) {
+        this.deletedId = id;
+    }
+}
+describe('CourseItemComponentTestHost', () => {
+    let component: TestHostComponent;
+    let fixture: ComponentFixture<TestHostComponent>;
     let debugEl: DebugElement;
     const courseMock: ICourse = COURSES_MOCK[0];
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ CourseItemComponent ]
+            declarations: [ CourseItemComponent, TestHostComponent ]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(CourseItemComponent);
+        fixture = TestBed.createComponent(TestHostComponent);
         component = fixture.componentInstance;
 
         // find the course item DebugElement and element
         debugEl  = fixture.debugElement;
-
-        // simulate the parent setting the input property
-        component.courseItem = courseMock;
 
         fixture.detectChanges();
     });
@@ -42,12 +49,8 @@ describe('CourseItemComponent Standalone', () => {
     });
 
     it('should raise delete event when clicked', () => {
-        let deletedCourseId;
         const deleteBtnEl = debugEl.query(By.css('.btn-delete'));
-        // subscribe to event
-        component.delHandler.subscribe((val: number) => deletedCourseId = val);
-        // trigger click
         deleteBtnEl.triggerEventHandler('click', null);
-        expect(deletedCourseId).toEqual(courseMock.id);
+        expect(component.deletedId).toEqual(courseMock.id);
     });
 });
