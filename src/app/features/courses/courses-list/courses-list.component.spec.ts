@@ -10,12 +10,20 @@ import { ICourse } from '../interfaces/icourse';
 describe('CoursesListComponent', () => {
   let component: CoursesListComponent;
   let fixture: ComponentFixture<CoursesListComponent>;
+  let coursesService: Partial<CoursesService>;
   const courseToDelete: ICourse = COURSES_MOCK[0];
 
   beforeEach(async(() => {
+    coursesService = {
+      getCourses: jasmine.createSpy('getCourses'),
+      deleteCourse: jasmine.createSpy('deleteCourse'),
+    };
     TestBed.configureTestingModule({
       declarations: [ CoursesListComponent, CourseItemComponent, LoadMoreBtnComponent ],
-      providers: [ CoursesService ]
+      providers: [ {
+        provide: CoursesService,
+        useValue: coursesService
+      } ]
     })
     .compileComponents();
   }));
