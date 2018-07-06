@@ -28,7 +28,7 @@ export const COURSES_MOCK: ICourse[] = [
   ),
   new CourseItem(
     4,
-    'Web Performance',
+    'Web Performance in react',
     new Date(Date.now() + 300000000),
     456,
     'Write more efficient JavaScript, optimize rendering performance, load assets faster with a CDN, split loading resources with Webpack and more!',

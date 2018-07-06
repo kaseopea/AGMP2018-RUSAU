@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  public filterCoursesBy: string;
   constructor() { }
 
   ngOnInit() {
   }
 
+  onSearch(query: string): boolean {
+      console.warn(`Trying to filter courses with "${query}" id`);
+      this.filterCoursesBy = query;
+      return false;
+  }
 }
