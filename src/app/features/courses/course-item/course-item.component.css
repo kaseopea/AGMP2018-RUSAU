@@ -14,3 +14,20 @@
 .course-item-meta .meta-item-icon {
   color: #999;
 }
+
+/* Top Rated */
+.top-rated {
+  margin-left: 10px;
+  color: gold;
+}
+.top-rated-background {
+  background-color: lightgoldenrodyellow;
+}
+
+/* Highlights */
+.fresh-highlight {
+  border: 1px solid green;
+}
+.upcoming-highlight {
+  border: 1px solid blue;
+}

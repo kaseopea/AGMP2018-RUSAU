@@ -5,6 +5,7 @@ import { CourseItemComponent } from './course-item/course-item.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { SearchCoursesComponent } from './search-courses/search-courses.component';
 import { LoadMoreBtnComponent } from './load-more-btn/load-more-btn.component';
+import {CourseHighlighterDirective} from './directives/course-highlighter.directive';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { LoadMoreBtnComponent } from './load-more-btn/load-more-btn.component';
     CourseItemComponent,
     AddCourseComponent,
     SearchCoursesComponent,
-    LoadMoreBtnComponent
+    LoadMoreBtnComponent,
+    CourseHighlighterDirective
   ]
 })
 export class CoursesModule { }

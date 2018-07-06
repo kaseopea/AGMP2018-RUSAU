@@ -1,8 +1,11 @@
-<div class="card course-item">
-    <div class="card-body">
+<div class="card course-item"
+     [appCourseHighlighter]="courseItem.created">
+    <div class="card-body" [ngClass]="{'top-rated-background': courseItem.topRated}">
         <div class="row">
             <div class="col">
-              <h5 class="card-title"><a href="#">{{ courseItem.title }}</a></h5>
+              <h5 class="card-title"><a href="#">{{ courseItem.title | uppercase}}</a>
+                  <span *ngIf="courseItem.topRated" class="top-rated"><i class="fas fa-star"></i></span>
+              </h5>
 
               <p class="course-item-meta">
                 <span class="meta-item">

@@ -9,6 +9,7 @@ import { CoursesService } from '../services/courses.service';
 })
 export class CoursesListComponent implements OnInit {
   public coursesList: ICourse[];
+  public noDataMessage = 'No data. Feel free to add new course';
 
   constructor(private coursesService: CoursesService) {
     this.coursesList = [];
