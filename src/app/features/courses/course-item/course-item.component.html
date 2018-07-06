@@ -12,7 +12,7 @@
                   <span class="meta-item-icon"><i class="far fa-calendar-alt"></i></span> {{ courseItem.created | date:'shortDate' }}
                 </span>
                 <span class="meta-item">
-                  <span class="meta-item-icon"><i class="far meta-item-icon fa-clock"></i></span> {{ courseItem.duration }}
+                  <span class="meta-item-icon"><i class="far meta-item-icon fa-clock"></i></span> {{ courseItem.duration | duration }}
                 </span>
               </p>
               <p class="card-text">{{ courseItem.description }}</p>
