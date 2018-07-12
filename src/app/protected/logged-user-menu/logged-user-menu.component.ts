@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserProfile } from '../user-profile/model/user-profile.model';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-logged-user-menu',
@@ -9,9 +10,13 @@ import { UserProfile } from '../user-profile/model/user-profile.model';
 export class LoggedUserMenuComponent implements OnInit {
   @Input() public userProfile: UserProfile;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.Login('kaseopea');
   }
 
+  public makeLogout(): void {
+    this.authService.Logout(this.userProfile.username);
+  }
 }

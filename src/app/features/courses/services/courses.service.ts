@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { ICourse } from '../interfaces/icourse';
+import {Injectable} from '@angular/core';
+import {ICourse} from '../interfaces/icourse';
 
-import { COURSES_MOCK } from '../../../mocks/coursesMock';
+import {COURSES_MOCK} from '../../../mocks/coursesMock';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,19 @@ export class CoursesService {
 
   public getCourses(): ICourse[] {
     return this.coursesList;
+  }
+
+  public getCourseById(courseId: number): ICourse {
+    return this.coursesList.find((course: ICourse) => course.id === courseId);
+  }
+
+  public addCourse(course: ICourse): void {
+    this.coursesList.push(course);
+  }
+
+  public updateCourse(courseId: number, updateCourse: ICourse): void {
+    const courseIndex = this.coursesList.findIndex((course: ICourse) => course.id === courseId);
+    this.coursesList[courseIndex] = updateCourse;
   }
 
   public deleteCourse(courseId: number): void {

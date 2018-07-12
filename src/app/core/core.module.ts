@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LogoComponent } from './logo/logo.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { ProtectedModule } from '../protected/protected.module';
+import { getLocalStorage } from './services/getLocalStorage.factory';
 
 @NgModule({
   imports: [
@@ -21,6 +22,12 @@ import { ProtectedModule } from '../protected/protected.module';
     FooterComponent,
     LogoComponent,
     BreadcrumbsComponent
+  ],
+  providers: [
+    {
+      provide: 'LOCALSTORAGE',
+      useFactory: getLocalStorage
+    }
   ]
 })
 export class CoreModule {

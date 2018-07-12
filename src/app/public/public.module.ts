@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CoursesModule } from '../features/courses/courses.module';
+import { LoginComponent } from './login/login.component';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   imports: [
-    CommonModule,
+    CoreModule,
     CoursesModule
   ],
-  exports: [DashboardComponent],
-  declarations: [DashboardComponent]
+  exports: [DashboardComponent, LoginComponent],
+  declarations: [DashboardComponent, LoginComponent]
 })
 export class PublicModule { }

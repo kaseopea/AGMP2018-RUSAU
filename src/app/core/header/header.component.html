@@ -5,7 +5,7 @@
               <app-logo></app-logo>
           </div>
           <div class="col widgets">
-              <app-logged-user-menu [userProfile]=profile></app-logged-user-menu>
+              <app-logged-user-menu *ngIf="isAuthorized" [userProfile]=profile></app-logged-user-menu>
           </div>
         </div>
   </div>

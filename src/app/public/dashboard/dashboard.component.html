@@ -1,10 +1,11 @@
+<app-breadcrumbs></app-breadcrumbs>
 <div class="row">
     <div class="col">
         <app-search-courses (searchHandler)="onSearch($event)"></app-search-courses>
     </div>
     <div class="col text-right">
-      <app-add-course></app-add-course>
+        <app-add-course></app-add-course>
     </div>
-  </div>
+</div>
 
-  <app-courses-list [filterBy]="filterCoursesBy"></app-courses-list>
+<app-courses-list [filterBy]="filterCoursesBy"></app-courses-list>
