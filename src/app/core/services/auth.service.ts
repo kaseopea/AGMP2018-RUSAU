@@ -5,11 +5,13 @@ import { IUser } from '../../protected/user-profile/interfaces/iuser';
   providedIn: 'root'
 })
 export class AuthService {
+  private SUCCESS_LOGIN_MESSAGE = 'Logged in successfully!';
   constructor(@Inject('LOCALSTORAGE') private localStorage: any) {
   }
 
   public Login(login: string) {
     const token = this.generateToken();
+    console.log(`${this.SUCCESS_LOGIN_MESSAGE} Token: ${token}`);
   }
 
   public Logout(username: string): void {
