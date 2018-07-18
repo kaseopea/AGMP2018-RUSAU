@@ -39,7 +39,7 @@ describe('CoursesListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should delete course with course id ' + courseToDelete.id, () => {
+  it('should delete course of provided id ' + courseToDelete.id, () => {
     component.onDeleted(courseToDelete.id);
     expect(component.coursesList).not.toContain(courseToDelete);
   });
