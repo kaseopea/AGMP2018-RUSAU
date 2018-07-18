@@ -1,3 +1,3 @@
-<app-courses-item *ngFor="let course of coursesList" [courseItem]="course" (delHandler)="onDeleted($event)"></app-courses-item>
+<app-course-item *ngFor="let course of coursesList" [courseItem]="course" (delHandler)="onDeleted($event)"></app-course-item>
 
 <app-load-more-btn></app-load-more-btn>

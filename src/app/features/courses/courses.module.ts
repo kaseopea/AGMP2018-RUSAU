@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoursesListComponent } from './courses-list/courses-list.component';
-import { CoursesItemComponent } from './courses-item/courses-item.component';
+import { CourseItemComponent } from './course-item/course-item.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { SearchCoursesComponent } from './search-courses/search-courses.component';
 import { LoadMoreBtnComponent } from './load-more-btn/load-more-btn.component';
@@ -12,13 +12,13 @@ import { LoadMoreBtnComponent } from './load-more-btn/load-more-btn.component';
   ],
   exports: [
     CoursesListComponent,
-    CoursesItemComponent,
+    CourseItemComponent,
     AddCourseComponent,
     SearchCoursesComponent
   ],
   declarations: [
     CoursesListComponent,
-    CoursesItemComponent,
+    CourseItemComponent,
     AddCourseComponent,
     SearchCoursesComponent,
     LoadMoreBtnComponent
