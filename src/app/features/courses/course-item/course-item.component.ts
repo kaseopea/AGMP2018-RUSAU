@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ICourse } from '../interfaces/icourse';
 
 @Component({
   selector: 'app-course-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './course-item.component.html',
   styleUrls: ['./course-item.component.css']
 })
