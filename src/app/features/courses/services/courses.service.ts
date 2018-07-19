@@ -17,7 +17,7 @@ export class CoursesService {
     return this.coursesList;
   }
 
-  public getCourseById(courseId: number): ICourse {
+  public getCourseById(courseId: string): ICourse {
     return this.coursesList.find((course: ICourse) => course.id === courseId);
   }
 
@@ -25,12 +25,12 @@ export class CoursesService {
     this.coursesList.push(course);
   }
 
-  public updateCourse(courseId: number, updateCourse: ICourse): void {
+  public updateCourse(courseId: string, updateCourse: ICourse): void {
     const courseIndex = this.coursesList.findIndex((course: ICourse) => course.id === courseId);
     this.coursesList[courseIndex] = updateCourse;
   }
 
-  public deleteCourse(courseId: number): void {
+  public deleteCourse(courseId: string): void {
     for (let i = 0; i < this.coursesList.length; i++) {
       if (this.coursesList[i].id && this.coursesList[i].id === courseId) {
         this.coursesList.splice(i, 1);
