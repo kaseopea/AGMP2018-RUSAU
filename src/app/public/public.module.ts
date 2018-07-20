@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CoursesModule } from '../features/courses/courses.module';
@@ -11,7 +12,8 @@ import { ManageCourseComponent } from './manage-course/manage-course.component';
   imports: [
     CoreModule,
     CoursesModule,
-    RouterModule
+    RouterModule,
+    CommonModule
   ],
   exports: [DashboardComponent, LoginComponent],
   declarations: [DashboardComponent, LoginComponent, ManageCourseComponent]

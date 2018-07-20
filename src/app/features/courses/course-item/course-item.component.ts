@@ -9,7 +9,7 @@ import { ICourse } from '../interfaces/icourse';
 })
 export class CourseItemComponent implements OnInit {
   @Input() public courseItem: ICourse;
-  @Output() delHandler = new EventEmitter<number>();
+  @Output() delHandler = new EventEmitter<string>();
   private CONFIRM_DELETE_MESSAGE = 'Do you really want to delete?';
 
   constructor() { }
@@ -17,7 +17,7 @@ export class CourseItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  deleteCourse(courseId: number): boolean {
+  deleteCourse(courseId: string): boolean {
     if (window.confirm(this.CONFIRM_DELETE_MESSAGE)) {
       this.delHandler.emit(courseId);
     }

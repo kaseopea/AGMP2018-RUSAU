@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { CoursesListComponent } from './courses-list/courses-list.component';
 import { CourseItemComponent } from './course-item/course-item.component';
-import { AddCourseComponent } from './add-course/add-course.component';
+import { AddEditCourseComponent } from './add-edit-course/add-edit-course.component';
 import { SearchCoursesComponent } from './search-courses/search-courses.component';
 import { LoadMoreBtnComponent } from './load-more-btn/load-more-btn.component';
 import { CourseHighlighterDirective } from './directives/course-highlighter.directive';
@@ -12,18 +13,19 @@ import { FilterByPipe } from './pipes/filter-by.pipe';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [
     CoursesListComponent,
     CourseItemComponent,
-    AddCourseComponent,
+    AddEditCourseComponent,
     SearchCoursesComponent
   ],
   declarations: [
     CoursesListComponent,
     CourseItemComponent,
-    AddCourseComponent,
+    AddEditCourseComponent,
     SearchCoursesComponent,
     LoadMoreBtnComponent,
     CourseHighlighterDirective,
@@ -35,4 +37,5 @@ import { FilterByPipe } from './pipes/filter-by.pipe';
     FilterByPipe
   ]
 })
-export class CoursesModule { }
+export class CoursesModule {
+}

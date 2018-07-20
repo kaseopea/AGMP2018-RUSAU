@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { ICourse } from '../interfaces/icourse';
 import { CoursesService } from '../services/courses.service';
+import { st } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-courses-list',
@@ -17,7 +18,7 @@ export class CoursesListComponent implements OnInit {
   ngOnInit() {
   }
 
-  onDeleted(courseId: number): boolean {
+  onDeleted(courseId: string): boolean {
     console.warn(`Trying to delete course with "${courseId}" id`);
     this.coursesService.deleteCourse(courseId);
     this.coursesList = this.coursesService.getCourses();
