@@ -10,6 +10,9 @@ import { CourseHighlighterDirective } from './directives/course-highlighter.dire
 import { DurationPipe } from './pipes/duration.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { FilterByPipe } from './pipes/filter-by.pipe';
+import { DateInputComponent } from './add-edit-course/date-input/date-input.component';
+import { DurationInputComponent } from './add-edit-course/duration-input/duration-input.component';
+import { AuthorsTagsComponent } from './add-edit-course/authors-tags/authors-tags.component';
 
 @NgModule({
   imports: [
@@ -31,7 +34,10 @@ import { FilterByPipe } from './pipes/filter-by.pipe';
     CourseHighlighterDirective,
     DurationPipe,
     OrderByPipe,
-    FilterByPipe
+    FilterByPipe,
+    DateInputComponent,
+    DurationInputComponent,
+    AuthorsTagsComponent
   ],
   providers: [
     FilterByPipe

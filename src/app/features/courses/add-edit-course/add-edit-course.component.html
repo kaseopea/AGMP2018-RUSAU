@@ -1,58 +1,60 @@
-<form>
-    <div class="form-group">
-        <label for="inputTitle">Course title</label>
-        <input type="text"
-               [(ngModel)]="course.title"
-               class="form-control"
-               name="inputTitle"
-               id="inputTitle"
-               placeholder="Enter course title">
-    </div>
-
-    <div class="form-group">
-        <label for="textareaDescription">Course description</label>
-        <textarea class="form-control"
-                  [(ngModel)]="course.description"
-                  name="textareaDescription"
-                  id="textareaDescription"
-                  placeholder="Enter course description"
-                  rows="3"></textarea>
-    </div>
-
-    <div class="form-group">
-        <label for="inputDate">Creation date</label>
-        <input type="text"
-               [(ngModel)]="course.created"
-               class="form-control"
-               name="inputDate"
-               id="inputDate"
-               placeholder="Enter date">
-    </div>
-
-    <div class="form-group">
-        <label for="inputDuration">Duration</label>
-        <div class="row">
-            <div class="col-6">
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="form-group">
+                <label for="inputTitle">Course title</label>
                 <input type="text"
-                       [(ngModel)]="course.duration"
+                       required
+                       [(ngModel)]="course.title"
                        class="form-control"
-                       name="inputDuration"
-                       id="inputDuration"
-                       placeholder="Duration">
+                       name="inputTitle"
+                       id="inputTitle"
+                       placeholder="Enter course title">
             </div>
-            <div class="col-6">
-                <div class="alert alert-primary duration-formatted" role="alert">
-                    {{course.duration | duration}}
+
+            <div class="form-group">
+                <label for="textareaDescription">Course description</label>
+                <textarea class="form-control"
+                          required
+                          [(ngModel)]="course.description"
+                          name="textareaDescription"
+                          id="textareaDescription"
+                          placeholder="Enter course description"
+                          rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <!--<app-date-input
+                        required
+                        [(ngModel)]="course.created"></app-date-input>-->
+            </div>
+
+            <div class="form-group">
+                <!--<app-duration-input
+                        required
+                        [(ngModel)]="course.duration"></app-duration-input>-->
+            </div>
+
+            <div class="form-group">
+                <!--<app-authors-tags></app-authors-tags>-->
+                <label for="inputAuthors">Authors (not implemented yet)</label>
+                <input disabled="disabled" type="text" class="form-control" id="inputAuthors" placeholder="Add authors">
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <button type="submit"
+                            (click)="cancelHandler()"
+                            class="btn btn-outline-secondary">Cancel
+                    </button>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <button type="submit"
+                            [disabled]="!form.valid"
+                            class="btn btn-primary">Submit
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="form-group">
-        <label for="inputAuthors">Authors (not implemented yet)</label>
-        <input disabled="disabled" type="text" class="form-control" id="inputAuthors" placeholder="Add authors">
-    </div>
-
-    <button type="submit" class="btn btn-outline-secondary">Cancel</button>
-    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
