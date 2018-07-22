@@ -24,21 +24,21 @@
             </div>
 
             <div class="form-group">
-                <!--<app-date-input
+                <app-date-input
                         required
-                        [(ngModel)]="course.created"></app-date-input>-->
+                        name="inputDate"
+                        [dateInput]="course.created"></app-date-input>
             </div>
 
             <div class="form-group">
-                <!--<app-duration-input
+                <app-duration-input
                         required
-                        [(ngModel)]="course.duration"></app-duration-input>-->
+                        name="inputDuration"
+                        [durationInput]="course.duration"></app-duration-input>
             </div>
 
             <div class="form-group">
-                <!--<app-authors-tags></app-authors-tags>-->
-                <label for="inputAuthors">Authors (not implemented yet)</label>
-                <input disabled="disabled" type="text" class="form-control" id="inputAuthors" placeholder="Add authors">
+                <app-authors-tags></app-authors-tags>
             </div>
 
             <div class="row">
