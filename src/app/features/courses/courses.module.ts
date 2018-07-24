@@ -5,6 +5,10 @@ import { CourseItemComponent } from './course-item/course-item.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { SearchCoursesComponent } from './search-courses/search-courses.component';
 import { LoadMoreBtnComponent } from './load-more-btn/load-more-btn.component';
+import {CourseHighlighterDirective} from './directives/course-highlighter.directive';
+import { DurationPipe } from './pipes/duration.pipe';
+import { OrderByPipe } from './pipes/order-by.pipe';
+import { FilterByPipe } from './pipes/filter-by.pipe';
 
 @NgModule({
   imports: [
@@ -21,7 +25,14 @@ import { LoadMoreBtnComponent } from './load-more-btn/load-more-btn.component';
     CourseItemComponent,
     AddCourseComponent,
     SearchCoursesComponent,
-    LoadMoreBtnComponent
+    LoadMoreBtnComponent,
+    CourseHighlighterDirective,
+    DurationPipe,
+    OrderByPipe,
+    FilterByPipe
+  ],
+  providers: [
+    FilterByPipe
   ]
 })
 export class CoursesModule { }
