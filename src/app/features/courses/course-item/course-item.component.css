@@ -1,33 +1,44 @@
 .course-item {
   margin: 10px 0;
 }
+
 .course-item-meta {
 
 }
+
 .course-item-meta .meta-item {
   color: #666;
   margin: 0 15px;
 }
+
 .course-item-meta .meta-item:nth-child(1) {
   margin-left: 0;
 }
+
 .course-item-meta .meta-item-icon {
   color: #999;
 }
 
 /* Top Rated */
 .top-rated {
+  background-color: lightgoldenrodyellow;
+}
+
+.top-rated-star {
+  display: none;
   margin-left: 10px;
   color: gold;
 }
-.top-rated-background {
-  background-color: lightgoldenrodyellow;
+
+.top-rated .top-rated-star {
+  display: inline-block;
 }
 
 /* Highlights */
 .fresh-highlight {
   border: 1px solid green;
 }
+
 .upcoming-highlight {
   border: 1px solid blue;
 }
