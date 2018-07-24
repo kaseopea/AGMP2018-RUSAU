@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserProfile } from '../user-profile/model/user-profile.model';
+import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 
 @Component({
@@ -8,15 +8,15 @@ import { AuthService } from '../../core/services/auth.service';
   styleUrls: ['./logged-user-menu.component.css']
 })
 export class LoggedUserMenuComponent implements OnInit {
-  @Input() public userProfile: UserProfile;
-
-  constructor(private authService: AuthService) { }
+  public userProfile: string;
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.authService.Login('kaseopea');
+    this.userProfile = this.authService.GetUserInfo();
   }
 
   public makeLogout(): void {
-    this.authService.Logout(this.userProfile.username);
+    this.authService.Logout();
+    this.router.navigateByUrl('/login');
   }
 }

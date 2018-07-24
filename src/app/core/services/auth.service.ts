@@ -1,29 +1,42 @@
 import { Inject, Injectable } from '@angular/core';
+import { USERPROFILE_MOCK } from '../../mocks/userProfileMock';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private SUCCESS_LOGIN_MESSAGE = 'Logged in successfully!';
+  private token: string;
+  private LS_KEYS = {
+    token: 'token',
+    userData: 'userData'
+  };
   constructor(@Inject('LOCALSTORAGE') private localStorage: any) {
   }
 
   public Login(login: string) {
-    const token = this.generateToken();
-    console.log(`${this.SUCCESS_LOGIN_MESSAGE} Token: ${token}`);
+    this.token = this.generateToken();
+    this.localStorage.setItem(this.LS_KEYS.token, this.token);
+    this.localStorage.setItem(this.LS_KEYS.userData, JSON.stringify(USERPROFILE_MOCK));
+    console.log(`${this.SUCCESS_LOGIN_MESSAGE} Token: ${this.token}`);
   }
 
-  public Logout(username: string): void {
-    console.info(`### User "${username}" wants to logout`);
+  public Logout(): void {
+    const userKey = JSON.parse(this.localStorage.getItem(this.LS_KEYS.userData)).username;
+    console.warn(`${userKey} wants to logout`);
+    this.localStorage.removeItem(userKey);
+    this.localStorage.removeItem('token');
+    this.token = '';
+
   }
 
   public IsAuthenticated(): boolean {
-    console.log(this.generateToken());
-    return false;
+    const lsToken = this.localStorage.getItem(this.LS_KEYS.token);
+    return this.token === lsToken;
   }
 
-  public GetUserInfo(): void {
-
+  public GetUserInfo(): string {
+    return JSON.parse(this.localStorage.getItem(this.LS_KEYS.userData));
   }
 
   private generateToken(): string {
