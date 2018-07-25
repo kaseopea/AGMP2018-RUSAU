@@ -7,6 +7,7 @@ import { CoursesModule } from '../features/courses/courses.module';
 import { LoginComponent } from './login/login.component';
 import { CoreModule } from '../core/core.module';
 import { ManageCourseComponent } from './manage-course/manage-course.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { ManageCourseComponent } from './manage-course/manage-course.component';
     CommonModule
   ],
   exports: [DashboardComponent, LoginComponent],
-  declarations: [DashboardComponent, LoginComponent, ManageCourseComponent]
+  declarations: [DashboardComponent, LoginComponent, ManageCourseComponent, NotfoundComponent]
 })
 export class PublicModule { }
