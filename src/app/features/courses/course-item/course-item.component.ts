@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ICourse } from '../interfaces/icourse';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-item',
@@ -12,9 +13,14 @@ export class CourseItemComponent implements OnInit {
   @Output() delHandler = new EventEmitter<string>();
   private CONFIRM_DELETE_MESSAGE = 'Do you really want to delete?';
 
-  constructor() { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit() {
+  }
+
+  editCourse(courseId: string) {
+    this.router.navigate(['/manage-course/' + courseId]);
   }
 
   deleteCourse(courseId: string): boolean {
