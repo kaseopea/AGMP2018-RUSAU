@@ -16,9 +16,7 @@ export class AddEditCourseComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.course) {
-      console.log(this.course);
-    } else {
+    if (!this.course) {
       this.course = this.coursesService.getDefaultEmptyCourse();
     }
   }

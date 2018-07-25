@@ -24,12 +24,11 @@ export class CourseHighlighterDirective implements OnInit {
 
   private processDate(date) {
     const currentDate = new Date(Date.now());
-    const prevLimit = new Date(Date.now());
-    prevLimit.setDate(prevLimit.getDate() - this.prevDateLimit);
-
-    if ((date < currentDate) && (date >= prevLimit)) {
+    const timeDiff = date.getTime() - currentDate.getTime();
+    const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    if ((daysDiff <= 0) && (Math.abs(daysDiff) <= this.prevDateLimit)) {
       return this.HIGLIGHT_CLASSES.fresh;
-    } else if (date > currentDate) {
+    } else if (daysDiff > 0) {
       return this.HIGLIGHT_CLASSES.upcoming;
     } else {
       return null;
