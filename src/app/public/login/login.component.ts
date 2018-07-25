@@ -14,7 +14,10 @@ export class LoginComponent implements OnInit {
   }
 
   doLogin() {
-    this.authService.Login('login');
+    this.authService.Login({
+      login: 'kaseopea',
+      password: 'password'
+    });
     this.router.navigateByUrl('/dashboard');
   }
 }
