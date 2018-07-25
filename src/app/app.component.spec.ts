@@ -14,7 +14,7 @@ import { ROUTES } from './app.routes';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports:[
+      imports: [
         CoreModule,
         SharedModule,
         CoursesModule,
@@ -22,8 +22,8 @@ describe('AppComponent', () => {
         ProtectedModule,
         RouterModule.forRoot(ROUTES)
       ],
-      providers:[
-        { provide: APP_BASE_HREF, useValue : '/' }
+      providers: [
+        {provide: APP_BASE_HREF, useValue: '/'}
       ],
       declarations: [
         AppComponent

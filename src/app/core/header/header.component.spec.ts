@@ -13,12 +13,12 @@ describe('HeaderComponent', () => {
       imports: [
         ProtectedModule
       ],
-      declarations: [ 
+      declarations: [
         LogoComponent,
         HeaderComponent
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

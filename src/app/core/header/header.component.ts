@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { IUser } from '../../protected/user-profile/interfaces/iuser';
 import { USERPROFILE_MOCK } from '../../mocks/userProfileMock';
@@ -9,7 +9,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit, OnChanges {
+export class HeaderComponent implements OnInit {
   public profile: IUser;
   public isAuthorized = false;
 
@@ -26,9 +26,4 @@ export class HeaderComponent implements OnInit, OnChanges {
         }
       });
   }
-
-  ngOnChanges() {
-    // this.isAuthorized = this.authService.IsAuthenticated();
-  }
-
 }
