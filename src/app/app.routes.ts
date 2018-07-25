@@ -14,7 +14,7 @@ export const ROUTES: Route[] = [
     component: DashboardComponent
   },
   {
-    path: 'manage-course',
+    path: 'manage-course/new',
     component: ManageCourseComponent
   },
   {
