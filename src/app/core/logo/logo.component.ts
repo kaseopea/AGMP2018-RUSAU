@@ -6,11 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./logo.component.css']
 })
 export class LogoComponent implements OnInit {
-  appTitle = 'VIDEOS';
+  public appTitle: string;
 
   constructor() { }
 
   ngOnInit() {
+    this.appTitle = 'videos';
   }
 
 }

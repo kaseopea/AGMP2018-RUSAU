@@ -8,7 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class BreadcrumbsComponent implements OnInit {
   @Input() public pageTitle;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
