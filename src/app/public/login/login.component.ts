@@ -19,6 +19,6 @@ export class LoginComponent implements OnInit {
       login: 'kaseopea',
       password: 'password'
     });
-    this.router.navigateByUrl('/dashboard');
+    this.router.navigateByUrl('/courses');
   }
 }

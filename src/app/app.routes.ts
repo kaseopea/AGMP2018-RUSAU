@@ -10,15 +10,15 @@ export const ROUTES: Route[] = [
     component: LoginComponent
   },
   {
-    path: 'dashboard',
+    path: 'courses',
     component: DashboardComponent
   },
   {
-    path: 'manage-course/new',
+    path: 'courses/new',
     component: ManageCourseComponent
   },
   {
-    path: 'manage-course/:id',
+    path: 'courses/:id',
     component: ManageCourseComponent
   },
   {

@@ -28,7 +28,7 @@ export class AddEditCourseComponent implements OnInit {
   }
 
   cancelHandler() {
-    this.router.navigateByUrl('/dashboard');
+    this.router.navigateByUrl('/courses');
     return false;
   }
 }
