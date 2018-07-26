@@ -4,3 +4,13 @@
    padding: 15px;
    margin: 10em auto;
 }
+.access-denied {
+  margin: 1em 0;
+}
+.access-denied .card-body {
+  padding: .7em 1.25rem;
+}
+
+.access-denied .card-title {
+  margin: 0;
+}

@@ -50,6 +50,7 @@ export class AuthService {
       this.isLoggedIn = false;
       console.error('Invalid credentials. Login is forbidden!');
     }
+    return this.isLoggedIn;
   }
 
   public Logout(): void {

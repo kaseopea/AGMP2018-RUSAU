@@ -10,10 +10,13 @@ import { ICourse } from '../../features/courses/interfaces/icourse';
 })
 export class ManageCourseComponent implements OnInit {
   public course: ICourse;
+  public pageTitle = '';
   private readonly courseId: string;
+
 
   constructor(private route: ActivatedRoute, private coursesService: CoursesService) {
     this.courseId = this.route.snapshot.paramMap.get('id');
+    this.pageTitle = this.route.snapshot.data['title'];
   }
 
   ngOnInit() {

@@ -3,23 +3,39 @@ import { DashboardComponent } from './public/dashboard/dashboard.component';
 import { LoginComponent } from './public/login/login.component';
 import { ManageCourseComponent } from './public/manage-course/manage-course.component';
 import { NotfoundComponent } from './public/notfound/notfound.component';
+import { AuthGuardService } from './core/services/auth-guard.service';
 
 export const ROUTES: Route[] = [
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    data: {
+      title: 'Login Page'
+    }
   },
   {
     path: 'courses',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      title: 'Courses Dashboard'
+    }
   },
   {
     path: 'courses/new',
-    component: ManageCourseComponent
+    component: ManageCourseComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      title: 'Add new course'
+    }
   },
   {
     path: 'courses/:id',
-    component: ManageCourseComponent
+    component: ManageCourseComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      title: 'Update course data'
+    }
   },
   {
     path: '',
@@ -28,6 +44,9 @@ export const ROUTES: Route[] = [
   },
   {
     path: '**',
-    component: NotfoundComponent
+    component: NotfoundComponent,
+    data: {
+      title: '404 Page was lost...'
+    }
   }
 ];

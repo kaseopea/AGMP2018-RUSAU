@@ -1,9 +1,9 @@
+<app-breadcrumbs [pageTitle]="pageTitle"></app-breadcrumbs>
+
 <div class="heading" *ngIf="!course; else elseBlock">
-    <app-breadcrumbs pageTitle="Add new course"></app-breadcrumbs>
     <h3 class="heading-title">Add course</h3>
 </div>
 <ng-template #elseBlock>
-    <app-breadcrumbs pageTitle="Edit course"></app-breadcrumbs>
     <h3 class="heading-title">Edit course</h3>
 </ng-template>
 
