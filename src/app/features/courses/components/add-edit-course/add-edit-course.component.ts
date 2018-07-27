@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { ICourse } from '../interfaces/icourse';
-import { CoursesService } from '../services/courses.service';
+import { ICourse } from '../../interfaces/icourse';
+import { CoursesService } from '../../services/courses.service';
 
 @Component({
   selector: 'app-add-edit-course',

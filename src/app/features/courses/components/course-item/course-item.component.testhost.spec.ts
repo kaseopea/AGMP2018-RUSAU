@@ -2,9 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {Component, DebugElement} from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { ICourse } from '../interfaces/icourse';
+import { ICourse } from '../../interfaces/icourse';
 import { CourseItemComponent } from './course-item.component';
-import { COURSES_MOCK } from '../../../mocks/coursesMock';
+import { COURSES_MOCK } from '../../../../mocks/coursesMock';
 
 @Component({
     template: `<app-course-item [courseItem]="courseItem" (delHandler)="onDeleted($event)"></app-course-item>`
