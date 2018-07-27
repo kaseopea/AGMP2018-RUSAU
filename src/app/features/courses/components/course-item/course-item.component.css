@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:900i');
+
+.course-item {
+  margin: 10px 0;
+}
+
+.course-item-meta {
+
+}
+
+.card-title {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.course-item-meta .meta-item {
+  color: #666;
+  margin: 0 15px;
+}
+
+.course-item-meta .meta-item:nth-child(1) {
+  margin-left: 0;
+}
+
+.course-item-meta .meta-item-icon {
+  color: #999;
+}
+
+/* Top Rated */
+.top-rated {
+  background-color: #ecf0f1;
+}
+
+.top-rated .card-title-link {
+  color: #e74c3c;
+}
+
+.top-rated-star {
+  display: none;
+  margin-left: 10px;
+  color: #f1c40f;
+}
+
+.top-rated .top-rated-star {
+  display: inline-block;
+}
+
+/* Highlights */
+.fresh-highlight {
+  border-left: 5px solid #27ae60;
+}
+
+.upcoming-highlight {
+  border-left: 5px solid #2980b9;
+}
+
+/* Buttons */
+.btn-edit, .btn-delete {
+  background-color: #fff;
+}
+
+.btn-edit:hover, .btn-delete:hover {
+  background-color: #95a5a6;
+  color: #fff;
+}
