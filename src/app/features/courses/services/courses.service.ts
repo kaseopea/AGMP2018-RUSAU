@@ -1,7 +1,9 @@
-import {Injectable} from '@angular/core';
-import {ICourse} from '../interfaces/icourse';
+import { Injectable } from '@angular/core';
+import { ICourse } from '../interfaces/icourse';
+import v1 from 'uuid/v1';
 
-import {COURSES_MOCK} from '../../../mocks/coursesMock';
+import { COURSES_MOCK } from '../../../mocks/coursesMock';
+import { CourseItem } from '../model/course-item.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,7 @@ export class CoursesService {
     return this.coursesList;
   }
 
-  public getCourseById(courseId: number): ICourse {
+  public getCourseById(courseId: string): ICourse {
     return this.coursesList.find((course: ICourse) => course.id === courseId);
   }
 
@@ -25,12 +27,23 @@ export class CoursesService {
     this.coursesList.push(course);
   }
 
-  public updateCourse(courseId: number, updateCourse: ICourse): void {
+  public getDefaultEmptyCourse() {
+    return new CourseItem(
+      v1(),
+      'Default empty title to test',
+      new Date(Date.now()),
+      0,
+      '',
+      false
+    );
+  }
+
+  public updateCourse(courseId: string, updateCourse: ICourse): void {
     const courseIndex = this.coursesList.findIndex((course: ICourse) => course.id === courseId);
     this.coursesList[courseIndex] = updateCourse;
   }
 
-  public deleteCourse(courseId: number): void {
+  public deleteCourse(courseId: string): void {
     for (let i = 0; i < this.coursesList.length; i++) {
       if (this.coursesList[i].id && this.coursesList[i].id === courseId) {
         this.coursesList.splice(i, 1);

@@ -1,0 +1,60 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="form-group">
+                <label for="inputTitle">Course title</label>
+                <input type="text"
+                       required
+                       [(ngModel)]="course.title"
+                       class="form-control"
+                       name="inputTitle"
+                       id="inputTitle"
+                       placeholder="Enter course title">
+            </div>
+
+            <div class="form-group">
+                <label for="textareaDescription">Course description</label>
+                <textarea class="form-control"
+                          required
+                          [(ngModel)]="course.description"
+                          name="textareaDescription"
+                          id="textareaDescription"
+                          placeholder="Enter course description"
+                          rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <app-date-input
+                        required
+                        name="inputDate"
+                        [dateInput]="course.created"></app-date-input>
+            </div>
+
+            <div class="form-group">
+                <app-duration-input
+                        required
+                        name="inputDuration"
+                        [durationInput]="course.duration"></app-duration-input>
+            </div>
+
+            <div class="form-group">
+                <app-authors-tags></app-authors-tags>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <button type="submit"
+                            (click)="cancelHandler()"
+                            class="btn btn-outline-secondary">Cancel
+                    </button>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <button type="submit"
+                            [disabled]="!form.valid"
+                            class="btn btn-primary">Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

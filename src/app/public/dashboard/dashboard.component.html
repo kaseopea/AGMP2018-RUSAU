@@ -4,8 +4,10 @@
         <app-search-courses (searchHandler)="onSearch($event)"></app-search-courses>
     </div>
     <div class="col text-right">
-        <app-add-course></app-add-course>
+        <a routerLink="/manage-course" class="btn btn-success">
+            <i class="fas fa-plus-square"></i> New course
+        </a>
     </div>
 </div>
 
-<app-courses-list [filterBy]="filterCoursesBy"></app-courses-list>
+<app-courses-list [coursesList]="getFilteredCourses()"></app-courses-list>

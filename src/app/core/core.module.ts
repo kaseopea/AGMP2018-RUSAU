@@ -6,11 +6,13 @@ import { LogoComponent } from './logo/logo.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { ProtectedModule } from '../protected/protected.module';
 import { getLocalStorage } from './services/getLocalStorage.factory';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
-    ProtectedModule
+    ProtectedModule,
+    RouterModule
   ],
   exports: [
     HeaderComponent,

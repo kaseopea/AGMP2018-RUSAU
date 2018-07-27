@@ -3,9 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CoursesListComponent } from './courses-list.component';
 import { CourseItemComponent } from '../course-item/course-item.component';
 import { LoadMoreBtnComponent } from '../load-more-btn/load-more-btn.component';
-import { CoursesService } from '../services/courses.service';
-import { COURSES_MOCK } from '../../../mocks/coursesMock';
-import { ICourse } from '../interfaces/icourse';
+import { CoursesService } from '../../services/courses.service';
+import { COURSES_MOCK } from '../../../../mocks/coursesMock';
+import { ICourse } from '../../interfaces/icourse';
 
 describe('CoursesListComponent', () => {
   let component: CoursesListComponent;

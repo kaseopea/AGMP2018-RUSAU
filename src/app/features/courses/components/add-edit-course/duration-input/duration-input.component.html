@@ -1,0 +1,16 @@
+<label for="inputDuration">Duration</label>
+<div class="row">
+    <div class="col-6">
+        <input type="number"
+               [(ngModel)]="durationInput"
+               class="form-control"
+               name="inputDuration"
+               id="inputDuration"
+               placeholder="Duration">
+    </div>
+    <div class="col-6">
+        <div class="alert alert-primary duration-formatted" role="alert">
+            {{ durationInput | duration }}
+        </div>
+    </div>
+</div>

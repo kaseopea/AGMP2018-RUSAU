@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {min} from 'rxjs/operators';
 
 @Pipe({
   name: 'duration'
@@ -7,9 +6,16 @@ import {min} from 'rxjs/operators';
 export class DurationPipe implements PipeTransform {
 
   transform(value: number, args?: any): string {
+    if (!Number.isInteger(value)) {
+      return '--';
+    }
     const hours: number = Math.floor(value / 60);
     const minutes = value % 60;
-    return `${this.processHours(hours)}:${this.processMinutes(minutes)}`;
+    const output = {
+      hours: this.processHours(hours),
+      minutes: this.processMinutes(minutes)
+    };
+    return `${output.hours}${output.minutes}`;
   }
 
   processHours(hours) {
@@ -17,7 +23,7 @@ export class DurationPipe implements PipeTransform {
       return '';
     }
     hours = hours < 10 ? '0' + hours : hours;
-    return hours + 'h';
+    return hours + 'h:';
   }
 
   processMinutes(minutes) {

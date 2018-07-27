@@ -68,6 +68,10 @@ export class AuthService {
     return this.userData;
   }
 
+  public clearStorageData() {
+    this.localStorage.removeItem(this.LS_KEYS.token);
+    this.localStorage.removeItem(this.LS_KEYS.userData);
+  }
 
   // utils
   private getUserDataFromStorage() {
@@ -85,12 +89,5 @@ export class AuthService {
   private setUserDataToStorage(data: IUser): void {
     this.localStorage.setItem(this.LS_KEYS.userData, JSON.stringify(data));
   }
-
-  private clearStorageData() {
-    this.localStorage.removeItem(this.LS_KEYS.token);
-    this.localStorage.removeItem(this.LS_KEYS.userData);
-  }
-
-
 
 }
