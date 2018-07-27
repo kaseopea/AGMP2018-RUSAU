@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ICourse } from '../interfaces/icourse';
+import { ICourse } from '../../interfaces/icourse';
 import { Router } from '@angular/router';
 
 @Component({
