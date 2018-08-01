@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class CourseItemComponent implements OnInit {
   @Input() public courseItem: ICourse;
-  @Output() delHandler = new EventEmitter<string>();
+  @Output() delHandler = new EventEmitter<number>();
   private CONFIRM_DELETE_MESSAGE = 'Do you really want to delete?';
 
   constructor(private router: Router) {
@@ -19,11 +19,11 @@ export class CourseItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  editCourse(courseId: string) {
+  editCourse(courseId: number) {
     this.router.navigate(['/courses/' + courseId]);
   }
 
-  deleteCourse(courseId: string): boolean {
+  deleteCourse(courseId: number): boolean {
     if (window.confirm(this.CONFIRM_DELETE_MESSAGE)) {
       this.delHandler.emit(courseId);
     }

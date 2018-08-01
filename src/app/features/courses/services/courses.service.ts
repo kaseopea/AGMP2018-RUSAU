@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
 import { ICourse } from '../interfaces/icourse';
 import v1 from 'uuid/v1';
 
 import { COURSES_MOCK } from '../../../mocks/coursesMock';
 import { CourseItem } from '../model/course-item.model';
+import { APPCONFIG } from '../../../config';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,15 +15,15 @@ import { CourseItem } from '../model/course-item.model';
 export class CoursesService {
   private coursesList: ICourse[];
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.coursesList = COURSES_MOCK;
   }
 
-  public getCourses(): ICourse[] {
-    return this.coursesList;
+  public getCourses(): Observable<ICourse[]> {
+    return this.http.get<ICourse[]>(APPCONFIG.apis.courses);
   }
 
-  public getCourseById(courseId: string): ICourse {
+  public getCourseById(courseId: number): ICourse {
     return this.coursesList.find((course: ICourse) => course.id === courseId);
   }
 
@@ -38,17 +42,12 @@ export class CoursesService {
     );
   }
 
-  public updateCourse(courseId: string, updateCourse: ICourse): void {
+  public updateCourse(courseId: number, updateCourse: ICourse): void {
     const courseIndex = this.coursesList.findIndex((course: ICourse) => course.id === courseId);
     this.coursesList[courseIndex] = updateCourse;
   }
 
-  public deleteCourse(courseId: string): void {
-    for (let i = 0; i < this.coursesList.length; i++) {
-      if (this.coursesList[i].id && this.coursesList[i].id === courseId) {
-        this.coursesList.splice(i, 1);
-        break;
-      }
-    }
+  public deleteCourse(courseId: number): void {
+    console.warn(`User wants to delete course with course id "${courseId}"`);
   }
 }

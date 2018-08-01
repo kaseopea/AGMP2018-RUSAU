@@ -21,7 +21,7 @@ export class ManageCourseComponent implements OnInit {
 
   ngOnInit() {
     if (this.courseId) {
-      this.course = this.coursesService.getCourseById(this.courseId);
+      this.course = this.coursesService.getCourseById(parseInt(this.courseId, 10));
     }
   }
 

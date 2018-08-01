@@ -17,10 +17,9 @@ export class CoursesListComponent implements OnInit {
   ngOnInit() {
   }
 
-  onDeleted(courseId: string): boolean {
+  onDeleted(courseId: number): boolean {
     console.warn(`Trying to delete course with "${courseId}" id`);
     this.coursesService.deleteCourse(courseId);
-    this.coursesList = this.coursesService.getCourses();
     return false;
   }
 }

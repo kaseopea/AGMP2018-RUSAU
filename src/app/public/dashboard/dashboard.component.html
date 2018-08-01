@@ -10,4 +10,8 @@
     </div>
 </div>
 
-<app-courses-list [coursesList]="getFilteredCourses()"></app-courses-list>
+<div class="loader text-center" *ngIf="isLoading">
+    <i class="fas fa-spinner fa-spin"></i>
+</div>
+
+<app-courses-list *ngIf="!isLoading" [coursesList]="coursesData"></app-courses-list>

@@ -1,5 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import v1 from 'uuid/v1';
+
 import { USERPROFILE_MOCK } from '../../mocks/userProfileMock';
 import { IUser } from '../../protected/user-profile/interfaces/iuser';
 import { ICreds } from '../interfaces/icreds';
@@ -18,7 +20,7 @@ export class AuthService {
     userData: 'userData'
   };
 
-  constructor(@Inject('LOCALSTORAGE') private localStorage: ILocalStorage) {
+  constructor(@Inject('LOCALSTORAGE') private localStorage: ILocalStorage, private http: HttpClient) {
     this.token = this.getTokenFromStorage();
     this.userData = this.getUserDataFromStorage();
 

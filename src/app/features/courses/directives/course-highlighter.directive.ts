@@ -4,7 +4,7 @@ import {Directive, ElementRef, Input, OnInit} from '@angular/core';
   selector: '[appCourseHighlighter]'
 })
 export class CourseHighlighterDirective implements OnInit {
-  @Input() appCourseHighlighter: Date;
+  @Input() appCourseHighlighter: string;
   private HIGLIGHT_CLASSES = {
     fresh: 'fresh-highlight',
     upcoming: 'upcoming-highlight'
@@ -16,7 +16,8 @@ export class CourseHighlighterDirective implements OnInit {
   }
 
   ngOnInit() {
-    const highlightClassname = this.processDate(this.appCourseHighlighter);
+    const highlightClassname = this.processDate(new Date(this.appCourseHighlighter));
+    console.warn('@@@', highlightClassname);
     if (highlightClassname) {
         this.element.nativeElement.classList.add(highlightClassname);
     }

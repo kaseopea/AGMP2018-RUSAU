@@ -11,7 +11,7 @@ export class FilterByPipe implements PipeTransform {
       return [];
     }
     return data.filter(course => {
-      const title = (caseSensitive) ? course.title : course.title.toLowerCase();
+      const title = (caseSensitive) ? course.name : course.name.toLowerCase();
       const searchFor = (caseSensitive) ? filterByValue : filterByValue.toLowerCase();
       return title.includes(searchFor);
     });

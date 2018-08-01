@@ -1,18 +1,18 @@
 <div class="card course-item"
-     [appCourseHighlighter]="courseItem.created">
-    <div class="card-body" [ngClass]="{'top-rated': courseItem.topRated}">
+     [appCourseHighlighter]="courseItem.date">
+    <div class="card-body" [ngClass]="{'top-rated': courseItem.isTopRated}">
         <div class="row">
             <div class="col">
-              <h5 class="card-title"><a href="#" class="card-title-link">{{ courseItem.title | uppercase}}</a>
+              <h5 class="card-title"><a href="#" class="card-title-link">{{ courseItem.name | uppercase}}</a>
                   <span class="top-rated-star"><i class="fas fa-star"></i></span>
               </h5>
 
               <p class="course-item-meta">
                 <span class="meta-item">
-                  <span class="meta-item-icon"><i class="far fa-calendar-alt"></i></span> {{ courseItem.created | date:'shortDate' }}
+                  <span class="meta-item-icon"><i class="far fa-calendar-alt"></i></span> {{ courseItem.date | date:'shortDate' }}
                 </span>
                 <span class="meta-item">
-                  <span class="meta-item-icon"><i class="far meta-item-icon fa-clock"></i></span> {{ courseItem.duration | duration }}
+                  <span class="meta-item-icon"><i class="far meta-item-icon fa-clock"></i></span> {{ courseItem.length | duration }}
                 </span>
               </p>
               <p class="card-text">{{ courseItem.description }}</p>
