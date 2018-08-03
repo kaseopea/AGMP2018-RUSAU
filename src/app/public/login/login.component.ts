@@ -11,8 +11,8 @@ import { ICreds } from '../../core/interfaces/icreds';
 export class LoginComponent implements OnInit {
   public isAccessDenied: boolean;
   public userCreds: ICreds = {
-    login: 'user@test.com',
-    password: ''
+    login: 'Morales',
+    password: 'id'
   };
 
   constructor(private authService: AuthService, private router: Router) {
@@ -25,11 +25,16 @@ export class LoginComponent implements OnInit {
     const isSuccess = this.authService.Login({
       login: this.userCreds.login,
       password: this.userCreds.password
-    });
-    if (isSuccess) {
-      this.router.navigateByUrl('/courses');
-    } else {
-      this.isAccessDenied = true;
-    }
+    }).subscribe(
+      (isAuthorized) => {
+        if (isAuthorized) {
+          this.router.navigateByUrl('/courses');
+        }
+      },
+      (error) => {
+        this.isAccessDenied = true;
+        console.warn(error);
+      }
+    );
   }
 }
