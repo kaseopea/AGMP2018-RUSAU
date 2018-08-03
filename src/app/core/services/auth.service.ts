@@ -1,17 +1,14 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
 import { mergeMap } from 'rxjs/operators';
-import v1 from 'uuid/v1';
+import { catchError, map } from 'rxjs/operators';
+import { throwError } from 'rxjs/internal/observable/throwError';
 
-import { USERPROFILE_MOCK } from '../../mocks/userProfileMock';
 import { IUser } from '../../protected/user-profile/interfaces/iuser';
 import { ICreds } from '../interfaces/icreds';
 import { ILocalStorage } from '../interfaces/iLocalStorage';
 import { APPCONFIG } from '../../config';
-import { ICourse } from '../../features/courses/interfaces/icourse';
-import { Observable } from 'rxjs/internal/Observable';
-import { catchError, map } from 'rxjs/operators';
-import { throwError } from 'rxjs/internal/observable/throwError';
 import { MESSAGES } from '../constants/messages';
 
 @Injectable({
@@ -35,7 +32,7 @@ export class AuthService {
     }
   }
 
-  public Login(credentials: ICreds) {
+  public Login(credentials: ICreds): Observable<boolean> {
     // request headers
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -56,7 +53,7 @@ export class AuthService {
   }
 
   public Logout(): void {
-    console.warn(`${this.userInfo.username} wants to logout`);
+    console.warn(`${this.userInfo.login} wants to logout`);
     this.token = null;
     this.userInfo = null;
     this.isLoggedIn = false;
@@ -88,19 +85,19 @@ export class AuthService {
 
   }
 
-  private GetUserData(token: string) {
+  private GetUserData(token: string): Observable<IUser> {
     // request headers
     const headers = new HttpHeaders({
       'Authorization': token
     });
-    return this.http.post(APPCONFIG.apis.userInfo, '', {headers});
+    return this.http.post<IUser>(APPCONFIG.apis.userInfo, '', {headers});
   }
 
-  private processUserData(data) {
-    this.userInfo = data;
+  private processUserData(userData: IUser) {
+    this.userInfo = userData;
 
     // set user data to storage
-    this.localStorage.setItem(this.LS_KEYS.userData, JSON.stringify(data));
+    this.localStorage.setItem(this.LS_KEYS.userData, JSON.stringify(userData));
 
     // we are logged in with token and user info
     this.isLoggedIn = true;

@@ -35,12 +35,12 @@ export class AddEditCourseComponent implements OnInit {
       this.coursesService.updateCourse(this.course.id, this.course);
     }
 
-    this.router.navigateByUrl('/courses');
+    this.router.navigateByUrl('/app/courses');
     return false;
   }
 
   cancelHandler() {
-    this.router.navigateByUrl('/courses');
+    this.router.navigateByUrl('/app/courses');
     return false;
   }
 }

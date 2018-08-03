@@ -20,7 +20,7 @@ export class CourseItemComponent implements OnInit {
   }
 
   editCourse(courseId: number) {
-    this.router.navigate(['/courses/' + courseId]);
+    this.router.navigate(['/app/courses/' + courseId]);
   }
 
   deleteCourse(courseId: number): boolean {

@@ -1,8 +1,13 @@
+.logo-pane {
+   background-color: #B8312F;
+   text-align: center;
+   padding: 2em 0;
+}
 .form-signin {
    width: 100%;
    max-width: 330px;
    padding: 15px;
-   margin: 10em auto;
+   margin: 7em auto;
 }
 .access-denied {
   margin: 1em 0;

@@ -1,39 +1,46 @@
+<div class="logo-pane">
+    <app-logo></app-logo>
+</div>
 
+<div class="container">
+    <form #loginForm="ngForm"
+          (ngSubmit)="doLogin()"
+          class="form-signin">
 
-<form #loginForm="ngForm"
-      (ngSubmit)="doLogin()"
-      class="form-signin">
+        <div class="card text-white bg-danger access-denied" *ngIf="isAccessDenied">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-ban"></i> Access denied</h5>
+            </div>
+        </div>
 
-  <div class="card text-white bg-danger access-denied" *ngIf="isAccessDenied">
-    <div class="card-body">
-      <h5 class="card-title"><i class="fas fa-ban"></i> Access denied</h5>
-    </div>
-  </div>
+        <div class="form-group">
+            <label for="inputEmail">Email address (required)</label>
+            <input type="email"
+                   [(ngModel)]="userCreds.login"
+                   required
+                   name="login"
+                   id="inputEmail"
+                   class="form-control"
+                   placeholder="Email address"
+                   autofocus="">
+            <small id="emailHelp" class="form-text text-muted">Use <strong>{{userCreds.login}}</strong> for user</small>
+        </div>
 
-  <div class="form-group">
-    <label for="inputEmail">Email address (required)</label>
-    <input type="email"
-           [(ngModel)]="userCreds.login"
-           required
-           name="login"
-           id="inputEmail"
-           class="form-control"
-           placeholder="Email address"
-           autofocus="">
-    <small id="emailHelp" class="form-text text-muted">Use <strong>user@test.com</strong> for user</small>
-  </div>
+        <div class="form-group">
+            <label for="inputPassword">Password (required)</label>
+            <input type="password"
+                   [(ngModel)]="userCreds.password"
+                   required
+                   name="password"
+                   id="inputPassword"
+                   class="form-control"
+                   placeholder="Password">
+            <small id="passwordHelp" class="form-text text-muted">... and <strong>{{userCreds.password}}</strong> for
+                password.
+            </small>
+        </div>
 
-  <div class="form-group">
-    <label for="inputPassword">Password (required)</label>
-    <input type="password"
-           [(ngModel)]="userCreds.password"
-           required
-           name="password"
-           id="inputPassword"
-           class="form-control"
-           placeholder="Password">
-    <small id="passwordHelp" class="form-text text-muted">... and <strong>123</strong> for password.</small>
-  </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!loginForm.valid">Sign in</button>
+    </form>
 
-  <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!loginForm.valid">Sign in</button>
-</form>
+</div>

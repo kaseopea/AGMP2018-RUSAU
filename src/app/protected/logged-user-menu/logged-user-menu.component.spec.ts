@@ -6,7 +6,7 @@ import { USERPROFILE_MOCK } from '../../mocks/userProfileMock';
 describe('LoggedUserMenuComponent', () => {
   let component: LoggedUserMenuComponent;
   let fixture: ComponentFixture<LoggedUserMenuComponent>;
-  const userData = `${USERPROFILE_MOCK.firstName} ${USERPROFILE_MOCK.lastName}`;
+  const userData = `${USERPROFILE_MOCK.name.first} ${USERPROFILE_MOCK.name.last}`;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

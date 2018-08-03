@@ -22,13 +22,13 @@ export class LoginComponent implements OnInit {
   }
 
   doLogin() {
-    const isSuccess = this.authService.Login({
+    this.authService.Login({
       login: this.userCreds.login,
       password: this.userCreds.password
     }).subscribe(
       (isAuthorized) => {
         if (isAuthorized) {
-          this.router.navigateByUrl('/courses');
+          this.router.navigateByUrl('app/courses');
         }
       },
       (error) => {
