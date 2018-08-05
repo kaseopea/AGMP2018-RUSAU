@@ -90,7 +90,7 @@ export class AuthService {
     const headers = new HttpHeaders({
       'Authorization': token
     });
-    return this.http.post<IUser>(APPCONFIG.apis.userInfo, '', {headers});
+    return this.http.post<IUser>(APPCONFIG.apis.userInfo, '', { headers });
   }
 
   private processUserData(userData: IUser) {

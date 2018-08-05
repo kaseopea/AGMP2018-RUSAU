@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { ICourse } from '../interfaces/icourse';
 import v1 from 'uuid/v1';
@@ -21,6 +21,17 @@ export class CoursesService {
 
   public getCourses(): Observable<ICourse[]> {
     return this.http.get<ICourse[]>(APPCONFIG.apis.courses);
+  }
+
+  public getCoursesWithParams(params): Observable<ICourse[]> {
+    const start = (params.pageNumber - 1) * params.count;
+    const httpParams: HttpParams = new HttpParams({
+      fromObject: {
+        start: start.toString(),
+        count: params.count.toString()
+      }
+    });
+    return this.http.get<ICourse[]>(APPCONFIG.apis.courses, {params: httpParams});
   }
 
   public getCourseById(courseId: number): ICourse {

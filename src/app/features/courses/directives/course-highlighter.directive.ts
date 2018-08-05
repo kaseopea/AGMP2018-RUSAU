@@ -9,7 +9,7 @@ export class CourseHighlighterDirective implements OnInit {
     fresh: 'fresh-highlight',
     upcoming: 'upcoming-highlight'
   };
-  private prevDateLimit = 14;
+  private prevDateLimit = 300; // changed condition to match new data fro json server
 
   constructor(private element: ElementRef) {
 
@@ -17,7 +17,6 @@ export class CourseHighlighterDirective implements OnInit {
 
   ngOnInit() {
     const highlightClassname = this.processDate(new Date(this.appCourseHighlighter));
-    console.warn('@@@', highlightClassname);
     if (highlightClassname) {
         this.element.nativeElement.classList.add(highlightClassname);
     }

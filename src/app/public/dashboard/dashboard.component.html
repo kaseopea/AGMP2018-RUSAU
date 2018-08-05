@@ -15,3 +15,7 @@
 </div>
 
 <app-courses-list *ngIf="!isLoading" [coursesList]="coursesData"></app-courses-list>
+
+<app-load-more-btn [inProgress]="isSearchInProgress"
+                   [noMoreItems]="noMoreItems"
+                   (clickHandler)="onLoadMore($event)"></app-load-more-btn>
