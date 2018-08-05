@@ -1,10 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnChanges, OnInit } from '@angular/core';
 import { CoursesService } from '../../features/courses/services/courses.service';
-import { FilterByPipe } from '../../features/courses/pipes/filter-by.pipe';
 import { ActivatedRoute } from '@angular/router';
 import { ICourse } from '../../features/courses/interfaces/icourse';
 import { APPCONFIG } from '../../config';
-import { ILocalStorage } from '../../core/interfaces/iLocalStorage';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,8 +11,7 @@ import { ILocalStorage } from '../../core/interfaces/iLocalStorage';
 })
 export class DashboardComponent implements OnInit {
   public coursesData: ICourse[];
-  public filterCoursesBy: string;
-  public filterByPipe: FilterByPipe;
+  public filterCoursesBy;
   public pageTitle = '';
   public isLoading = true;
   public isSearchInProgress = false;
@@ -25,24 +22,28 @@ export class DashboardComponent implements OnInit {
   constructor(@Inject('WINDOW') private window: any,
               @Inject('DOCUMENT') private document: any,
               private coursesService: CoursesService,
-              filterByPipe: FilterByPipe,
               private route: ActivatedRoute) {
-    this.filterByPipe = filterByPipe;
   }
 
   ngOnInit() {
     this.pageTitle = this.route.snapshot.data['title'];
     this.isLoading = true;
     this.getData().subscribe((data: ICourse[]) => {
-      console.warn(data);
       this.coursesData = data;
       this.isLoading = false;
     });
   }
 
+
   onSearch(query: string): boolean {
     console.warn(`Trying to filter courses with "${query}" id`);
     this.filterCoursesBy = query;
+    this.pageNumber = 1; // resetting page number
+    this.isLoading = true;
+    this.getData().subscribe((data: ICourse[]) => {
+      this.coursesData = data;
+      this.isLoading = false;
+    });
     return false;
   }
 
@@ -73,7 +74,8 @@ export class DashboardComponent implements OnInit {
   private getData() {
     return this.coursesService.getCoursesWithParams({
       pageNumber: this.pageNumber,
-      count: this.itemsCount
+      count: this.itemsCount,
+      searchFor: this.filterCoursesBy
     });
   }
 }

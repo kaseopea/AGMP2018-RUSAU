@@ -24,13 +24,21 @@ export class CoursesService {
   }
 
   public getCoursesWithParams(params): Observable<ICourse[]> {
-    const start = (params.pageNumber - 1) * params.count;
+    // construct queryParams
+    const queryParamsObj = {
+      start: ((params.pageNumber - 1) * params.count).toString(),
+      count: params.count.toString(),
+      textFragment: ''
+    };
+
+    if (params.searchFor) {
+      queryParamsObj.textFragment = params.searchFor;
+    }
+
     const httpParams: HttpParams = new HttpParams({
-      fromObject: {
-        start: start.toString(),
-        count: params.count.toString()
-      }
+      fromObject: queryParamsObj
     });
+
     return this.http.get<ICourse[]>(APPCONFIG.apis.courses, {params: httpParams});
   }
 
