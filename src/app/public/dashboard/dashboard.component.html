@@ -14,7 +14,9 @@
     <i class="fas fa-spinner fa-spin"></i>
 </div>
 
-<app-courses-list *ngIf="!isLoading" [coursesList]="coursesData"></app-courses-list>
+<app-courses-list *ngIf="!isLoading"
+                  [coursesList]="coursesData"
+                  (refresh)="onRefresh($event)"></app-courses-list>
 
 <app-load-more-btn [inProgress]="isSearchInProgress"
                    [noMoreItems]="noMoreItems"

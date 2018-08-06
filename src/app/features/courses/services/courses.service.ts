@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { ICourse } from '../interfaces/icourse';
 import v1 from 'uuid/v1';
@@ -14,13 +14,14 @@ import { APPCONFIG } from '../../../config';
 })
 export class CoursesService {
   private coursesList: ICourse[];
+  private BASEURL = APPCONFIG.apis.courses;
 
   constructor(private http: HttpClient) {
     this.coursesList = COURSES_MOCK;
   }
 
   public getCourses(): Observable<ICourse[]> {
-    return this.http.get<ICourse[]>(APPCONFIG.apis.courses);
+    return this.http.get<ICourse[]>(`${this.BASEURL}`);
   }
 
   public getCoursesWithParams(params): Observable<ICourse[]> {
@@ -34,20 +35,23 @@ export class CoursesService {
     if (params.searchFor) {
       queryParamsObj.textFragment = params.searchFor;
     }
-
     const httpParams: HttpParams = new HttpParams({
       fromObject: queryParamsObj
     });
-
-    return this.http.get<ICourse[]>(APPCONFIG.apis.courses, {params: httpParams});
+    return this.http.get<ICourse[]>(`${this.BASEURL}`, {params: httpParams});
   }
 
-  public getCourseById(courseId: number): ICourse {
-    return this.coursesList.find((course: ICourse) => course.id === courseId);
+  public getCourseById(courseId: number): Observable<ICourse> {
+    return this.http.get<ICourse>(`${this.BASEURL}/${courseId}`);
   }
 
-  public addCourse(course: ICourse): void {
-    this.coursesList.push(course);
+  public addCourse(course: ICourse): Observable<HttpResponse<any>> {
+    return this.http.post<ICourse>(`${this.BASEURL}`, course, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      observe: 'response'
+    });
   }
 
   public getDefaultEmptyCourse() {
@@ -61,12 +65,17 @@ export class CoursesService {
     );
   }
 
-  public updateCourse(courseId: number, updateCourse: ICourse): void {
-    const courseIndex = this.coursesList.findIndex((course: ICourse) => course.id === courseId);
-    this.coursesList[courseIndex] = updateCourse;
+  public updateCourse(courseId: number, updateCourse: ICourse): Observable<HttpResponse<any>> {
+    return this.http.put(`${this.BASEURL}/${courseId}`, updateCourse, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      observe: 'response'
+    });
   }
 
-  public deleteCourse(courseId: number): void {
+  public deleteCourse(courseId: number): Observable<HttpResponse<any>> {
     console.warn(`User wants to delete course with course id "${courseId}"`);
+    return this.http.delete(`${this.BASEURL}/${courseId}`, { observe: 'response' });
   }
 }

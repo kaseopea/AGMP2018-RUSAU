@@ -4,6 +4,7 @@ const url = require('url');
 
 module.exports = (server) => {
 
+  // get all courses
   router.get('/courses', (req, res, next) => {
     let url_parts = url.parse(req.originalUrl, true),
       query = url_parts.query,

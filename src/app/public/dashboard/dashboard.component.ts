@@ -1,4 +1,4 @@
-import { Component, Inject, OnChanges, OnInit } from '@angular/core';
+import { Component, Inject, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { CoursesService } from '../../features/courses/services/courses.service';
 import { ActivatedRoute } from '@angular/router';
 import { ICourse } from '../../features/courses/interfaces/icourse';
@@ -9,7 +9,7 @@ import { APPCONFIG } from '../../config';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   public coursesData: ICourse[];
   public filterCoursesBy;
   public pageTitle = '';
@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   public pageNumber = 1;
   public itemsCount = APPCONFIG.courses.itemsPerPage;
   public noMoreItems = false;
+  private coursesSubscription;
 
   constructor(@Inject('WINDOW') private window: any,
               @Inject('DOCUMENT') private document: any,
@@ -28,7 +29,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.pageTitle = this.route.snapshot.data['title'];
     this.isLoading = true;
-    this.getData().subscribe((data: ICourse[]) => {
+    this.coursesSubscription = this.getData().subscribe((data: ICourse[]) => {
       this.coursesData = data;
       this.isLoading = false;
     });
@@ -40,7 +41,7 @@ export class DashboardComponent implements OnInit {
     this.filterCoursesBy = query;
     this.pageNumber = 1; // resetting page number
     this.isLoading = true;
-    this.getData().subscribe((data: ICourse[]) => {
+    this.coursesSubscription = this.getData().subscribe((data: ICourse[]) => {
       this.coursesData = data;
       this.isLoading = false;
     });
@@ -52,7 +53,7 @@ export class DashboardComponent implements OnInit {
     this.isSearchInProgress = true;
 
     setTimeout(() => {
-      this.getData().subscribe((data: ICourse[]) => {
+      this.coursesSubscription = this.getData().subscribe((data: ICourse[]) => {
         this.isSearchInProgress = false;
         if (data.length) {
           this.coursesData = this.coursesData.concat(data);
@@ -70,6 +71,16 @@ export class DashboardComponent implements OnInit {
     return false;
   }
 
+  onRefresh(isNeedUpdate: boolean) {
+    if (isNeedUpdate) {
+      this.isLoading = true;
+      this.coursesSubscription = this.getData().subscribe((data: ICourse[]) => {
+        this.coursesData = data;
+        this.isLoading = false;
+      });
+    }
+  }
+
 
   private getData() {
     return this.coursesService.getCoursesWithParams({
@@ -77,5 +88,11 @@ export class DashboardComponent implements OnInit {
       count: this.itemsCount,
       searchFor: this.filterCoursesBy
     });
+  }
+
+  ngOnDestroy() {
+    if (this.coursesSubscription) {
+      this.coursesSubscription.unsubscribe();
+    }
   }
 }
