@@ -68,10 +68,15 @@ export class AuthService {
     return this.userInfo;
   }
 
+  public getToken(): string {
+    return this.token;
+  }
+
   public clearStorageData() {
     this.localStorage.removeItem(this.LS_KEYS.token);
     this.localStorage.removeItem(this.LS_KEYS.userData);
   }
+
 
   // utils
   private processToken(tokenObj) {
@@ -90,7 +95,7 @@ export class AuthService {
     const headers = new HttpHeaders({
       'Authorization': token
     });
-    return this.http.post<IUser>(APPCONFIG.apis.userInfo, '', { headers });
+    return this.http.post<IUser>(APPCONFIG.apis.userInfo, '', {headers});
   }
 
   private processUserData(userData: IUser) {

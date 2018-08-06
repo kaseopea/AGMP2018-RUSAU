@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -11,6 +11,7 @@ import { PublicModule } from './public/public.module';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
 import { ProtectedModule } from './protected/protected.module';
+import { AuthInterceptor } from './core/services/authInterceptor.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,13 @@ import { ProtectedModule } from './protected/protected.module';
     FormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
