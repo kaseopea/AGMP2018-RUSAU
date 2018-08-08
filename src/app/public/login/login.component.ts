@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       password: this.userCreds.password
     });
     if (isSuccess) {
-      this.router.navigateByUrl('/courses');
+      this.router.navigateByUrl('app/courses');
     } else {
       this.isAccessDenied = true;
     }

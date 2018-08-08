@@ -4,6 +4,7 @@ import { LoginComponent } from './public/login/login.component';
 import { ManageCourseComponent } from './public/manage-course/manage-course.component';
 import { NotfoundComponent } from './public/notfound/notfound.component';
 import { AuthGuardService } from './core/services/auth-guard.service';
+import { MainLayoutComponent } from './public/main-layout/main-layout.component';
 
 export const ROUTES: Route[] = [
   {
@@ -14,28 +15,35 @@ export const ROUTES: Route[] = [
     }
   },
   {
-    path: 'courses',
-    component: DashboardComponent,
+    path: 'app',
+    component: MainLayoutComponent,
     canActivate: [AuthGuardService],
-    data: {
-      title: 'Courses Dashboard'
-    }
-  },
-  {
-    path: 'courses/new',
-    component: ManageCourseComponent,
-    canActivate: [AuthGuardService],
-    data: {
-      title: 'Add new course'
-    }
-  },
-  {
-    path: 'courses/:id',
-    component: ManageCourseComponent,
-    canActivate: [AuthGuardService],
-    data: {
-      title: 'Update course data'
-    }
+    children: [
+      {
+        path: 'courses',
+        component: DashboardComponent,
+        // canActivate: [AuthGuardService],
+        data: {
+          title: 'Courses Dashboard'
+        }
+      },
+      {
+        path: 'courses/new',
+        component: ManageCourseComponent,
+        // canActivate: [AuthGuardService],
+        data: {
+          title: 'Add new course'
+        }
+      },
+      {
+        path: 'courses/:id',
+        component: ManageCourseComponent,
+        // canActivate: [AuthGuardService],
+        data: {
+          title: 'Update course data'
+        }
+      }
+    ]
   },
   {
     path: '',
