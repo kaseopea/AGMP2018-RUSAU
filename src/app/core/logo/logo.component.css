@@ -6,7 +6,12 @@
   margin: 0;
   position: relative;
 }
-
+.logo-link {
+  color: #fff;
+}
+.logo-link:hover {
+  text-decoration: none;
+}
 .logo .beta {
   position: absolute;
   top: -5px;

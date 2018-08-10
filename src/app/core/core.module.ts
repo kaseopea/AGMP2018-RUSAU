@@ -17,7 +17,8 @@ import { RouterModule } from '@angular/router';
   exports: [
     HeaderComponent,
     FooterComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    LogoComponent
   ],
   declarations: [
     HeaderComponent,

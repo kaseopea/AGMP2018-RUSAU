@@ -11,24 +11,36 @@ import { CoursesService } from '../../services/courses.service';
 })
 export class AddEditCourseComponent implements OnInit {
   @Input() public course: ICourse;
+  private isNew = false;
 
   constructor(private coursesService: CoursesService, private router: Router) {
   }
 
   ngOnInit() {
+    this.isNew = !this.course;
+    console.log('this.isNew', this.isNew);
     if (!this.course) {
       this.course = this.coursesService.getDefaultEmptyCourse();
     }
   }
 
   onSubmit(f: NgForm) {
-    console.log(f.value);
-    console.log('Add/Edit form submit performed!');
+    console.warn('--------------------- onSubmit ---------------------');
+    console.warn('Form value:', f.value);
+    if (this.isNew) {
+      console.warn('Add new course: ', this.course);
+      this.coursesService.addCourse(this.course);
+    } else {
+      console.warn('Update new course: ', this.course);
+      this.coursesService.updateCourse(this.course.id, this.course);
+    }
+
+    this.router.navigateByUrl('app/courses');
     return false;
   }
 
   cancelHandler() {
-    this.router.navigateByUrl('/dashboard');
+    this.router.navigateByUrl('app/courses');
     return false;
   }
 }

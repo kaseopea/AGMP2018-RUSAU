@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { IUser } from '../user-profile/interfaces/iuser';
@@ -10,10 +10,6 @@ import { IUser } from '../user-profile/interfaces/iuser';
 })
 export class LoggedUserMenuComponent implements OnInit {
   public userProfile: IUser;
-
-  @HostListener('window:beforeunload') clearUserData() {
-    this.authService.clearStorageData();
-  }
 
   constructor(private authService: AuthService, private router: Router) {
   }

@@ -1,7 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
+import v1 from 'uuid/v1';
 import { USERPROFILE_MOCK } from '../../mocks/userProfileMock';
 import { IUser } from '../../protected/user-profile/interfaces/iuser';
 import { ICreds } from '../interfaces/icreds';
+import { ILocalStorage } from '../interfaces/iLocalStorage';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,7 @@ export class AuthService {
     userData: 'userData'
   };
 
-  constructor(@Inject('LOCALSTORAGE') private localStorage: any) {
+  constructor(@Inject('LOCALSTORAGE') private localStorage: ILocalStorage) {
     this.token = this.getTokenFromStorage();
     this.userData = this.getUserDataFromStorage();
 
@@ -25,20 +27,10 @@ export class AuthService {
     }
   }
 
-  static generateToken(): string {
-    const tokenLength = 15;
-    const chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '!', '?'];
-    let token = '';
-    for (let i = 1; i < tokenLength; i++) {
-      token = token.concat(chars[Math.ceil(Math.random() * chars.length) - 1]);
-    }
-    return token;
-  }
-
   public Login(credentials: ICreds) {
     // check id login is correct (simple check with mock data for now)
     if (credentials.login === USERPROFILE_MOCK.username) {
-      this.token = AuthService.generateToken();
+      this.token = v1();
       this.userData = USERPROFILE_MOCK;
 
       // setting data to storage
@@ -50,6 +42,7 @@ export class AuthService {
       this.isLoggedIn = false;
       console.error('Invalid credentials. Login is forbidden!');
     }
+    return this.isLoggedIn;
   }
 
   public Logout(): void {

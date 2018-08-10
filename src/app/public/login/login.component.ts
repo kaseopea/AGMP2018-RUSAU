@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { ICreds } from '../../core/interfaces/icreds';
 
 @Component({
   selector: 'app-login',
@@ -8,6 +9,12 @@ import { AuthService } from '../../core/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  public isAccessDenied: boolean;
+  public userCreds: ICreds = {
+    login: 'user@test.com',
+    password: ''
+  };
+
   constructor(private authService: AuthService, private router: Router) {
   }
 
@@ -15,10 +22,14 @@ export class LoginComponent implements OnInit {
   }
 
   doLogin() {
-    this.authService.Login({
-      login: 'kaseopea',
-      password: 'password'
+    const isSuccess = this.authService.Login({
+      login: this.userCreds.login,
+      password: this.userCreds.password
     });
-    this.router.navigateByUrl('/dashboard');
+    if (isSuccess) {
+      this.router.navigateByUrl('app/courses');
+    } else {
+      this.isAccessDenied = true;
+    }
   }
 }
