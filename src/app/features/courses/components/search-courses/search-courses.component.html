@@ -2,7 +2,13 @@
     <div class="form-row align-items-center">
       <div class="col my-1">
         <label class="sr-only" for="search">Search</label>
-        <input type="text" class="form-control" id="search" #queryInput placeholder="Name, fragment or date" [(value)]="query">
+        <input type="text"
+               name="query"
+               [(ngModel)]="query"
+               (ngModelChange)="searchCourses($event)"
+               class="form-control"
+               id="search"
+               placeholder="Name, fragment or date" />
       </div>
     </div>
   </form>

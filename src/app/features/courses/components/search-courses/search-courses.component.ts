@@ -15,10 +15,11 @@ export class SearchCoursesComponent implements OnInit {
     this.query = 'react';
   }
 
-  searchCourses(queryElement: HTMLInputElement): boolean {
-    const query = queryElement.value;
-    console.log(`User performed click on search button and wants to search with "${query}" query`);
-    this.searchHandler.emit(query);
+  searchCourses(query: string): boolean {
+    console.warn(query);
+    // const query = queryElement.value;
+    // console.log(`User performed click on search button and wants to search with "${query}" query`);
+    // this.searchHandler.emit(query);
     return false;
   }
 }
