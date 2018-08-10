@@ -19,10 +19,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public itemsCount = APPCONFIG.courses.itemsPerPage;
   public noMoreItems = false;
   private coursesSubscription;
+  private DATA_LOADING_DELAY = 1000;
 
-  constructor(@Inject('WINDOW') private window: any,
-              @Inject('DOCUMENT') private document: any,
-              private coursesService: CoursesService,
+  constructor(private coursesService: CoursesService,
               private route: ActivatedRoute) {
   }
 
@@ -37,7 +36,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 
   onSearch(query: string): boolean {
-    console.warn(`Trying to filter courses with "${query}" id`);
     this.filterCoursesBy = query;
     this.pageNumber = 1; // resetting page number
     this.isLoading = true;
@@ -57,17 +55,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.isSearchInProgress = false;
         if (data.length) {
           this.coursesData = this.coursesData.concat(data);
-          setTimeout(() => {
-            this.window.scrollTo({
-              top: this.document.body.scrollHeight
-            });
-          }, 0);
         } else {
           this.noMoreItems = true;
         }
       });
 
-    }, 1000);
+    }, this.DATA_LOADING_DELAY);
     return false;
   }
 

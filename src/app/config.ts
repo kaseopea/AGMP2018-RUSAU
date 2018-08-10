@@ -1,6 +1,6 @@
 export const APPCONFIG = {
   courses: {
-    itemsPerPage: 5
+    itemsPerPage: 6
   },
   apis: {
     auth: 'http://localhost:3004/auth/login',

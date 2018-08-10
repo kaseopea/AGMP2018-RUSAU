@@ -53,7 +53,6 @@ export class AuthService {
   }
 
   public Logout(): void {
-    console.warn(`${this.userInfo.login} wants to logout`);
     this.token = null;
     this.userInfo = null;
     this.isLoggedIn = false;

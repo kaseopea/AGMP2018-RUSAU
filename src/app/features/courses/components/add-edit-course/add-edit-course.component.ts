@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ICourse } from '../../interfaces/icourse';
 import { CoursesService } from '../../services/courses.service';
-import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-edit-course',
@@ -14,13 +13,22 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
   @Input() public course: ICourse;
   @Input() public isNew: boolean;
   private courseSubscription;
+  private defaultEmptyCourse = {
+    id: 0,
+    name: 'Default empty title to test',
+    date: new Date(Date.now()),
+    length: 0,
+    description: '',
+    isTopRated: false,
+    authors: []
+  };
 
   constructor(private coursesService: CoursesService, private router: Router) {
   }
 
   ngOnInit() {
     if (this.isNew) {
-      this.course = this.coursesService.getDefaultEmptyCourse();
+      this.course = this.defaultEmptyCourse;
     }
   }
 

@@ -3,9 +3,9 @@
     <div class="card-body" [ngClass]="{'top-rated': courseItem.isTopRated}">
         <div class="row">
             <div class="col">
-              <h5 class="card-title"><a href="#" class="card-title-link">{{ courseItem.name | uppercase}}</a>
+              <h3 class="card-title">{{ courseItem.name | uppercase}}
                   <span class="top-rated-star"><i class="fas fa-star"></i></span>
-              </h5>
+              </h3>
 
               <p class="course-item-meta">
                 <span class="meta-item">
@@ -16,12 +16,17 @@
                 </span>
               </p>
               <p class="card-text">{{ courseItem.description }}</p>
+              <p class="authors-list"><span class="icon"><i class="fas fa-users"></i></span>
+                <span *ngFor="let author of courseItem.authors; let last = last" class="author-info">
+                  {{author.firstName}} {{author.lastName}}<span *ngIf="!last">, </span>
+                </span>
+              </p>
             </div>
             <div class="col-3 text-right">
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button"
                             (click)="editCourse(courseItem.id)"
-                            class="btn btn-outline-info btn-edit"><i class="fas fa-edit"></i> Edit</button>
+                            class="btn btn-outline-info btn-edit"><i class="fas fa-edit"></i></button>
                     <button type="button"
                             (click)="deleteCourse(courseItem.id)"
                             class="btn btn-outline-danger btn-delete"><i class="fas fa-trash"></i></button>

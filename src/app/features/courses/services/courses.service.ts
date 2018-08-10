@@ -2,10 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { ICourse } from '../interfaces/icourse';
-import v1 from 'uuid/v1';
-
 import { COURSES_MOCK } from '../../../mocks/coursesMock';
-import { CourseItem } from '../model/course-item.model';
 import { APPCONFIG } from '../../../config';
 
 
@@ -14,14 +11,14 @@ import { APPCONFIG } from '../../../config';
 })
 export class CoursesService {
   private coursesList: ICourse[];
-  private BASEURL = APPCONFIG.apis.courses;
+  private BASE_URL = APPCONFIG.apis.courses;
 
   constructor(private http: HttpClient) {
     this.coursesList = COURSES_MOCK;
   }
 
   public getCourses(): Observable<ICourse[]> {
-    return this.http.get<ICourse[]>(`${this.BASEURL}`);
+    return this.http.get<ICourse[]>(`${this.BASE_URL}`);
   }
 
   public getCoursesWithParams(params): Observable<ICourse[]> {
@@ -32,21 +29,24 @@ export class CoursesService {
       textFragment: ''
     };
 
+    // if we search for some query
     if (params.searchFor) {
       queryParamsObj.textFragment = params.searchFor;
     }
     const httpParams: HttpParams = new HttpParams({
       fromObject: queryParamsObj
     });
-    return this.http.get<ICourse[]>(`${this.BASEURL}`, {params: httpParams});
+
+    return this.http.get<ICourse[]>(`${this.BASE_URL}`, {params: httpParams});
   }
 
   public getCourseById(courseId: number): Observable<ICourse> {
-    return this.http.get<ICourse>(`${this.BASEURL}/${courseId}`);
+    return this.http.get<ICourse>(`${this.BASE_URL}/${courseId}`);
   }
 
   public addCourse(course: ICourse): Observable<HttpResponse<any>> {
-    return this.http.post<ICourse>(`${this.BASEURL}`, course, {
+    delete course.id; // remove id property, it will be set automatically
+    return this.http.post<ICourse>(`${this.BASE_URL}`, course, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       }),
@@ -54,19 +54,8 @@ export class CoursesService {
     });
   }
 
-  public getDefaultEmptyCourse() {
-    return new CourseItem(
-      v1(),
-      'Default empty title to test',
-      new Date(Date.now()),
-      0,
-      '',
-      false
-    );
-  }
-
   public updateCourse(courseId: number, updateCourse: ICourse): Observable<HttpResponse<any>> {
-    return this.http.put(`${this.BASEURL}/${courseId}`, updateCourse, {
+    return this.http.put(`${this.BASE_URL}/${courseId}`, updateCourse, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       }),
@@ -75,7 +64,8 @@ export class CoursesService {
   }
 
   public deleteCourse(courseId: number): Observable<HttpResponse<any>> {
-    console.warn(`User wants to delete course with course id "${courseId}"`);
-    return this.http.delete(`${this.BASEURL}/${courseId}`, { observe: 'response' });
+    return this.http.delete(`${this.BASE_URL}/${courseId}`, {
+      observe: 'response'
+    });
   }
 }

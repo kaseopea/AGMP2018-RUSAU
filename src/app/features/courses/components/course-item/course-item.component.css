@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:900i');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&subset=cyrillic,latin-ext');
 
 .course-item {
   margin: 10px 0;
@@ -9,7 +10,8 @@
 }
 
 .card-title {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto Slab', serif;
+  font-weight: bold;
   color: #34495e;
 }
 
@@ -29,10 +31,6 @@
 /* Top Rated */
 .top-rated {
   background-color: #ecf0f1;
-}
-
-.top-rated .card-title-link {
-  color: #e74c3c;
 }
 
 .top-rated-star {
@@ -62,4 +60,13 @@
 .btn-edit:hover, .btn-delete:hover {
   background-color: #95a5a6;
   color: #fff;
+}
+
+/* Authors */
+.authors-list .icon {
+  color: #34495e;
+}
+.author-info {
+  font-style: italic;
+  color: #666;
 }
