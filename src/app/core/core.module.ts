@@ -20,7 +20,8 @@ import { getDocument } from './services/getDocumentFactory';
     HeaderComponent,
     LogoComponent,
     FooterComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    LogoComponent
   ],
   declarations: [
     HeaderComponent,
