@@ -1,14 +1,21 @@
 <form>
     <div class="form-row align-items-center">
-      <div class="col my-1">
-        <label class="sr-only" for="search">Search</label>
-        <input type="text"
-               name="query"
-               [(ngModel)]="query"
-               (ngModelChange)="searchCourses($event)"
-               class="form-control"
-               id="search"
-               placeholder="Name, fragment or date" />
-      </div>
+        <div class="col input-group">
+            <label class="sr-only" for="searchQuery">Search</label>
+            <input type="text"
+                   id="searchQuery"
+                   #searchQuery
+                   name="query"
+                   class="form-control"
+                   [(ngModel)]="query"
+                   (click)="clearPlaceholder()"
+                   (placeholder)="placeHolderText"/>
+            <div class="input-group-append" *ngIf="isSearchPerformed">
+                <button type="button" id="reset-button"
+                        class="btn btn-outline-secondary"
+                        (click)="resetSearch()">Reset search
+                </button>
+            </div>
+        </div>
     </div>
-  </form>
+</form>

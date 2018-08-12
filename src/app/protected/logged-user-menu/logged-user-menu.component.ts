@@ -15,7 +15,7 @@ export class LoggedUserMenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userProfile = this.authService.GetUserInfo();
+    this.authService.GetUserInfo().subscribe((data) => this.userProfile = data);
   }
 
   public makeLogout(): void {

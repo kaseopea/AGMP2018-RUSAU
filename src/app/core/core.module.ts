@@ -9,6 +9,7 @@ import { getLocalStorage } from './services/getLocalStorage.factory';
 import { RouterModule } from '@angular/router';
 import { getWindow } from './services/getWindow.factory';
 import { getDocument } from './services/getDocumentFactory';
+import { GlobalLoaderComponent } from './components/global-loader/global-loader.component';
 
 @NgModule({
   imports: [
@@ -21,13 +22,15 @@ import { getDocument } from './services/getDocumentFactory';
     LogoComponent,
     FooterComponent,
     BreadcrumbsComponent,
-    LogoComponent
+    LogoComponent,
+    GlobalLoaderComponent
   ],
   declarations: [
     HeaderComponent,
     FooterComponent,
     LogoComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    GlobalLoaderComponent
   ],
   providers: [
     {

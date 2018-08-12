@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable, of } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
@@ -14,6 +14,7 @@ import { MESSAGES } from '../constants/messages';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   private userInfo: IUser;
   private token: string;
@@ -59,12 +60,12 @@ export class AuthService {
     this.clearStorageData();
   }
 
-  public IsAuthenticated(): boolean {
-    return this.isLoggedIn;
+  public IsAuthenticated(): Observable<boolean> {
+    return of(this.isLoggedIn);
   }
 
-  public GetUserInfo() {
-    return this.userInfo;
+  public GetUserInfo(): Observable<IUser> {
+    return of(this.userInfo);
   }
 
   public getToken(): string {
@@ -75,7 +76,6 @@ export class AuthService {
     this.localStorage.removeItem(this.LS_KEYS.token);
     this.localStorage.removeItem(this.LS_KEYS.userData);
   }
-
 
   // utils
   private processToken(tokenObj) {
