@@ -5,7 +5,6 @@ import { ICourse } from '../interfaces/icourse';
 import { COURSES_MOCK } from '../../../mocks/coursesMock';
 import { APPCONFIG } from '../../../config';
 
-
 @Injectable({
   providedIn: 'root'
 })
