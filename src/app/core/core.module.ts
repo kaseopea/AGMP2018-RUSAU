@@ -7,6 +7,8 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { ProtectedModule } from '../protected/protected.module';
 import { getLocalStorage } from './services/getLocalStorage.factory';
 import { RouterModule } from '@angular/router';
+import { getWindow } from './services/getWindow.factory';
+import { getDocument } from './services/getDocumentFactory';
 
 @NgModule({
   imports: [
@@ -16,6 +18,7 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     HeaderComponent,
+    LogoComponent,
     FooterComponent,
     BreadcrumbsComponent,
     LogoComponent
@@ -30,6 +33,14 @@ import { RouterModule } from '@angular/router';
     {
       provide: 'LOCALSTORAGE',
       useFactory: getLocalStorage
+    },
+    {
+      provide: 'WINDOW',
+      useFactory: getWindow
+    },
+    {
+      provide: 'DOCUMENT',
+      useFactory: getDocument
     }
   ]
 })

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnDestroy, OnInit } from '@angular/core';
 import { ICourse } from '../../interfaces/icourse';
 import { CoursesService } from '../../services/courses.service';
 
@@ -7,9 +7,11 @@ import { CoursesService } from '../../services/courses.service';
   templateUrl: './courses-list.component.html',
   styleUrls: ['./courses-list.component.css']
 })
-export class CoursesListComponent implements OnInit {
+export class CoursesListComponent implements OnInit, OnDestroy {
   @Input() public coursesList: ICourse[];
+  @Output() refresh = new EventEmitter<boolean>();
   public noDataMessage = 'No data. Feel free to add new course';
+  private deleteCourseSubscription;
 
   constructor(private coursesService: CoursesService) {
   }
@@ -17,10 +19,19 @@ export class CoursesListComponent implements OnInit {
   ngOnInit() {
   }
 
-  onDeleted(courseId: string): boolean {
-    console.warn(`Trying to delete course with "${courseId}" id`);
-    this.coursesService.deleteCourse(courseId);
-    this.coursesList = this.coursesService.getCourses();
+  onDeleted(courseId: number): boolean {
+    this.deleteCourseSubscription = this.coursesService.deleteCourse(courseId).subscribe((res) => {
+      if (res.status === 200) {
+        // time to update courses
+        this.refresh.emit(true);
+      }
+    });
     return false;
+  }
+
+  ngOnDestroy() {
+    if (this.deleteCourseSubscription) {
+      this.deleteCourseSubscription.unsubscribe();
+    }
   }
 }

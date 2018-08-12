@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CoursesService } from '../../features/courses/services/courses.service';
 import { ICourse } from '../../features/courses/interfaces/icourse';
@@ -8,10 +8,12 @@ import { ICourse } from '../../features/courses/interfaces/icourse';
   templateUrl: './manage-course.component.html',
   styleUrls: ['./manage-course.component.css']
 })
-export class ManageCourseComponent implements OnInit {
+export class ManageCourseComponent implements OnInit, OnDestroy {
   public course: ICourse;
   public pageTitle = '';
+  public isNew = true;
   private readonly courseId: string;
+  private courseSubscription;
 
 
   constructor(private route: ActivatedRoute, private coursesService: CoursesService) {
@@ -21,8 +23,18 @@ export class ManageCourseComponent implements OnInit {
 
   ngOnInit() {
     if (this.courseId) {
-      this.course = this.coursesService.getCourseById(this.courseId);
+      this.isNew = false;
+      this.courseSubscription = this.coursesService
+        .getCourseById(parseInt(this.courseId, 10))
+        .subscribe((course) => this.course = course);
     }
   }
+
+  ngOnDestroy() {
+    if (this.courseSubscription) {
+      this.courseSubscription.unsubscribe();
+    }
+  }
+
 
 }

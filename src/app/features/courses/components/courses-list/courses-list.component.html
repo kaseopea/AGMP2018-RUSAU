@@ -1,8 +1,5 @@
 <div *ngIf="coursesList.length">
-    <!-- filterBy: 'react': true -->
-    <app-course-item *ngFor="let course of coursesList | orderBy:'created'" [courseItem]="course" (delHandler)="onDeleted($event)"></app-course-item>
-
-    <app-load-more-btn></app-load-more-btn>
+    <app-course-item *ngFor="let course of coursesList | orderBy:'date'" [courseItem]="course" (delHandler)="onDeleted($event)"></app-course-item>
 </div>
 
 <div *ngIf="!coursesList.length" class="no-data">

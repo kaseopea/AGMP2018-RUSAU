@@ -38,7 +38,7 @@ describe('CourseItemComponent Standalone', () => {
 
     it('should display course title', () => {
         const titleEl = debugEl.query(By.css('.card-title')).nativeElement;
-        expect(titleEl.textContent).toContain(courseMock.title);
+        expect(titleEl.textContent).toContain(courseMock.name);
     });
 
     it('should raise delete event when clicked', () => {

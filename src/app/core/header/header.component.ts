@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { IUser } from '../../protected/user-profile/interfaces/iuser';
-import { USERPROFILE_MOCK } from '../../mocks/userProfileMock';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -17,13 +16,12 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.isAuthorized = this.authService.IsAuthenticated();
-    this.profile = USERPROFILE_MOCK;
 
-    this.router.events
+  /*  this.router.events
       .subscribe((event) => {
         if (event instanceof NavigationEnd) {
           this.isAuthorized = this.authService.IsAuthenticated();
         }
-      });
+      });*/
   }
 }

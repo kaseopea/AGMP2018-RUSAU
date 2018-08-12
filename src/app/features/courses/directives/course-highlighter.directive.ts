@@ -4,19 +4,19 @@ import {Directive, ElementRef, Input, OnInit} from '@angular/core';
   selector: '[appCourseHighlighter]'
 })
 export class CourseHighlighterDirective implements OnInit {
-  @Input() appCourseHighlighter: Date;
+  @Input() appCourseHighlighter: string;
   private HIGLIGHT_CLASSES = {
     fresh: 'fresh-highlight',
     upcoming: 'upcoming-highlight'
   };
-  private prevDateLimit = 14;
+  private prevDateLimit = 300; // changed condition to match new data fro json server
 
   constructor(private element: ElementRef) {
 
   }
 
   ngOnInit() {
-    const highlightClassname = this.processDate(this.appCourseHighlighter);
+    const highlightClassname = this.processDate(new Date(this.appCourseHighlighter));
     if (highlightClassname) {
         this.element.nativeElement.classList.add(highlightClassname);
     }

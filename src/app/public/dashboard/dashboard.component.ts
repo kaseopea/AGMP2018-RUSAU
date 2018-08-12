@@ -1,34 +1,91 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { CoursesService } from '../../features/courses/services/courses.service';
-import { FilterByPipe } from '../../features/courses/pipes/filter-by.pipe';
 import { ActivatedRoute } from '@angular/router';
+import { ICourse } from '../../features/courses/interfaces/icourse';
+import { APPCONFIG } from '../../config';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
-  public filterCoursesBy: string;
-  public filterByPipe: FilterByPipe;
+export class DashboardComponent implements OnInit, OnDestroy {
+  public coursesData: ICourse[];
+  public filterCoursesBy;
   public pageTitle = '';
+  public isLoading = true;
+  public isSearchInProgress = false;
+  public pageNumber = 1;
+  public itemsCount = APPCONFIG.courses.itemsPerPage;
+  public noMoreItems = false;
+  private coursesSubscription;
+  private DATA_LOADING_DELAY = 1000;
 
-  constructor(private coursesService: CoursesService, filterByPipe: FilterByPipe, private route: ActivatedRoute) {
-    this.filterByPipe = filterByPipe;
+  constructor(private coursesService: CoursesService,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.pageTitle = this.route.snapshot.data['title'];
+    this.isLoading = true;
+    this.coursesSubscription = this.getData().subscribe((data: ICourse[]) => {
+      this.coursesData = data;
+      this.isLoading = false;
+    });
   }
 
-  getFilteredCourses() {
-    const courses = this.coursesService.getCourses();
-    return (this.filterCoursesBy) ? this.filterByPipe.transform(courses, this.filterCoursesBy, false) : courses;
-  }
 
   onSearch(query: string): boolean {
-    console.warn(`Trying to filter courses with "${query}" id`);
     this.filterCoursesBy = query;
+    this.pageNumber = 1; // resetting page number
+    this.isLoading = true;
+    this.coursesSubscription = this.getData().subscribe((data: ICourse[]) => {
+      this.coursesData = data;
+      this.isLoading = false;
+    });
     return false;
+  }
+
+  onLoadMore(pageNumber: number): boolean {
+    this.pageNumber = pageNumber;
+    this.isSearchInProgress = true;
+
+    setTimeout(() => {
+      this.coursesSubscription = this.getData().subscribe((data: ICourse[]) => {
+        this.isSearchInProgress = false;
+        if (data.length) {
+          this.coursesData = this.coursesData.concat(data);
+        } else {
+          this.noMoreItems = true;
+        }
+      });
+
+    }, this.DATA_LOADING_DELAY);
+    return false;
+  }
+
+  onRefresh(isNeedUpdate: boolean) {
+    if (isNeedUpdate) {
+      this.isLoading = true;
+      this.coursesSubscription = this.getData().subscribe((data: ICourse[]) => {
+        this.coursesData = data;
+        this.isLoading = false;
+      });
+    }
+  }
+
+
+  private getData() {
+    return this.coursesService.getCoursesWithParams({
+      pageNumber: this.pageNumber,
+      count: this.itemsCount,
+      searchFor: this.filterCoursesBy
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.coursesSubscription) {
+      this.coursesSubscription.unsubscribe();
+    }
   }
 }

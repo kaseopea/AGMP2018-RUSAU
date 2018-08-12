@@ -1,0 +1,714 @@
+{
+	"courses": [
+  {
+    "id": 8693,
+    "name": "Introduction to Data Structures for Interviews",
+    "description": "Learn how to pass technical interviews by understanding the data structures you need to store and retrieve data efficiently in your everyday development.",
+    "isTopRated": false,
+    "date": "2017-09-28T04:39:24+00:00",
+    "authors": [
+      {
+        "id": 1370,
+        "firstName": "Polly",
+        "lastName": "Sosa"
+      }
+    ],
+    "length": 157
+  },
+  {
+    "id": 4980,
+    "name": "Rapid Development on AWS: React, Node.js & GraphQL",
+    "description": "Learn to build on AWS’ cloud services and its world-class infrastructure to easily add authentication, storage, databases, and APIs into your apps!",
+    "isTopRated": false,
+    "date": "2016-05-31T02:02:36+00:00",
+    "authors": [
+      {
+        "id": 8413,
+        "firstName": "Greta",
+        "lastName": "Richardson"
+      },
+      {
+        "id": 7458,
+        "firstName": "Deana",
+        "lastName": "Bruce"
+      },
+      {
+        "id": 5508,
+        "firstName": "Patsy",
+        "lastName": "Bright"
+      }
+    ],
+    "length": 207
+  },
+  {
+    "id": 4282,
+    "name": "JavaScript: The New Hard Parts",
+    "description": "Develop an intuitive understanding of the new features of JavaScript in ES6+: iterators, generators, promises, and async/await!",
+    "isTopRated": true,
+    "date": "2017-03-25T12:57:37+00:00",
+    "authors": [
+      {
+        "id": 3618,
+        "firstName": "Laura",
+        "lastName": "Kirby"
+      },
+      {
+        "id": 9064,
+        "firstName": "Quinn",
+        "lastName": "Cain"
+      }
+    ],
+    "length": 197
+  },
+  {
+    "id": 1936,
+    "name": "Mastering Webpack Plugins",
+    "description": "Learn the Webpack 4 plugin system, tour the Webpack source code and learn to build custom plugins and custom Webpack loaders.",
+    "isTopRated": true,
+    "date": "2016-03-18T06:36:07+00:00",
+    "authors": [
+      {
+        "id": 9926,
+        "firstName": "Burt",
+        "lastName": "Holland"
+      },
+      {
+        "id": 6440,
+        "firstName": "Andrews",
+        "lastName": "Byers"
+      },
+      {
+        "id": 8509,
+        "firstName": "Shawn",
+        "lastName": "Craig"
+      }
+    ],
+    "length": 232
+  },
+  {
+    "id": 2006,
+    "name": "Web Performance with Webpack",
+    "description": "Make websites load instantly using Webpack for lazy loading JavaScript with code splitting, removing unused code with tree shaking and prefetching assets.",
+    "isTopRated": true,
+    "date": "2017-01-18T19:10:51+00:00",
+    "authors": [
+      {
+        "id": 21,
+        "firstName": "Maddox",
+        "lastName": "Diaz"
+      },
+      {
+        "id": 800,
+        "firstName": "Glenda",
+        "lastName": "Juarez"
+      },
+      {
+        "id": 1772,
+        "firstName": "Hilda",
+        "lastName": "Gaines"
+      },
+      {
+        "id": 3003,
+        "firstName": "Abbott",
+        "lastName": "Mckay"
+      }
+    ],
+    "length": 42
+  },
+  {
+    "id": 1672,
+    "name": "Webpack 4 Fundamentals",
+    "description": "Learn the core concepts of Webpack 4. Start from scratch by adding Webpack with npm and build up a pipeline with popular loaders from the Webpack ecosystem!",
+    "isTopRated": false,
+    "date": "2017-06-06T00:07:32+00:00",
+    "authors": [
+      {
+        "id": 1167,
+        "firstName": "Garrison",
+        "lastName": "Chambers"
+      },
+      {
+        "id": 9215,
+        "firstName": "Ofelia",
+        "lastName": "Rodgers"
+      },
+      {
+        "id": 978,
+        "firstName": "Avila",
+        "lastName": "Bolton"
+      }
+    ],
+    "length": 52
+  },
+  {
+    "id": 3946,
+    "name": "Complete Intro to Web Development, v2",
+    "description": "More than an introduction, in this course you’ll go from building your first website to having the foundation for becoming a professional web developer!",
+    "isTopRated": false,
+    "date": "2016-11-03T04:24:34+00:00",
+    "authors": [
+      {
+        "id": 612,
+        "firstName": "Pam",
+        "lastName": "Vazquez"
+      },
+      {
+        "id": 6050,
+        "firstName": "Norman",
+        "lastName": "Love"
+      },
+      {
+        "id": 2252,
+        "firstName": "Reba",
+        "lastName": "Perez"
+      }
+    ],
+    "length": 31
+  },
+  {
+    "id": 8464,
+    "name": "A Practical Guide to Algorithms with JS",
+    "description": "Learn to solve algorithms and analyze them efficiently in both an interview setting and also in your day-to-day development.",
+    "isTopRated": true,
+    "date": "2017-07-07T10:38:59+00:00",
+    "authors": [
+      {
+        "id": 5524,
+        "firstName": "Cobb",
+        "lastName": "Hudson"
+      },
+      {
+        "id": 5341,
+        "firstName": "Nettie",
+        "lastName": "Sanford"
+      },
+      {
+        "id": 7333,
+        "firstName": "Michele",
+        "lastName": "Cunningham"
+      }
+    ],
+    "length": 269
+  },
+  {
+    "id": 5834,
+    "name": "Serverless with AWS Lambda",
+    "description": "Get started with AWS Lambda functions and then learn to test, debug and deploy then to build a real API powered by lambda functions.",
+    "isTopRated": false,
+    "date": "2016-04-30T18:46:36+00:00",
+    "authors": [
+      {
+        "id": 8318,
+        "firstName": "Rowland",
+        "lastName": "Vasquez"
+      }
+    ],
+    "length": 310
+  },
+  {
+    "id": 9664,
+    "name": "proident do non aute",
+    "description": "Ut aliqua exercitation in sit non adipisicing amet. Occaecat et fugiat minim officia ut in non et nulla. Nisi incididunt culpa ad magna do laboris.",
+    "isTopRated": true,
+    "date": "2017-02-18T22:01:43+00:00",
+    "authors": [
+      {
+        "id": 4441,
+        "firstName": "Willa",
+        "lastName": "Cortez"
+      },
+      {
+        "id": 9562,
+        "firstName": "Dejesus",
+        "lastName": "Snow"
+      },
+      {
+        "id": 4998,
+        "firstName": "Doyle",
+        "lastName": "Webster"
+      },
+      {
+        "id": 2138,
+        "firstName": "Torres",
+        "lastName": "Farley"
+      }
+    ],
+    "length": 274
+  },
+  {
+    "id": 8194,
+    "name": "Advanced GraphQL",
+    "description": "Go beyond the basics to writing production-level, optimized GraphQL. Learn GraphQL techniques such as Nested Resolvers, Caching and Testing.",
+    "isTopRated": false,
+    "date": "2016-09-09T12:00:31+00:00",
+    "authors": [
+      {
+        "id": 3509,
+        "firstName": "Jessie",
+        "lastName": "Kelly"
+      },
+      {
+        "id": 7653,
+        "firstName": "Miranda",
+        "lastName": "Christian"
+      },
+      {
+        "id": 6185,
+        "firstName": "Yvette",
+        "lastName": "Foster"
+      },
+      {
+        "id": 5186,
+        "firstName": "Russell",
+        "lastName": "Butler"
+      }
+    ],
+    "length": 71
+  },
+  {
+    "id": 5688,
+    "name": "Testing React Applications, v2",
+    "description": "Fix errors before your app reaches the end user by writing maintainable unit test & integration tests for your React applications!",
+    "isTopRated": false,
+    "date": "2017-11-18T09:06:11+00:00",
+    "authors": [
+      {
+        "id": 9364,
+        "firstName": "Berger",
+        "lastName": "Powell"
+      },
+      {
+        "id": 3477,
+        "firstName": "Daugherty",
+        "lastName": "Guy"
+      },
+      {
+        "id": 2005,
+        "firstName": "Dotson",
+        "lastName": "Hernandez"
+      }
+    ],
+    "length": 171
+  },
+  {
+    "id": 2698,
+    "name": "Advanced React Patterns",
+    "description": "Simplify large React applications by separating your component logic, state and display properties to make React components more flexible and usable!",
+    "isTopRated": true,
+    "date": "2017-07-14T10:57:08+00:00",
+    "authors": [
+      {
+        "id": 1416,
+        "firstName": "Ashlee",
+        "lastName": "Hines"
+      }
+    ],
+    "length": 191
+  },
+  {
+    "id": 3747,
+    "name": "SQL Fundamentals",
+    "description": "Learn SQL, the most popular language for storing, querying and analyzing the relational data that powers your server-side applications.",
+    "isTopRated": false,
+    "date": "2017-10-27T01:46:08+00:00",
+    "authors": [
+      {
+        "id": 5907,
+        "firstName": "Jacobson",
+        "lastName": "Riddle"
+      },
+      {
+        "id": 8339,
+        "firstName": "Claire",
+        "lastName": "Battle"
+      },
+      {
+        "id": 2017,
+        "firstName": "Orr",
+        "lastName": "Conrad"
+      },
+      {
+        "id": 7614,
+        "firstName": "Moody",
+        "lastName": "Cash"
+      }
+    ],
+    "length": 41
+  },
+  {
+    "id": 6605,
+    "name": "Content Strategy",
+    "description": "Get your content under control with an effective strategy! Research, take inventory and create a messaging framework for a cohesive voice for your website.",
+    "isTopRated": false,
+    "date": "2016-12-11T18:16:42+00:00",
+    "authors": [
+      {
+        "id": 4165,
+        "firstName": "Gilda",
+        "lastName": "Huff"
+      }
+    ],
+    "length": 119
+  },
+  {
+    "id": 6703,
+    "name": "Web Performance",
+    "description": "Write more efficient JavaScript, optimize rendering performance, load assets faster with a CDN, split loading resources with Webpack and more!",
+    "isTopRated": false,
+    "date": "2016-03-21T19:22:57+00:00",
+    "authors": [
+      {
+        "id": 4290,
+        "firstName": "Latonya",
+        "lastName": "Hester"
+      },
+      {
+        "id": 9190,
+        "firstName": "Gregory",
+        "lastName": "Ratliff"
+      },
+      {
+        "id": 2309,
+        "firstName": "Williamson",
+        "lastName": "Phillips"
+      },
+      {
+        "id": 5583,
+        "firstName": "Katharine",
+        "lastName": "Hopkins"
+      }
+    ],
+    "length": 358
+  },
+  {
+    "id": 4276,
+    "name": "Four Semesters of Computer Science in 5 Hours, Part 2",
+    "description": "Learning computer science makes you a better developer, makes your apps better, and allows you to answer difficult engineering interview questions.",
+    "isTopRated": false,
+    "date": "2016-11-13T19:23:11+00:00",
+    "authors": [
+      {
+        "id": 1980,
+        "firstName": "Leona",
+        "lastName": "Bailey"
+      },
+      {
+        "id": 5365,
+        "firstName": "Edwards",
+        "lastName": "Nunez"
+      }
+    ],
+    "length": 52
+  },
+  {
+    "id": 5,
+    "name": "JavaScript: From Fundamentals to Functional JS, v2",
+    "description": "Learn higher-order functions, closures, scope, master key functional methods like map, reduce and filter and promises and ES6+ asynchronous JavaScript.",
+    "isTopRated": false,
+    "date": "2016-08-13T02:14:40+00:00",
+    "authors": [
+      {
+        "id": 3455,
+        "firstName": "Leah",
+        "lastName": "Sweet"
+      },
+      {
+        "id": 3060,
+        "firstName": "Landry",
+        "lastName": "Valdez"
+      },
+      {
+        "id": 8635,
+        "firstName": "Juliana",
+        "lastName": "Holden"
+      },
+      {
+        "id": 7407,
+        "firstName": "Price",
+        "lastName": "Britt"
+      }
+    ],
+    "length": 55
+  },
+  {
+    "id": 5829,
+    "name": "Git In-depth",
+    "description": "A deep dive into git, this course is for developers who use it every day and want to learn inner workings and use advanced techniques in git.",
+    "isTopRated": false,
+    "date": "2017-05-13T09:35:20+00:00",
+    "authors": [
+      {
+        "id": 248,
+        "firstName": "Millie",
+        "lastName": "Schneider"
+      },
+      {
+        "id": 3517,
+        "firstName": "Burke",
+        "lastName": "Eaton"
+      }
+    ],
+    "length": 284
+  },
+  {
+    "id": 9817,
+    "name": "Full Stack for Front-Ends Part 2",
+    "description": "Deploy Node.js apps and configure Nginx using the command line. Setup SSH, firewall, server updates and configure nginx caching, gzip and HTTP2.",
+    "isTopRated": true,
+    "date": "2017-03-18T16:27:27+00:00",
+    "authors": [
+      {
+        "id": 7827,
+        "firstName": "Lorna",
+        "lastName": "Joyce"
+      },
+      {
+        "id": 8335,
+        "firstName": "Ronda",
+        "lastName": "Dean"
+      },
+      {
+        "id": 57,
+        "firstName": "Lola",
+        "lastName": "Glass"
+      },
+      {
+        "id": 4831,
+        "firstName": "Noreen",
+        "lastName": "Sullivan"
+      }
+    ],
+    "length": 226
+  },
+  {
+    "id": 7454,
+    "name": "REST & GraphQL API Design in Node.js, v2 (using Express & MongoDB)",
+    "description": "Design APIs from the ground up using Node.js Express and MongoDB! You'll build a REST API and in the course you'll migrate your API to using GraphQL.",
+    "isTopRated": false,
+    "date": "2016-05-29T11:05:03+00:00",
+    "authors": [
+      {
+        "id": 3343,
+        "firstName": "Margie",
+        "lastName": "Cote"
+      }
+    ],
+    "length": 283
+  },
+  {
+    "id": 8476,
+    "name": "Building Awesomer Apps with Angular",
+    "description": "Learn Angular from the ground up. Get up and running quickly with the Angular CLI, then build a production-ready app using Components, Services and Routes.",
+    "isTopRated": true,
+    "date": "2017-09-08T19:51:30+00:00",
+    "authors": [
+      {
+        "id": 441,
+        "firstName": "Vance",
+        "lastName": "Reynolds"
+      }
+    ],
+    "length": 346
+  },
+  {
+    "id": 6240,
+    "name": "TypeScript Fundamentals",
+    "description": "TypeScript combines modern JavaScript language features with a powerful and flexible type system, to make building high-performance and scalable apps easy!",
+    "isTopRated": false,
+    "date": "2017-08-15T15:27:05+00:00",
+    "authors": [
+      {
+        "id": 9101,
+        "firstName": "Singleton",
+        "lastName": "Ellison"
+      },
+      {
+        "id": 638,
+        "firstName": "Weeks",
+        "lastName": "Santos"
+      }
+    ],
+    "length": 267
+  },
+  {
+    "id": 5110,
+    "name": "CSS In-Depth, v2",
+    "description": "Take a deep-dive into the essential features of CSS, while also exploring CSS features you probably didn’t even know existed!",
+    "isTopRated": false,
+    "date": "2017-11-05T23:17:58+00:00",
+    "authors": [
+      {
+        "id": 8781,
+        "firstName": "Carson",
+        "lastName": "Suarez"
+      },
+      {
+        "id": 3399,
+        "firstName": "Schmidt",
+        "lastName": "Cooke"
+      }
+    ],
+    "length": 59
+  },
+  {
+    "id": 3001,
+    "name": "CSS Grids and Flexbox for Responsive Web Design",
+    "description": "Master CSS Grid and Flexbox, the latest tools and tricks to layout beautiful, responsive web applications with less code.",
+    "isTopRated": false,
+    "date": "2017-11-01T00:46:22+00:00",
+    "authors": [
+      {
+        "id": 7987,
+        "firstName": "Anthony",
+        "lastName": "Mcguire"
+      },
+      {
+        "id": 80,
+        "firstName": "Knight",
+        "lastName": "York"
+      },
+      {
+        "id": 5892,
+        "firstName": "Hope",
+        "lastName": "Boyer"
+      },
+      {
+        "id": 7134,
+        "firstName": "Kim",
+        "lastName": "Brewer"
+      }
+    ],
+    "length": 155
+  },
+  {
+    "id": 7349,
+    "name": "JavaScript: The Hard Parts",
+    "description": "Take your JavaScript to the next level. Gain an understanding of callbacks, higher order functions, closure, asynchronous and object-oriented JavaScript!",
+    "isTopRated": false,
+    "date": "2016-05-23T19:39:12+00:00",
+    "authors": [
+      {
+        "id": 3121,
+        "firstName": "Twila",
+        "lastName": "Jennings"
+      },
+      {
+        "id": 6880,
+        "firstName": "Irma",
+        "lastName": "Martinez"
+      },
+      {
+        "id": 6039,
+        "firstName": "Mcgowan",
+        "lastName": "Nelson"
+      },
+      {
+        "id": 8235,
+        "firstName": "Parks",
+        "lastName": "Mack"
+      }
+    ],
+    "length": 280
+  },
+  {
+    "id": 8324,
+    "name": "Advanced Vue.js Features from the Ground Up",
+    "description": "Learn how to build accessible routing, state management, form validation and internationalization from the ground up by composing basic Vue.js features.",
+    "isTopRated": true,
+    "date": "2016-12-03T04:50:39+00:00",
+    "authors": [
+      {
+        "id": 1861,
+        "firstName": "Michael",
+        "lastName": "Stout"
+      },
+      {
+        "id": 9950,
+        "firstName": "Roy",
+        "lastName": "George"
+      },
+      {
+        "id": 3907,
+        "firstName": "Macdonald",
+        "lastName": "Ward"
+      },
+      {
+        "id": 4388,
+        "firstName": "Oneil",
+        "lastName": "Carlson"
+      }
+    ],
+    "length": 390
+  },
+  {
+    "id": 5848,
+    "name": "JavaScript for WordPress",
+    "description": "Learn how to use JavaScript and AJAX to harness the power of WordPress for themes and plugins -- decouple your code using the WordPress REST API!",
+    "isTopRated": true,
+    "date": "2017-10-07T09:23:08+00:00",
+    "authors": [
+      {
+        "id": 2700,
+        "firstName": "Wynn",
+        "lastName": "Knowles"
+      },
+      {
+        "id": 1048,
+        "firstName": "Casey",
+        "lastName": "Terry"
+      },
+      {
+        "id": 5187,
+        "firstName": "Etta",
+        "lastName": "Key"
+      },
+      {
+        "id": 1939,
+        "firstName": "Hilary",
+        "lastName": "Mcdowell"
+      }
+    ],
+    "length": 46
+  },
+  {
+    "id": 348,
+    "name": "Visual Studio Code",
+    "description": "Visual Studio Code is a modern, full-featured code editor built from the ground for the needs of web developers - JavaScript developers in particular.",
+    "isTopRated": false,
+    "date": "2017-04-14T08:15:30+00:00",
+    "authors": [
+      {
+        "id": 5653,
+        "firstName": "Leblanc",
+        "lastName": "Bradley"
+      }
+    ],
+    "length": 262
+  },
+  {
+    "id": 133,
+    "name": "Web Security",
+    "description": "Get hands on attacking and defending web applications. Defend Cross-Site Scripting (XSS) and Man-in-the-Middle attacks, secure 3rd party assets and more!",
+    "isTopRated": false,
+    "date": "2017-09-19T18:41:40+00:00",
+    "authors": [
+      {
+        "id": 2148,
+        "firstName": "Joyce",
+        "lastName": "Sparks"
+      },
+      {
+        "id": 728,
+        "firstName": "Rosetta",
+        "lastName": "Barton"
+      },
+      {
+        "id": 3733,
+        "firstName": "Patti",
+        "lastName": "Sampson"
+      }
+    ],
+    "length": 45
+  }
+]
+}

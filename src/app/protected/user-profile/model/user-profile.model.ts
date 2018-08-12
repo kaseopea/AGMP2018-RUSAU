@@ -1,10 +1,15 @@
 import { IUser } from '../interfaces/iuser';
 
 export class UserProfile implements IUser {
-  constructor(public id, public username, public firstName, public lastName) {
+  constructor(public id,
+              public fakeToken = '',
+              public name = { first: '', last: ''},
+              public login,
+              public password) {
     this.id = id;
-    this.username = username;
-    this.firstName = firstName;
-    this.lastName = lastName;
+    this.fakeToken = fakeToken;
+    this.name = name;
+    this.login = login;
+    this.password = password;
   }
 }

@@ -1,16 +1,21 @@
 import { Inject, Injectable } from '@angular/core';
-import v1 from 'uuid/v1';
-import { USERPROFILE_MOCK } from '../../mocks/userProfileMock';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
+import { mergeMap } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
+import { throwError } from 'rxjs/internal/observable/throwError';
+
 import { IUser } from '../../protected/user-profile/interfaces/iuser';
 import { ICreds } from '../interfaces/icreds';
 import { ILocalStorage } from '../interfaces/iLocalStorage';
+import { APPCONFIG } from '../../config';
+import { MESSAGES } from '../constants/messages';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private SUCCESS_LOGIN_MESSAGE = 'Logged in successfully!';
-  private userData: IUser;
+  private userInfo: IUser;
   private token: string;
   private isLoggedIn = false;
   private LS_KEYS = {
@@ -18,37 +23,38 @@ export class AuthService {
     userData: 'userData'
   };
 
-  constructor(@Inject('LOCALSTORAGE') private localStorage: ILocalStorage) {
-    this.token = this.getTokenFromStorage();
-    this.userData = this.getUserDataFromStorage();
+  constructor(@Inject('LOCALSTORAGE') private localStorage: ILocalStorage, private http: HttpClient) {
+    this.token = this.localStorage.getItem(this.LS_KEYS.token);
+    this.userInfo = JSON.parse(this.localStorage.getItem(this.LS_KEYS.userData));
 
-    if (this.token && this.userData) {
+    if (this.token && this.userInfo) {
       this.isLoggedIn = true;
     }
   }
 
-  public Login(credentials: ICreds) {
-    // check id login is correct (simple check with mock data for now)
-    if (credentials.login === USERPROFILE_MOCK.username) {
-      this.token = v1();
-      this.userData = USERPROFILE_MOCK;
+  public Login(credentials: ICreds): Observable<boolean> {
+    // request headers
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
 
-      // setting data to storage
-      this.setTokenToStorage(this.token);
-      this.setUserDataToStorage(this.userData);
-      this.isLoggedIn = true;
-      console.log(`${this.SUCCESS_LOGIN_MESSAGE} | User: ${credentials.login} | Token: ${this.token}`);
-    } else {
-      this.isLoggedIn = false;
-      console.error('Invalid credentials. Login is forbidden!');
-    }
-    return this.isLoggedIn;
+    // request params
+    const params = new URLSearchParams();
+    params.set('login', credentials.login);
+    params.set('password', credentials.password);
+
+    // request
+    return this.http.post(APPCONFIG.apis.auth, params.toString(), {headers}).pipe(
+      map(data => this.processToken(data)),
+      mergeMap(token => this.GetUserData(token)),
+      map(data => this.processUserData(data)),
+      catchError(this.handleLoginError)
+    );
   }
 
   public Logout(): void {
-    console.warn(`${this.userData.username} wants to logout`);
     this.token = null;
-    this.userData = null;
+    this.userInfo = null;
     this.isLoggedIn = false;
     this.clearStorageData();
   }
@@ -57,8 +63,12 @@ export class AuthService {
     return this.isLoggedIn;
   }
 
-  public GetUserInfo(): IUser {
-    return this.userData;
+  public GetUserInfo() {
+    return this.userInfo;
+  }
+
+  public getToken(): string {
+    return this.token;
   }
 
   public clearStorageData() {
@@ -66,21 +76,40 @@ export class AuthService {
     this.localStorage.removeItem(this.LS_KEYS.userData);
   }
 
+
   // utils
-  private getUserDataFromStorage() {
-    return JSON.parse(this.localStorage.getItem(this.LS_KEYS.userData));
-  }
+  private processToken(tokenObj) {
+    const {token} = tokenObj;
+    this.token = token;
 
-  private getTokenFromStorage() {
-    return this.localStorage.getItem(this.LS_KEYS.token);
-  }
-
-  private setTokenToStorage(token: string): void {
+    // save token to local storage
     this.localStorage.setItem(this.LS_KEYS.token, token);
+
+    return token;
+
   }
 
-  private setUserDataToStorage(data: IUser): void {
-    this.localStorage.setItem(this.LS_KEYS.userData, JSON.stringify(data));
+  private GetUserData(token: string): Observable<IUser> {
+    // request headers
+    const headers = new HttpHeaders({
+      'Authorization': token
+    });
+    return this.http.post<IUser>(APPCONFIG.apis.userInfo, '', {headers});
   }
 
+  private processUserData(userData: IUser) {
+    this.userInfo = userData;
+
+    // set user data to storage
+    this.localStorage.setItem(this.LS_KEYS.userData, JSON.stringify(userData));
+
+    // we are logged in with token and user info
+    this.isLoggedIn = true;
+
+    return this.isLoggedIn;
+  }
+
+  private handleLoginError(error: HttpErrorResponse) {
+    return throwError((error.status === 401) ? MESSAGES.auth.notAuthorized : MESSAGES.auth.generalLoginError);
+  }
 }

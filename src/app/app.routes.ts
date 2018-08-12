@@ -22,7 +22,7 @@ export const ROUTES: Route[] = [
       {
         path: 'courses',
         component: DashboardComponent,
-        // canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService],
         data: {
           title: 'Courses Dashboard'
         }
@@ -30,7 +30,7 @@ export const ROUTES: Route[] = [
       {
         path: 'courses/new',
         component: ManageCourseComponent,
-        // canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService],
         data: {
           title: 'Add new course'
         }
@@ -38,7 +38,7 @@ export const ROUTES: Route[] = [
       {
         path: 'courses/:id',
         component: ManageCourseComponent,
-        // canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService],
         data: {
           title: 'Update course data'
         }

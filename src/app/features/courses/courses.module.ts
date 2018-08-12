@@ -23,7 +23,8 @@ import { AuthorsTagsComponent } from './components/add-edit-course/authors-tags/
     CoursesListComponent,
     CourseItemComponent,
     AddEditCourseComponent,
-    SearchCoursesComponent
+    SearchCoursesComponent,
+    LoadMoreBtnComponent
   ],
   declarations: [
     CoursesListComponent,
