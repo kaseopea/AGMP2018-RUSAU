@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { fromEvent } from 'rxjs';
+import { fromEvent, Subject } from 'rxjs';
 import { debounceTime, map, filter, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
@@ -13,6 +13,8 @@ export class SearchCoursesComponent implements OnInit, OnDestroy {
   public query: string;
   public placeHolderText = 'Type in search query...';
   public isSearchPerformed = false;
+  public searchInputValueSubject = new Subject<string>();
+
   private CONFIG = {
     debounce: 1000,
     minQueryLength: 3
@@ -24,16 +26,30 @@ export class SearchCoursesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.query = this.placeHolderText;
-    this.inputTypeSubscription = fromEvent(this.searchQuery.nativeElement, 'input').pipe(
+
+    // fromEvent version
+    /*this.inputTypeSubscription = fromEvent(this.searchQuery.nativeElement, 'input').pipe(
       map((e: KeyboardEvent) => (<HTMLInputElement>e.target).value),
       filter(text => text.length >= this.CONFIG.minQueryLength),
       debounceTime(this.CONFIG.debounce),
       distinctUntilChanged()
     ).subscribe(query => {
       this.isSearchPerformed = true;
-      console.warn(`User performed click on search button and wants to search with "${query}" query`);
+      this.searchHandler.emit(query);
+    });*/
+
+    this.searchInputValueSubject.pipe(
+      filter(text => text.length >= this.CONFIG.minQueryLength),
+      debounceTime(this.CONFIG.debounce),
+      distinctUntilChanged()
+    ).subscribe((query) => {
+      this.isSearchPerformed = true;
       this.searchHandler.emit(query);
     });
+  }
+
+  onChange($event) {
+    this.searchInputValueSubject.next($event);
   }
 
   public resetSearch() {

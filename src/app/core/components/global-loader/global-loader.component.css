@@ -9,7 +9,7 @@
   right: 0;
   bottom: 0;
   background-color: #F34646;
-  z-index: 2;
+  z-index: 999;
 }
 
 .loader-hidden {

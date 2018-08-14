@@ -8,6 +8,7 @@
                    name="query"
                    class="form-control"
                    [(ngModel)]="query"
+                   (ngModelChange)="onChange($event)"
                    (click)="clearPlaceholder()"
                    (placeholder)="placeHolderText"/>
             <div class="input-group-append" *ngIf="isSearchPerformed">

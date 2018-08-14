@@ -43,11 +43,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.filterCoursesBy = query;
     this.pageNumber = 1; // resetting page number
     this.isLoading = true;
-    this.loaderService.show();
     this.coursesSubscription = this.getData().subscribe((data: ICourse[]) => {
       this.coursesData = data;
       this.isLoading = false;
-      this.loaderService.hide();
     });
     return false;
   }
