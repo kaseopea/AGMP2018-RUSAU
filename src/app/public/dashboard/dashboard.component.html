@@ -1,23 +1,27 @@
 <app-breadcrumbs [pageTitle]="pageTitle"></app-breadcrumbs>
-<div class="row">
-    <div class="col">
-        <app-search-courses (searchHandler)="onSearch($event)"></app-search-courses>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <app-search-courses (searchHandler)="onSearch($event)"></app-search-courses>
+        </div>
+        <div class="col text-right">
+            <a routerLink="/app/courses/new" class="btn btn-success">
+                <i class="fas fa-plus-square"></i> New course
+            </a>
+        </div>
     </div>
-    <div class="col text-right">
-        <a routerLink="/app/courses/new" class="btn btn-success">
-            <i class="fas fa-plus-square"></i> New course
-        </a>
+
+    <div class="loader text-center" *ngIf="isLoading">
+        <i class="fas fa-spinner fa-spin"></i>
     </div>
+
+
+    <app-courses-list *ngIf="!isLoading"
+                      class="courses-list"
+                      [coursesList]="coursesData"
+                      (refresh)="onRefresh($event)"></app-courses-list>
+
+    <app-load-more-btn [inProgress]="isSearchInProgress"
+                       [noMoreItems]="noMoreItems"
+                       (clickHandler)="onLoadMore($event)"></app-load-more-btn>
 </div>
-
-<div class="loader text-center" *ngIf="isLoading">
-    <i class="fas fa-spinner fa-spin"></i>
-</div>
-
-<app-courses-list *ngIf="!isLoading"
-                  [coursesList]="coursesData"
-                  (refresh)="onRefresh($event)"></app-courses-list>
-
-<app-load-more-btn [inProgress]="isSearchInProgress"
-                   [noMoreItems]="noMoreItems"
-                   (clickHandler)="onLoadMore($event)"></app-load-more-btn>

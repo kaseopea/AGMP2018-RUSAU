@@ -22,7 +22,7 @@ export class AuthService {
     token: 'token',
     userData: 'userData'
   };
-  private REQUEST_DELAY = 2000;
+  private REQUEST_DELAY = 1000;
 
   constructor(@Inject('LOCALSTORAGE') private localStorage: ILocalStorage, private http: HttpClient) {
     this.token = this.localStorage.getItem(this.LS_KEYS.token);

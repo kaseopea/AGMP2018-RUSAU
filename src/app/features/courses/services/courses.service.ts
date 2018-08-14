@@ -13,7 +13,7 @@ import { APPCONFIG } from '../../../config';
 export class CoursesService {
   private coursesList: ICourse[];
   private BASE_URL = APPCONFIG.apis.courses;
-  private REQUEST_DELAY = 500;
+  private REQUEST_DELAY = 1000;
 
   constructor(private http: HttpClient) {
     this.coursesList = COURSES_MOCK;

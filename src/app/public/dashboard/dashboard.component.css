@@ -3,3 +3,8 @@
    font-size: 3em;
    color: #B8312F;
 }
+
+.courses-list {
+   display: block;
+   margin-top: 2em;
+}
