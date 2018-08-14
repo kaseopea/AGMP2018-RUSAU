@@ -1,0 +1,13 @@
+.footer {
+  background-color: #eee;
+  padding: 2em 0;
+  margin-top: 2em;
+}
+.copyright-text {
+  font-size: .9em;
+  color: #7f8c8d;
+  margin-top: 1em;
+}
+.heart-icon {
+  color: #c0392b;
+}

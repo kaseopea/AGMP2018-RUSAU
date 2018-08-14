@@ -1,7 +1,8 @@
-<div [class.loader-hidden]="!show" id="overlay">
-  <div class="loader-overlay">
-    <div *ngIf="show">
-      <i class="fas fa-spinner fa-spin"></i> Loading....
+<div class="global-loader" [class.loader-hidden]="!show">
+  <div class="global-loader-inner">
+    <div class="loader-contents">
+      <img class="loader-image" src="/assets/loader.gif">
+      <p class="loader-text">Loading....</p>
     </div>
   </div>
 </div>

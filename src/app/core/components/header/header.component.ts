@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IUser } from '../../protected/user-profile/interfaces/iuser';
-import { AuthService } from '../services/auth.service';
-import { GlobalLoaderService } from '../services/global-loader.service';
+import { IUser } from '../../../protected/user-profile/interfaces/iuser';
+import { AuthService } from '../../services/auth.service';
+import { GlobalLoaderService } from '../../services/global-loader.service';
 
 @Component({
   selector: 'app-header',
