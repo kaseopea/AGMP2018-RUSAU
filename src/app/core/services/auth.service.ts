@@ -1,8 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
-import { catchError, map } from 'rxjs/operators';
+import { delay, mergeMap,  catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
 
 import { IUser } from '../../protected/user-profile/interfaces/iuser';
@@ -23,6 +22,7 @@ export class AuthService {
     token: 'token',
     userData: 'userData'
   };
+  private REQUEST_DELAY = 2000;
 
   constructor(@Inject('LOCALSTORAGE') private localStorage: ILocalStorage, private http: HttpClient) {
     this.token = this.localStorage.getItem(this.LS_KEYS.token);
@@ -53,11 +53,12 @@ export class AuthService {
     );
   }
 
-  public Logout(): void {
+  public Logout(): Observable<boolean> {
     this.token = null;
     this.userInfo = null;
     this.isLoggedIn = false;
     this.clearStorageData();
+    return of(this.isLoggedIn).pipe(delay(this.REQUEST_DELAY));
   }
 
   public IsAuthenticated(): Observable<boolean> {

@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
+import { delay } from 'rxjs/operators';
 import { ICourse } from '../interfaces/icourse';
 import { COURSES_MOCK } from '../../../mocks/coursesMock';
 import { APPCONFIG } from '../../../config';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +13,14 @@ import { APPCONFIG } from '../../../config';
 export class CoursesService {
   private coursesList: ICourse[];
   private BASE_URL = APPCONFIG.apis.courses;
+  private REQUEST_DELAY = 500;
 
   constructor(private http: HttpClient) {
     this.coursesList = COURSES_MOCK;
   }
 
   public getCourses(): Observable<ICourse[]> {
-    return this.http.get<ICourse[]>(`${this.BASE_URL}`);
+    return this.http.get<ICourse[]>(`${this.BASE_URL}`).pipe(delay(this.REQUEST_DELAY));
   }
 
   public getCoursesWithParams(params): Observable<ICourse[]> {
@@ -36,11 +39,11 @@ export class CoursesService {
       fromObject: queryParamsObj
     });
 
-    return this.http.get<ICourse[]>(`${this.BASE_URL}`, {params: httpParams});
+    return this.http.get<ICourse[]>(`${this.BASE_URL}`, {params: httpParams}).pipe(delay(this.REQUEST_DELAY));
   }
 
   public getCourseById(courseId: number): Observable<ICourse> {
-    return this.http.get<ICourse>(`${this.BASE_URL}/${courseId}`);
+    return this.http.get<ICourse>(`${this.BASE_URL}/${courseId}`).pipe(delay(this.REQUEST_DELAY));
   }
 
   public addCourse(course: ICourse): Observable<HttpResponse<any>> {
@@ -50,7 +53,7 @@ export class CoursesService {
         'Content-Type': 'application/json'
       }),
       observe: 'response'
-    });
+    }).pipe(delay(this.REQUEST_DELAY));
   }
 
   public updateCourse(courseId: number, updateCourse: ICourse): Observable<HttpResponse<any>> {
@@ -59,12 +62,12 @@ export class CoursesService {
         'Content-Type': 'application/json'
       }),
       observe: 'response'
-    });
+    }).pipe(delay(this.REQUEST_DELAY));
   }
 
   public deleteCourse(courseId: number): Observable<HttpResponse<any>> {
     return this.http.delete(`${this.BASE_URL}/${courseId}`, {
       observe: 'response'
-    });
+    }).pipe(delay(this.REQUEST_DELAY));
   }
 }

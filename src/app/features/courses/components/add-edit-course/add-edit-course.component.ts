@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ICourse } from '../../interfaces/icourse';
 import { CoursesService } from '../../services/courses.service';
+import { GlobalLoaderService } from '../../../../core/services/global-loader.service';
 
 @Component({
   selector: 'app-add-edit-course',
@@ -11,7 +11,8 @@ import { CoursesService } from '../../services/courses.service';
 })
 export class AddEditCourseComponent implements OnInit, OnDestroy {
   @Input() public course: ICourse;
-  @Input() public isNew: boolean;
+  public isNew = true;
+  public courseData: ICourse;
   private courseSubscription;
   private defaultEmptyCourse = {
     id: 0,
@@ -23,34 +24,39 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
     authors: []
   };
 
-  constructor(private coursesService: CoursesService, private router: Router) {
+  constructor(private coursesService: CoursesService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private loaderService: GlobalLoaderService) {
   }
 
   ngOnInit() {
-    if (this.isNew) {
-      this.course = this.defaultEmptyCourse;
-    }
+    this.route.data.subscribe((data: { course: ICourse }) => {
+      this.courseData = (data.course) ? data.course : this.defaultEmptyCourse;
+      this.isNew = !!!data.course;
+    });
   }
 
-  onSubmit(f: NgForm) {
-    console.warn('--------------------- onSubmit ---------------------');
-    console.warn('Form value:', f.value);
+  onSubmit() {
+    this.loaderService.show();
     if (this.isNew) {
-      console.warn('Add new course: ', this.course);
+      console.warn('Add new course: ', this.courseData);
       this.courseSubscription = this.coursesService
-        .addCourse(this.course)
+        .addCourse(this.courseData)
         .subscribe((res) => {
           if (res.status === 201) {
+            this.loaderService.hide();
             this.router.navigateByUrl('/app/courses');
           }
         });
 
     } else {
-      console.warn('Update new course: ', this.course);
+      console.warn('Update new course: ', this.courseData);
       this.courseSubscription = this.coursesService
-        .updateCourse(this.course.id, this.course)
+        .updateCourse(this.courseData.id, this.courseData)
         .subscribe((res) => {
           if (res.status === 200) {
+            this.loaderService.hide();
             this.router.navigateByUrl('/app/courses');
           }
         });

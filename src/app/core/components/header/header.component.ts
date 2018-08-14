@@ -16,7 +16,5 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.authService.IsAuthenticated().subscribe((isAuthenticated) => this.isAuthorized = isAuthenticated);
-    this.loaderService.show();
-    setTimeout(() => this.loaderService.hide(), 5000);
   }
 }

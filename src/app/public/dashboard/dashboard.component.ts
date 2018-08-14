@@ -3,6 +3,7 @@ import { CoursesService } from '../../features/courses/services/courses.service'
 import { ActivatedRoute } from '@angular/router';
 import { ICourse } from '../../features/courses/interfaces/icourse';
 import { APPCONFIG } from '../../config';
+import { GlobalLoaderService } from '../../core/services/global-loader.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,15 +23,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private DATA_LOADING_DELAY = 1000;
 
   constructor(private coursesService: CoursesService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private loaderService: GlobalLoaderService) {
   }
 
   ngOnInit() {
     this.pageTitle = this.route.snapshot.data['title'];
     this.isLoading = true;
+    this.loaderService.show();
     this.coursesSubscription = this.getData().subscribe((data: ICourse[]) => {
       this.coursesData = data;
       this.isLoading = false;
+      this.loaderService.hide();
     });
   }
 
@@ -39,9 +43,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.filterCoursesBy = query;
     this.pageNumber = 1; // resetting page number
     this.isLoading = true;
+    this.loaderService.show();
     this.coursesSubscription = this.getData().subscribe((data: ICourse[]) => {
       this.coursesData = data;
       this.isLoading = false;
+      this.loaderService.hide();
     });
     return false;
   }
@@ -67,9 +73,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   onRefresh(isNeedUpdate: boolean) {
     if (isNeedUpdate) {
       this.isLoading = true;
+      this.loaderService.show();
       this.coursesSubscription = this.getData().subscribe((data: ICourse[]) => {
         this.coursesData = data;
         this.isLoading = false;
+        this.loaderService.hide();
       });
     }
   }
