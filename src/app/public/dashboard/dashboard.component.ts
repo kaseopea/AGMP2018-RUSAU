@@ -30,11 +30,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.pageTitle = this.route.snapshot.data['title'];
     this.isLoading = true;
-    this.loaderService.show();
+    // this.loaderService.show();
     this.coursesSubscription = this.getData().subscribe((data: ICourse[]) => {
       this.coursesData = data;
       this.isLoading = false;
-      this.loaderService.hide();
+      // this.loaderService.hide();
     });
   }
 

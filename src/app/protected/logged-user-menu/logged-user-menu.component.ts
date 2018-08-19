@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { IUser } from '../user-profile/interfaces/iuser';
 import { GlobalLoaderService } from '../../core/services/global-loader.service';
+import { Store } from '@ngrx/store';
+import { State } from '../../reducers';
+import { AuthLogout } from '../../actions/auth.actions';
 
 @Component({
   selector: 'app-logged-user-menu',
@@ -14,16 +17,15 @@ export class LoggedUserMenuComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private router: Router,
-              private loaderService: GlobalLoaderService) {
+              private loaderService: GlobalLoaderService,
+              private store: Store<State>) {
   }
 
   ngOnInit() {
-    this.authService.GetUserInfo().subscribe((data) => this.userProfile = data);
+    this.store.select(state => state.user).subscribe((data) => this.userProfile = data.profile);
   }
 
   public makeLogout(): void {
-    this.loaderService.show();
-    this.authService.Logout().subscribe(() => this.loaderService.hide());
-    this.router.navigateByUrl('/login');
+    this.store.dispatch(new AuthLogout());
   }
 }

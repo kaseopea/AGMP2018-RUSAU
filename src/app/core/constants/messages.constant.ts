@@ -1,4 +1,4 @@
-export const MESSAGES = {
+export const MessagesConstant = {
   auth: {
     successLogin: 'Logged in successfully!',
     notAuthorized: 'You are not authorized',
