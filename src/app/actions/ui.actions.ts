@@ -1,9 +1,8 @@
 import { Action } from '@ngrx/store';
-import { IGlobalLoaderState } from '../core/interfaces/iGlobalLoaderState';
 
 export enum UIActionTypes {
-  UIShowLoader = '[UI] Is loading, show loader',
-  UIHideLoader = '[UI] Is not loading, hide loader'
+  UIShowLoader = '[UI] Show loader',
+  UIHideLoader = '[UI] Hide loader'
 }
 
 export class UIShowLoader implements Action {

@@ -16,19 +16,28 @@ import { GENERAL_CONST } from '../constants/general.constant';
 })
 
 export class AuthService {
+  private token: string;
+  private profile: IUser;
+  private isLoggedIn = false;
   private LS_KEYS = GENERAL_CONST.localStorage.keys;
   private REQUEST_DELAY = 1000;
 
-  constructor(@Inject('LOCALSTORAGE') private localStorage: ILocalStorage, private http: HttpClient) {
-    /* this.token = this.localStorage.getItem(this.LS_KEYS.token);
-     this.userInfo = JSON.parse(this.localStorage.getItem(this.LS_KEYS.profile));
+  constructor(@Inject('LOCALSTORAGE') private localStorage: ILocalStorage,
+              private http: HttpClient) {
+     this.token = this.localStorage.getItem(this.LS_KEYS.token);
+     this.profile = JSON.parse(this.localStorage.getItem(this.LS_KEYS.profile));
 
-     if (this.token && this.userInfo) {
+     if (this.token && this.profile) {
        this.isLoggedIn = true;
-     }*/
+     }
   }
 
   public Login(credentials: ICreds): Observable<IUser> {
+    // if user is already logged in
+    if (this.isLoggedIn) {
+      return of(this.profile);
+    }
+
     // request headers
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -53,7 +62,7 @@ export class AuthService {
   }
 
   public IsAuthenticated(): Observable<boolean> {
-    return of(true);
+    return of(this.isLoggedIn);
   }
 
   // utils
