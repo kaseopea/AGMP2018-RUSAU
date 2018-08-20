@@ -17,6 +17,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './effects/auth.effects';
+import { CoursesEffects } from './effects/courses.effects';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { AuthEffects } from './effects/auth.effects';
     FormsModule,
     RouterModule.forRoot(ROUTES),
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, CoursesEffects]),
     !environment.production ? StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production

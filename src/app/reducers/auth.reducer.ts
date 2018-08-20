@@ -17,15 +17,9 @@ export const initialState: AuthState = {
 export function authReducer(state = initialState, action: AuthActions): AuthState {
   switch (action.type) {
 
+    // LOGIN
     case AuthActionTypes.AuthLogin:
       return {...state};
-
-    case AuthActionTypes.AuthLogout:
-      return {
-        ...state,
-        isLoggedIn: false
-        // profile: undefined
-      };
 
     case AuthActionTypes.AuthLoginSuccess:
       return {
@@ -37,6 +31,24 @@ export function authReducer(state = initialState, action: AuthActions): AuthStat
     case AuthActionTypes.AuthLoginFailed:
       return {
         ...state,
+        errorMessage: action.errorMessage
+      };
+
+    // LOGOUT
+    case AuthActionTypes.AuthLogout:
+      return {...state};
+
+    case AuthActionTypes.AuthLogoutSuccess:
+      return {
+        ...state,
+        isLoggedIn: false,
+        profile: undefined
+      };
+
+    case AuthActionTypes.AuthLogoutFailed:
+      return {
+        ...state,
+        isLoggedIn: false,
         errorMessage: action.errorMessage
       };
 
