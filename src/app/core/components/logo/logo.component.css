@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:900i');
+
+.logo {
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  margin: 0;
+  position: relative;
+}
+.logo-link {
+  color: #fff;
+}
+.logo-link:hover {
+  text-decoration: none;
+}
+.logo .beta {
+  position: absolute;
+  top: -5px;
+  font-size: 40%;
+  display: inline-block;
+  padding: 0 5px;
+  margin-left: 5px;
+  background-color: #F7DA64;
+  color: #B8312F;
+  text-transform: uppercase;
+}
+

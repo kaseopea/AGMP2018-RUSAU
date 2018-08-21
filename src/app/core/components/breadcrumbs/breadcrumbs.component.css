@@ -1,0 +1,9 @@
+.breadcrumbs-plate {
+   background-color: #ecf0f1;
+   margin-bottom: 2em;
+}
+.breadcrumb {
+   font-size: 90%;
+   background-color: transparent;
+   border-bottom: 1px solid #e9ecef;
+}

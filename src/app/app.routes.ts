@@ -5,6 +5,7 @@ import { ManageCourseComponent } from './public/manage-course/manage-course.comp
 import { NotfoundComponent } from './public/notfound/notfound.component';
 import { AuthGuardService } from './core/services/auth-guard.service';
 import { MainLayoutComponent } from './public/main-layout/main-layout.component';
+import { CourseDetailResolveService } from './features/courses/services/course-detail-resolve.service';
 
 export const ROUTES: Route[] = [
   {
@@ -39,6 +40,9 @@ export const ROUTES: Route[] = [
         path: 'courses/:id',
         component: ManageCourseComponent,
         canActivate: [AuthGuardService],
+        resolve: {
+          course: CourseDetailResolveService
+        },
         data: {
           title: 'Update course data'
         }

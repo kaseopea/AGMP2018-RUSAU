@@ -16,7 +16,8 @@ export class ManageCourseComponent implements OnInit, OnDestroy {
   private courseSubscription;
 
 
-  constructor(private route: ActivatedRoute, private coursesService: CoursesService) {
+  constructor(private route: ActivatedRoute,
+              private coursesService: CoursesService) {
     this.courseId = this.route.snapshot.paramMap.get('id');
     this.pageTitle = this.route.snapshot.data['title'];
   }
@@ -24,6 +25,7 @@ export class ManageCourseComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.courseId) {
       this.isNew = false;
+
       this.courseSubscription = this.coursesService
         .getCourseById(parseInt(this.courseId, 10))
         .subscribe((course) => this.course = course);

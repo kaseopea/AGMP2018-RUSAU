@@ -1,8 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/internal/Observable';
-import { mergeMap } from 'rxjs/operators';
-import { catchError, map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { delay, mergeMap,  catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
 
 import { IUser } from '../../protected/user-profile/interfaces/iuser';
@@ -14,6 +13,7 @@ import { MESSAGES } from '../constants/messages';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   private userInfo: IUser;
   private token: string;
@@ -22,6 +22,7 @@ export class AuthService {
     token: 'token',
     userData: 'userData'
   };
+  private REQUEST_DELAY = 1000;
 
   constructor(@Inject('LOCALSTORAGE') private localStorage: ILocalStorage, private http: HttpClient) {
     this.token = this.localStorage.getItem(this.LS_KEYS.token);
@@ -52,19 +53,20 @@ export class AuthService {
     );
   }
 
-  public Logout(): void {
+  public Logout(): Observable<boolean> {
     this.token = null;
     this.userInfo = null;
     this.isLoggedIn = false;
     this.clearStorageData();
+    return of(this.isLoggedIn).pipe(delay(this.REQUEST_DELAY));
   }
 
-  public IsAuthenticated(): boolean {
-    return this.isLoggedIn;
+  public IsAuthenticated(): Observable<boolean> {
+    return of(this.isLoggedIn);
   }
 
-  public GetUserInfo() {
-    return this.userInfo;
+  public GetUserInfo(): Observable<IUser> {
+    return of(this.userInfo);
   }
 
   public getToken(): string {
@@ -75,7 +77,6 @@ export class AuthService {
     this.localStorage.removeItem(this.LS_KEYS.token);
     this.localStorage.removeItem(this.LS_KEYS.userData);
   }
-
 
   // utils
   private processToken(tokenObj) {

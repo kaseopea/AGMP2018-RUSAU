@@ -1,11 +1,22 @@
 <form>
     <div class="form-row align-items-center">
-      <div class="col my-1">
-        <label class="sr-only" for="search">Search</label>
-        <input type="text" class="form-control" id="search" #queryInput placeholder="Name, fragment or date" [(value)]="query">
-      </div>
-      <div class="col-sm-1 my-1">
-        <button type="submit" class="btn btn-primary" (click)="searchCourses(queryInput)">Submit</button>
-      </div>
+        <div class="col input-group">
+            <label class="sr-only" for="searchQuery">Search</label>
+            <input type="text"
+                   id="searchQuery"
+                   #searchQuery
+                   name="query"
+                   class="form-control"
+                   [(ngModel)]="query"
+                   (ngModelChange)="onChange($event)"
+                   (click)="clearPlaceholder()"
+                   (placeholder)="placeHolderText"/>
+            <div class="input-group-append" *ngIf="isSearchPerformed">
+                <button type="button" id="reset-button"
+                        class="btn btn-outline-secondary"
+                        (click)="resetSearch()">Reset search
+                </button>
+            </div>
+        </div>
     </div>
-  </form>
+</form>

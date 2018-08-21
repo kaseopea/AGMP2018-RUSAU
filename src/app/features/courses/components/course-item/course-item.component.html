@@ -1,37 +1,34 @@
-<div class="card course-item"
-     [appCourseHighlighter]="courseItem.date">
+<div class="card course-item mb-4 shadow-lg" [appCourseHighlighter]="courseItem.date">
     <div class="card-body" [ngClass]="{'top-rated': courseItem.isTopRated}">
-        <div class="row">
-            <div class="col">
-              <h3 class="card-title">{{ courseItem.name | uppercase}}
-                  <span class="top-rated-star"><i class="fas fa-star"></i></span>
-              </h3>
+        <h3 class="card-title"><span class="top-rated-star"><i class="fas fa-star"></i></span> {{ courseItem.name | uppercase}}</h3>
+        <p class="authors-list">
+            <span *ngFor="let author of courseItem.authors; let last = last" class="author-info">
+                  {{author.firstName}} {{author.lastName}}<span *ngIf="!last">, </span>
+                </span>
+        </p>
+        <p class="card-text">{{ courseItem.description }}</p>
 
-              <p class="course-item-meta">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="course-item-meta">
                 <span class="meta-item">
                   <span class="meta-item-icon"><i class="far fa-calendar-alt"></i></span> {{ courseItem.date | date:'shortDate' }}
                 </span>
                 <span class="meta-item">
                   <span class="meta-item-icon"><i class="far meta-item-icon fa-clock"></i></span> {{ courseItem.length | duration }}
                 </span>
-              </p>
-              <p class="card-text">{{ courseItem.description }}</p>
-              <p class="authors-list"><span class="icon"><i class="fas fa-users"></i></span>
-                <span *ngFor="let author of courseItem.authors; let last = last" class="author-info">
-                  {{author.firstName}} {{author.lastName}}<span *ngIf="!last">, </span>
-                </span>
-              </p>
             </div>
-            <div class="col-3 text-right">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button"
-                            (click)="editCourse(courseItem.id)"
-                            class="btn btn-outline-info btn-edit"><i class="fas fa-edit"></i></button>
-                    <button type="button"
-                            (click)="deleteCourse(courseItem.id)"
-                            class="btn btn-outline-danger btn-delete"><i class="fas fa-trash"></i></button>
-                </div>
+
+            <div class="btn-group">
+                <button type="button"
+                        title="Edit course"
+                        (click)="editCourse(courseItem.id)"
+                        class="btn btn-outline-secondary btn-edit"><i class="fas fa-pen"></i> Edit</button>
+                <button type="button"
+                        title="Remove course"
+                        (click)="deleteCourse(courseItem.id)"
+                        class="btn btn-outline-secondary btn-delete"><i class="fas fa-trash"></i></button>
             </div>
-          </div>
+        </div>
     </div>
-  </div>
+</div>

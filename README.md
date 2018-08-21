@@ -1,13 +1,15 @@
-=======
 # AGMP2018 RUSAU
 
 ## Author: Vitalu Rusau
 
-=======
-
-# YlpCourses
+# YlpCourses Dashboard
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.7.
+
+## Starting up
+
+`npm run start` - to run dev server.
+`npm run start-server` - to run backend server with data API
 
 ## Development server
 
