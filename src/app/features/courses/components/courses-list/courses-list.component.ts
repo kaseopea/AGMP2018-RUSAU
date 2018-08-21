@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, OnDestroy, OnInit } from '@angu
 import { ICourse } from '../../interfaces/icourse';
 import { CoursesService } from '../../services/courses.service';
 import { GlobalLoaderService } from '../../../../core/services/global-loader.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-courses-list',
@@ -9,7 +10,7 @@ import { GlobalLoaderService } from '../../../../core/services/global-loader.ser
   styleUrls: ['./courses-list.component.css']
 })
 export class CoursesListComponent implements OnInit, OnDestroy {
-  @Input() public coursesList: ICourse[];
+  @Input() public data$: Observable<ICourse[]>;
   @Output() refresh = new EventEmitter<boolean>();
   public noDataMessage = 'No data. Feel free to add new course';
   private deleteCourseSubscription;

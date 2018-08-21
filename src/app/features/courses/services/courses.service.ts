@@ -5,6 +5,7 @@ import { delay } from 'rxjs/operators';
 import { ICourse } from '../interfaces/icourse';
 import { COURSES_MOCK } from '../../../mocks/coursesMock';
 import { APPCONFIG } from '../../../config';
+import { ICourseQueryParams } from '../interfaces/iCourseQueryParams';
 
 
 @Injectable({
@@ -23,7 +24,7 @@ export class CoursesService {
     return this.http.get<ICourse[]>(`${this.BASE_URL}`).pipe(delay(this.REQUEST_DELAY));
   }
 
-  public getCoursesWithParams(params): Observable<ICourse[]> {
+  public getCoursesWithParams(params: ICourseQueryParams): Observable<ICourse[]> {
     // construct queryParams
     const queryParamsObj = {
       start: ((params.pageNumber - 1) * params.count).toString(),

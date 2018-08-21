@@ -1,4 +1,5 @@
 <app-breadcrumbs [pageTitle]="pageTitle"></app-breadcrumbs>
+
 <div class="container">
     <div class="row">
         <div class="col">
@@ -11,14 +12,14 @@
         </div>
     </div>
 
-    <div class="loader text-center" *ngIf="isLoading">
+    <div class="loader text-center" *ngIf="isLoading$ | async">
         <i class="fas fa-spinner fa-spin"></i>
     </div>
 
 
-    <app-courses-list *ngIf="!isLoading"
+    <app-courses-list *ngIf="!(isLoading$ | async)"
                       class="courses-list"
-                      [coursesList]="coursesData"
+                      [data$]="courses$"
                       (refresh)="onRefresh($event)"></app-courses-list>
 
     <app-load-more-btn [inProgress]="isSearchInProgress"
