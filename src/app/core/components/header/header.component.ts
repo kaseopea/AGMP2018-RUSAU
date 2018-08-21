@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IUser } from '../../../protected/user-profile/interfaces/iuser';
 import { AuthService } from '../../services/auth.service';
-import { GlobalLoaderService } from '../../services/global-loader.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +11,7 @@ export class HeaderComponent implements OnInit {
   public profile: IUser;
   public isAuthorized = false;
 
-  constructor(private authService: AuthService, private loaderService: GlobalLoaderService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.authService.IsAuthenticated().subscribe((isAuthenticated) => this.isAuthorized = isAuthenticated);

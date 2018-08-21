@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ICreds } from '../../core/interfaces/icreds';
-import { State } from '../../reducers';
+import { selectUserSate, State } from '../../reducers';
 import { Store } from '@ngrx/store';
 import { AuthLogin } from '../../actions/auth.actions';
 
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.select(state => state.user)
+    this.store.select(selectUserSate)
       .subscribe(userData => {
         if (!userData.isLoggedIn && userData.errorMessage) {
           this.isAccessDenied = true;
