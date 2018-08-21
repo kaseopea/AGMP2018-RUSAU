@@ -4,8 +4,9 @@ import { AuthService } from '../../core/services/auth.service';
 import { IUser } from '../user-profile/interfaces/iuser';
 import { GlobalLoaderService } from '../../core/services/global-loader.service';
 import { Store } from '@ngrx/store';
-import { State } from '../../reducers';
+import { selectUserProfile, State } from '../../reducers';
 import { AuthLogout } from '../../actions/auth.actions';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-logged-user-menu',
@@ -13,7 +14,7 @@ import { AuthLogout } from '../../actions/auth.actions';
   styleUrls: ['./logged-user-menu.component.css']
 })
 export class LoggedUserMenuComponent implements OnInit {
-  public userProfile: IUser;
+  public profile$: Observable<IUser>;
 
   constructor(private authService: AuthService,
               private router: Router,
@@ -22,7 +23,7 @@ export class LoggedUserMenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.select(state => state.user).subscribe((data) => this.userProfile = data.profile);
+    this.profile$ = this.store.select(selectUserProfile);
   }
 
   public makeLogout(): void {

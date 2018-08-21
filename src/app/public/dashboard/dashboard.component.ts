@@ -18,13 +18,9 @@ export class DashboardComponent implements OnInit {
   public courses$: Observable<ICourse[]>;
   public isLoading$: Observable<boolean>;
   public isLoaded$: Observable<boolean>;
-
   public pageTitle = '';
-  public noMoreItems = false;
-  public isSearchInProgress = false;
-
-  private itemsCount = APPCONFIG.courses.itemsPerPage;
-  private pageNumber = 1;
+  private firstPage = 1;
+  private itemsPerPage = APPCONFIG.courses.itemsPerPage;
   private DATA_LOADING_DELAY = 1000;
 
   constructor(private coursesService: CoursesService,
@@ -45,48 +41,40 @@ export class DashboardComponent implements OnInit {
     // });
 
     // Load courses event
-    this.loadData();
+    this.store.dispatch(new LoadCourses({
+      pageNumber: this.firstPage,
+      count: this.itemsPerPage
+    }));
   }
 
 
   onSearch(query: string): boolean {
-    this.pageNumber = 1; // resetting page number
-    this.loadData(query);
+    this.store.dispatch(new LoadCourses({
+      pageNumber: this.firstPage,
+      count: this.itemsPerPage,
+      searchFor: query,
+      hideLoader: true
+    }));
     return false;
   }
 
-  /*
-    onLoadMore(pageNumber: number): boolean {
-      this.pageNumber = pageNumber;
-      this.isSearchInProgress = true;
-
-      setTimeout(() => {
-        this.coursesSubscription = this.getData().subscribe((data: ICourse[]) => {
-          this.isSearchInProgress = false;
-          if (data.length) {
-            this.coursesData = this.coursesData.concat(data);
-          } else {
-            this.noMoreItems = true;
-          }
-        });
-
-      }, this.DATA_LOADING_DELAY);
-      return false;
-    }
-    */
-  onRefresh(isNeedUpdate: boolean) {
-    if (isNeedUpdate) {
-      this.loadData();
-    }
+  onLoadMore(pageNumber: number): boolean {
+    this.store.dispatch(new LoadCourses({
+      pageNumber: pageNumber,
+      count: this.itemsPerPage,
+      hideLoader: true
+    }));
+    return false;
   }
 
-  // UTILS
-  loadData(searchFor = '') {
-    this.store.dispatch(new LoadCourses({
-      pageNumber: this.pageNumber,
-      count: APPCONFIG.courses.itemsPerPage,
-      searchFor: (searchFor.length) ? searchFor : ''
-    }));
+  onRefresh(isNeedUpdate: boolean) {
+    if (isNeedUpdate) {
+      this.store.dispatch(new LoadCourses({
+        pageNumber: this.firstPage,
+        count: this.itemsPerPage,
+        hideLoader: true
+      }));
+    }
   }
 
 }

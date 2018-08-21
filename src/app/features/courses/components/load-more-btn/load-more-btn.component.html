@@ -2,10 +2,7 @@
 <div class="clearfix">
   <div class="page-info float-left">Page: {{pageNumber}}</div>
   <div class="text-center">
-    <button type="button" *ngIf="!noMoreItems" class="btn btn-outline-secondary" (click)="loadMore()">
-      <i class="fas fa-spinner fa-spin" [hidden]="!inProgress"></i>
-      <span [hidden]="inProgress">Load More...</span>
-    </button>
+    <button type="button" *ngIf="!noMoreItems" [disabled]="isLoading$ | async" class="btn btn-outline-secondary" (click)="loadMore()"><span>Load More...</span></button>
 
     <div class="no-more-items" *ngIf="noMoreItems" role="alert">
       <i class="far fa-frown-open"></i> No more items to load...

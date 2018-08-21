@@ -10,7 +10,7 @@ import { UIHideLoader, UIShowLoader } from '../actions/ui.actions';
 
 @Injectable()
 export class CoursesEffects {
-  private REQUEST_DELAY = 1000;
+  private REQUEST_DELAY = 500;
   private SHOW_LOADER_ACTIONS = [
     CoursesActionTypes.LoadCourses
   ];
@@ -36,17 +36,17 @@ export class CoursesEffects {
   );
 
 
-  // SHOW LOADER
-  @Effect()
-  showLoader: Observable<any> = this.actions$.pipe(
-    ofType(...this.SHOW_LOADER_ACTIONS),
-    map(() => new UIShowLoader())
-  );
-
-  // HIDE LOADER
-  @Effect()
-  hideLoader$: Observable<any> = this.actions$.pipe(
-    ofType(...this.HIDE_LOADER_ACTIONS),
-    map(() => new UIHideLoader())
-  );
+  // // SHOW LOADER
+  // @Effect()
+  // showLoader: Observable<any> = this.actions$.pipe(
+  //   ofType(...this.SHOW_LOADER_ACTIONS),
+  //   map(() => new UIShowLoader())
+  // );
+  //
+  // // HIDE LOADER
+  // @Effect()
+  // hideLoader$: Observable<any> = this.actions$.pipe(
+  //   ofType(...this.HIDE_LOADER_ACTIONS),
+  //   map(() => new UIHideLoader())
+  // );
 }
