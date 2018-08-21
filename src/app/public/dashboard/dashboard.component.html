@@ -22,7 +22,5 @@
                       [data$]="courses$"
                       (refresh)="onRefresh($event)"></app-courses-list>
 
-    <app-load-more-btn [inProgress]="isSearchInProgress"
-                       [noMoreItems]="noMoreItems"
-                       (clickHandler)="onLoadMore($event)"></app-load-more-btn>
+    <app-load-more-btn [noMoreItems]="noMoreItems" (clickHandler)="onLoadMore($event)"></app-load-more-btn>
 </div>

@@ -1,6 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CoursesService } from '../../features/courses/services/courses.service';
 import { ICourse } from '../../features/courses/interfaces/icourse';
 
 @Component({
@@ -8,35 +7,24 @@ import { ICourse } from '../../features/courses/interfaces/icourse';
   templateUrl: './manage-course.component.html',
   styleUrls: ['./manage-course.component.css']
 })
-export class ManageCourseComponent implements OnInit, OnDestroy {
+export class ManageCourseComponent implements OnInit {
   public course: ICourse;
   public pageTitle = '';
   public isNew = true;
   private readonly courseId: string;
-  private courseSubscription;
 
 
-  constructor(private route: ActivatedRoute,
-              private coursesService: CoursesService) {
+  constructor(private route: ActivatedRoute) {
     this.courseId = this.route.snapshot.paramMap.get('id');
     this.pageTitle = this.route.snapshot.data['title'];
   }
 
   ngOnInit() {
+    this.course = this.route.snapshot.data.course;
+
     if (this.courseId) {
       this.isNew = false;
-
-      this.courseSubscription = this.coursesService
-        .getCourseById(parseInt(this.courseId, 10))
-        .subscribe((course) => this.course = course);
     }
   }
-
-  ngOnDestroy() {
-    if (this.courseSubscription) {
-      this.courseSubscription.unsubscribe();
-    }
-  }
-
 
 }

@@ -19,7 +19,8 @@ export class DashboardComponent implements OnInit {
   public isLoading$: Observable<boolean>;
   public isLoaded$: Observable<boolean>;
   public pageTitle = '';
-  private firstPage = 1;
+  public noMoreItems = false;
+  private pageNumber = 1;
   private itemsPerPage = APPCONFIG.courses.itemsPerPage;
   private DATA_LOADING_DELAY = 1000;
 
@@ -36,21 +37,24 @@ export class DashboardComponent implements OnInit {
     this.isLoading$ = this.store.select(selectCoursesIsLoading);
     this.isLoaded$ = this.store.select(selectCoursesIsLoaded);
 
-    // this.coursesSubscription = this.getData().subscribe((data: ICourse[]) => {
-    //   this.coursesData = data;
-    // });
+    this.courses$.subscribe((data) => {
+      if ((data.length === 0) && (this.pageNumber > 1)) {
+        this.noMoreItems = true;
+      }
+    });
 
     // Load courses event
     this.store.dispatch(new LoadCourses({
-      pageNumber: this.firstPage,
+      pageNumber: this.pageNumber,
       count: this.itemsPerPage
     }));
   }
 
 
   onSearch(query: string): boolean {
+    this.pageNumber = 1;
     this.store.dispatch(new LoadCourses({
-      pageNumber: this.firstPage,
+      pageNumber: this.pageNumber,
       count: this.itemsPerPage,
       searchFor: query,
       hideLoader: true
@@ -59,8 +63,9 @@ export class DashboardComponent implements OnInit {
   }
 
   onLoadMore(pageNumber: number): boolean {
+    this.pageNumber = pageNumber;
     this.store.dispatch(new LoadCourses({
-      pageNumber: pageNumber,
+      pageNumber: this.pageNumber,
       count: this.itemsPerPage,
       hideLoader: true
     }));
@@ -69,8 +74,9 @@ export class DashboardComponent implements OnInit {
 
   onRefresh(isNeedUpdate: boolean) {
     if (isNeedUpdate) {
+      this.pageNumber = 1;
       this.store.dispatch(new LoadCourses({
-        pageNumber: this.firstPage,
+        pageNumber: this.pageNumber,
         count: this.itemsPerPage,
         hideLoader: true
       }));

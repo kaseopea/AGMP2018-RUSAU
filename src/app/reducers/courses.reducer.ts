@@ -18,7 +18,7 @@ export const initialState: CoursesState = {
 
 export function coursesReducer(state = initialState, action: CoursesActions): CoursesState {
   switch (action.type) {
-
+    // LOAD COURSES
     case CoursesActionTypes.LoadCourses:
       return {
         ...state,
@@ -32,7 +32,6 @@ export function coursesReducer(state = initialState, action: CoursesActions): Co
         isLoading: false,
         loaded: true,
         data: [
-          // ...state.data,
           ...action.data
         ]
       };
@@ -44,6 +43,19 @@ export function coursesReducer(state = initialState, action: CoursesActions): Co
         loaded: false,
         errorMessage: action.errorMessage
       };
+
+    // DELETE COURSE
+    case CoursesActionTypes.DeleteCourse:
+      return {...state};
+
+    case CoursesActionTypes.DeleteCourseSuccess:
+      return {
+        ...state,
+        data: state.data.filter(course => course.id !== action.deletedId)
+      };
+
+    case CoursesActionTypes.DeleteCourseSuccess:
+      return {...state};
 
     default:
       return state;

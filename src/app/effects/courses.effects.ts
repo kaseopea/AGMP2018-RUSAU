@@ -3,7 +3,12 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError, delay, map, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs/internal/observable/of';
-import { CoursesActionTypes, LoadCoursesFailed, LoadCoursesSuccess } from '../actions/courses.actions';
+import {
+  CoursesActionTypes, DeleteCourseFailed,
+  DeleteCourseSuccess,
+  LoadCoursesFailed,
+  LoadCoursesSuccess
+} from '../actions/courses.actions';
 import { CoursesService } from '../features/courses/services/courses.service';
 import { UIHideLoader, UIShowLoader } from '../actions/ui.actions';
 
@@ -20,7 +25,8 @@ export class CoursesEffects {
   ];
 
   constructor(private actions$: Actions,
-              private coursesService: CoursesService) {}
+              private coursesService: CoursesService) {
+  }
 
   // LOAD COURSES
   @Effect()
@@ -31,6 +37,19 @@ export class CoursesEffects {
         delay(this.REQUEST_DELAY),
         map((data) => new LoadCoursesSuccess(data)),
         catchError((err) => of(new LoadCoursesFailed(err)))
+      );
+    })
+  );
+
+  // DELETE COURSE
+  @Effect()
+  deleteCourse$: Observable<any> = this.actions$.pipe(
+    ofType(CoursesActionTypes.DeleteCourse),
+    mergeMap(action => {
+      return this.coursesService.deleteCourse(action['courseId']).pipe(
+        delay(this.REQUEST_DELAY),
+        map((data) => new DeleteCourseSuccess(data)),
+        catchError((err) => of(new DeleteCourseFailed(err)))
       );
     })
   );

@@ -15,7 +15,7 @@ import { UIHideLoader, UIShowLoader } from '../actions/ui.actions';
 
 @Injectable()
 export class AuthEffects {
-  private REQUEST_DELAY = 2000;
+  private REQUEST_DELAY = 1000;
   private SHOW_LOADER_ACTIONS = [
     AuthActionTypes.AuthLogin,
     AuthActionTypes.AuthLogout
@@ -56,7 +56,7 @@ export class AuthEffects {
       // set token and user profile to localStorage
       this.localStorage.setItem(GENERAL_CONST.localStorage.keys.token, action.profile.fakeToken);
       this.localStorage.setItem(GENERAL_CONST.localStorage.keys.profile, JSON.stringify(action.profile));
-      this.router.navigateByUrl('app/courses');
+      this.router.navigateByUrl('/app/courses');
     })
   );
 

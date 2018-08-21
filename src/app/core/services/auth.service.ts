@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { delay, mergeMap, catchError, map } from 'rxjs/operators';
+import { mergeMap, catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs/internal/observable/throwError';
 
 import { IUser } from '../../protected/user-profile/interfaces/iuser';
@@ -20,7 +20,6 @@ export class AuthService {
   private profile: IUser;
   private isLoggedIn = false;
   private LS_KEYS = GENERAL_CONST.localStorage.keys;
-  private REQUEST_DELAY = 1000;
 
   constructor(@Inject('LOCALSTORAGE') private localStorage: ILocalStorage,
               private http: HttpClient) {
@@ -58,7 +57,8 @@ export class AuthService {
   }
 
   public Logout(): Observable<boolean> {
-    return of(false).pipe(delay(this.REQUEST_DELAY));
+    this.isLoggedIn = false;
+    return of(false);
   }
 
   public IsAuthenticated(): Observable<boolean> {
@@ -81,6 +81,7 @@ export class AuthService {
   }
 
   private processUserData(userData: IUser) {
+    this.isLoggedIn = true;
     return userData;
   }
 

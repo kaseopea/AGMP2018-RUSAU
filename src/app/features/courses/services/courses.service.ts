@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { delay } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
 import { ICourse } from '../interfaces/icourse';
 import { COURSES_MOCK } from '../../../mocks/coursesMock';
 import { APPCONFIG } from '../../../config';
@@ -66,9 +66,12 @@ export class CoursesService {
     }).pipe(delay(this.REQUEST_DELAY));
   }
 
-  public deleteCourse(courseId: number): Observable<HttpResponse<any>> {
+  public deleteCourse(courseId: number): Observable<number | null> {
     return this.http.delete(`${this.BASE_URL}/${courseId}`, {
       observe: 'response'
-    }).pipe(delay(this.REQUEST_DELAY));
+    }).pipe(
+      delay(this.REQUEST_DELAY),
+      map((res) => (res.status === 200) ? courseId : null)
+    );
   }
 }

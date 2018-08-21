@@ -3,6 +3,9 @@ import { ICourse } from '../../interfaces/icourse';
 import { CoursesService } from '../../services/courses.service';
 import { GlobalLoaderService } from '../../../../core/services/global-loader.service';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { State } from '../../../../reducers';
+import { DeleteCourse } from '../../../../actions/courses.actions';
 
 @Component({
   selector: 'app-courses-list',
@@ -16,21 +19,21 @@ export class CoursesListComponent implements OnInit, OnDestroy {
   private deleteCourseSubscription;
 
   constructor(private coursesService: CoursesService,
-              private loaderService: GlobalLoaderService) {
+              private store: Store<State>) {
   }
 
   ngOnInit() {
   }
 
   onDeleted(courseId: number): boolean {
-    this.loaderService.show();
-    this.deleteCourseSubscription = this.coursesService.deleteCourse(courseId).subscribe((res) => {
-      if (res.status === 200) {
-        // time to update courses
-        this.refresh.emit(true);
-      }
-      this.loaderService.hide();
-    });
+    this.store.dispatch(new DeleteCourse(courseId));
+
+    // this.deleteCourseSubscription = this.coursesService.deleteCourse(courseId).subscribe((res) => {
+    //   if (res.status === 200) {
+    //     // time to update courses
+    //     this.refresh.emit(true);
+    //   }
+    // });
     return false;
   }
 

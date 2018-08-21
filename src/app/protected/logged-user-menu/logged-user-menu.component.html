@@ -1,6 +1,6 @@
 <div>
-    <span *ngIf="(profile$ | async)">
-      Hello, {{ profile$.name.first }} {{ profile$.name.last }}!
+    <span *ngIf="profile$ | async as profile">
+      Hello, {{profile.name.first }} {{ profile.name.last }}!
     </span>
 
   <button type="button" (click)="makeLogout()" class="btn btn-outline-warning btn-sm btn-logout">

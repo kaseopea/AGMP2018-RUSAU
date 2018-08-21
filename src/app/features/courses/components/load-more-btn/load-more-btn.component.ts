@@ -9,11 +9,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./load-more-btn.component.css']
 })
 export class LoadMoreBtnComponent implements OnInit {
-  @Input() inProgress;
   @Input() noMoreItems;
   @Output() clickHandler = new EventEmitter<number>();
-  public isLoading$: Observable<boolean>;
   public pageNumber = 1;
+  public isLoading$: Observable<boolean>;
 
   constructor(private store: Store<State>) {
     this.isLoading$ = this.store.select(selectCoursesIsLoading);
@@ -21,14 +20,10 @@ export class LoadMoreBtnComponent implements OnInit {
 
   ngOnInit() {
   }
-  loadMore(): boolean {
-    if (this.inProgress) {
-      return false;
-    }
 
-    this.pageNumber++;
+  changePage(isPrev?: boolean): boolean {
+    this.pageNumber = (isPrev) ? --this.pageNumber : ++this.pageNumber;
     this.clickHandler.emit(this.pageNumber);
-
     return false;
   }
 }
