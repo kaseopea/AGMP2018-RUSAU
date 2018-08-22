@@ -44,18 +44,29 @@ export function coursesReducer(state = initialState, action: CoursesActions): Co
         errorMessage: action.errorMessage
       };
 
-    // DELETE COURSE
-    case CoursesActionTypes.DeleteCourse:
-      return {...state};
+    // ADD COURSE
+    case CoursesActionTypes.AddCourseSuccess:
+      return {
+        ...state,
+        data: [
+          ...state.data,
+          action.course
+        ]
+      };
 
+    // UPDATE COURSE
+    case CoursesActionTypes.UpdateCourseSuccess:
+      return {
+        ...state,
+        data: state.data.map((course) => (course.id === action.course.id) ? Object.assign({}, course, action.course) : course)
+      };
+
+    // DELETE COURSE
     case CoursesActionTypes.DeleteCourseSuccess:
       return {
         ...state,
         data: state.data.filter(course => course.id !== action.deletedId)
       };
-
-    case CoursesActionTypes.DeleteCourseSuccess:
-      return {...state};
 
     default:
       return state;

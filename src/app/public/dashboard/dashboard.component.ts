@@ -22,7 +22,6 @@ export class DashboardComponent implements OnInit {
   public noMoreItems = false;
   private pageNumber = 1;
   private itemsPerPage = APPCONFIG.courses.itemsPerPage;
-  private DATA_LOADING_DELAY = 1000;
 
   constructor(private coursesService: CoursesService,
               private route: ActivatedRoute,
@@ -37,11 +36,7 @@ export class DashboardComponent implements OnInit {
     this.isLoading$ = this.store.select(selectCoursesIsLoading);
     this.isLoaded$ = this.store.select(selectCoursesIsLoaded);
 
-    this.courses$.subscribe((data) => {
-      if ((data.length === 0) && (this.pageNumber > 1)) {
-        this.noMoreItems = true;
-      }
-    });
+    this.courses$.subscribe((data) => this.noMoreItems = ((data.length === 0) && (this.pageNumber > 1)));
 
     // Load courses event
     this.store.dispatch(new LoadCourses({

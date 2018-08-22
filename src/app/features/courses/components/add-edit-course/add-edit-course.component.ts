@@ -3,6 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ICourse } from '../../interfaces/icourse';
 import { CoursesService } from '../../services/courses.service';
 import { GlobalLoaderService } from '../../../../core/services/global-loader.service';
+import { Store } from '@ngrx/store';
+import { State } from '../../../../reducers';
+import { AddCourse, UpdateCourse } from '../../../../actions/courses.actions';
 
 @Component({
   selector: 'app-add-edit-course',
@@ -27,40 +30,19 @@ export class AddEditCourseComponent implements OnInit, OnDestroy {
   constructor(private coursesService: CoursesService,
               private route: ActivatedRoute,
               private router: Router,
-              private loaderService: GlobalLoaderService) {
+              private store: Store<State>) {
   }
 
   ngOnInit() {
-    this.route.data.subscribe((data: { course: ICourse }) => {
-      this.courseData = (data.course) ? data.course : this.defaultEmptyCourse;
-      this.isNew = !!!data.course;
-    });
+    this.isNew = !this.course.id;
+    this.courseData = this.course;
   }
 
   onSubmit() {
-    this.loaderService.show();
-    if (this.isNew) {
-      console.warn('Add new course: ', this.courseData);
-      this.courseSubscription = this.coursesService
-        .addCourse(this.courseData)
-        .subscribe((res) => {
-          if (res.status === 201) {
-            this.loaderService.hide();
-            this.router.navigateByUrl('/app/courses');
-          }
-        });
+    const action = (this.isNew) ? new AddCourse(this.courseData) : new UpdateCourse(this.courseData);
+    // console.warn(`${(this.isNew) ? 'Add new' : 'Update'} course: `, this.courseData);
 
-    } else {
-      console.warn('Update new course: ', this.courseData);
-      this.courseSubscription = this.coursesService
-        .updateCourse(this.courseData.id, this.courseData)
-        .subscribe((res) => {
-          if (res.status === 200) {
-            this.loaderService.hide();
-            this.router.navigateByUrl('/app/courses');
-          }
-        });
-    }
+    this.store.dispatch(action);
     return false;
   }
 

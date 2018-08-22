@@ -44,14 +44,14 @@ export class LoadCoursesFailed implements Action {
 export class AddCourse implements Action {
   readonly type = CoursesActionTypes.AddCourse;
 
-  constructor(public params: ICourseQueryParams) {
+  constructor(public courseData: ICourse) {
   }
 }
 
 export class AddCourseSuccess implements Action {
   readonly type = CoursesActionTypes.AddCourseSuccess;
 
-  constructor(public data: Array<ICourse>) {
+  constructor(public course: ICourse) {
   }
 }
 
@@ -66,14 +66,14 @@ export class AddCourseFailed implements Action {
 export class UpdateCourse implements Action {
   readonly type = CoursesActionTypes.UpdateCourse;
 
-  constructor(public params: ICourseQueryParams) {
+  constructor(public courseData: ICourse) {
   }
 }
 
 export class UpdateCourseSuccess implements Action {
   readonly type = CoursesActionTypes.UpdateCourseSuccess;
 
-  constructor(public data: Array<ICourse>) {
+  constructor(public course: ICourse) {
   }
 }
 

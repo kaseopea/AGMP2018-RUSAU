@@ -47,23 +47,29 @@ export class CoursesService {
     return this.http.get<ICourse>(`${this.BASE_URL}/${courseId}`).pipe(delay(this.REQUEST_DELAY));
   }
 
-  public addCourse(course: ICourse): Observable<HttpResponse<any>> {
-    delete course.id; // remove id property, it will be set automatically
+  public addCourse(course: ICourse): Observable<ICourse> {
+    // delete course.id; // remove id property, it will be set automatically
     return this.http.post<ICourse>(`${this.BASE_URL}`, course, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       }),
       observe: 'response'
-    }).pipe(delay(this.REQUEST_DELAY));
+    }).pipe(
+      delay(this.REQUEST_DELAY),
+      map((res) => (res.status === 201) ? <ICourse>res.body : null)
+    );
   }
 
-  public updateCourse(courseId: number, updateCourse: ICourse): Observable<HttpResponse<any>> {
+  public updateCourse(courseId: number, updateCourse: ICourse): Observable<ICourse> {
     return this.http.put(`${this.BASE_URL}/${courseId}`, updateCourse, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       }),
       observe: 'response'
-    }).pipe(delay(this.REQUEST_DELAY));
+    }).pipe(
+      delay(this.REQUEST_DELAY),
+      map((res) => (res.status === 200) ? <ICourse>res.body : null)
+    );
   }
 
   public deleteCourse(courseId: number): Observable<number | null> {
