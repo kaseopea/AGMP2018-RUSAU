@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { fromEvent, Subject } from 'rxjs';
-import { debounceTime, map, filter, distinctUntilChanged } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { debounceTime, filter, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-courses',
@@ -26,17 +26,6 @@ export class SearchCoursesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.query = this.placeHolderText;
-
-    // fromEvent version
-    /*this.inputTypeSubscription = fromEvent(this.searchQuery.nativeElement, 'input').pipe(
-      map((e: KeyboardEvent) => (<HTMLInputElement>e.target).value),
-      filter(text => text.length >= this.CONFIG.minQueryLength),
-      debounceTime(this.CONFIG.debounce),
-      distinctUntilChanged()
-    ).subscribe(query => {
-      this.isSearchPerformed = true;
-      this.searchHandler.emit(query);
-    });*/
 
     this.searchInputValueSubject.pipe(
       filter(text => text.length >= this.CONFIG.minQueryLength),

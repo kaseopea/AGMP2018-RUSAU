@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { delay, map } from 'rxjs/operators';
 import { ICourse } from '../interfaces/icourse';
-import { COURSES_MOCK } from '../../../mocks/coursesMock';
 import { APPCONFIG } from '../../../config';
 import { ICourseQueryParams } from '../interfaces/iCourseQueryParams';
 
@@ -12,13 +11,10 @@ import { ICourseQueryParams } from '../interfaces/iCourseQueryParams';
   providedIn: 'root'
 })
 export class CoursesService {
-  private coursesList: ICourse[];
   private BASE_URL = APPCONFIG.apis.courses;
   private REQUEST_DELAY = 500;
 
-  constructor(private http: HttpClient) {
-    this.coursesList = COURSES_MOCK;
-  }
+  constructor(private http: HttpClient) {}
 
   public getCourses(): Observable<ICourse[]> {
     return this.http.get<ICourse[]>(`${this.BASE_URL}`).pipe(delay(this.REQUEST_DELAY));

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ICreds } from '../../core/interfaces/icreds';
 import { selectUserSate, State } from '../../reducers';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { AuthLogin } from '../../actions/auth.actions';
 
 @Component({
@@ -9,18 +9,19 @@ import { AuthLogin } from '../../actions/auth.actions';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   public isAccessDenied: boolean;
   public userCreds: ICreds = {
     login: 'Morales',
     password: 'id'
   };
+  private userDataSubscription;
 
   constructor(private store: Store<State>) {
   }
 
   ngOnInit() {
-    this.store.select(selectUserSate)
+    this.userDataSubscription = this.store.pipe(select(selectUserSate))
       .subscribe(userData => {
         if (!userData.isLoggedIn && userData.errorMessage) {
           this.isAccessDenied = true;
@@ -33,5 +34,11 @@ export class LoginComponent implements OnInit {
       login: this.userCreds.login,
       password: this.userCreds.password
     }));
+  }
+
+  ngOnDestroy() {
+    if (this.userDataSubscription) {
+      this.userDataSubscription.unsubscribe();
+    }
   }
 }

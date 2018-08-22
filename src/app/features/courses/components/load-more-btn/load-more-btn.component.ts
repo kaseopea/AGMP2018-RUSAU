@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { selectCoursesIsLoading, State } from '../../../../reducers';
 import { Observable } from 'rxjs';
 
@@ -15,7 +15,7 @@ export class LoadMoreBtnComponent implements OnInit {
   public isLoading$: Observable<boolean>;
 
   constructor(private store: Store<State>) {
-    this.isLoading$ = this.store.select(selectCoursesIsLoading);
+    this.isLoading$ = this.store.pipe(select(selectCoursesIsLoading));
   }
 
   ngOnInit() {

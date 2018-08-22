@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { selectUIIsLoading, State } from '../../../reducers';
 import { Observable } from 'rxjs';
 
@@ -14,7 +14,9 @@ export class GlobalLoaderComponent implements OnInit {
   constructor(private store: Store<State>) {}
 
   ngOnInit() {
-    this.show$ = this.store.select(selectUIIsLoading);
+    this.show$ = this.store.pipe(
+      select(selectUIIsLoading)
+    );
   }
 
 }

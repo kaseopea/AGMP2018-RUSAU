@@ -17,10 +17,7 @@
     </div>
 
 
-    <app-courses-list *ngIf="!(isLoading$ | async)"
-                      class="courses-list"
-                      [data$]="courses$"
-                      (refresh)="onRefresh($event)"></app-courses-list>
+    <app-courses-list class="courses-list" *ngIf="!(isLoading$ | async)" [data$]="courses$"></app-courses-list>
 
     <app-load-more-btn [noMoreItems]="noMoreItems" (clickHandler)="onLoadMore($event)"></app-load-more-btn>
 </div>

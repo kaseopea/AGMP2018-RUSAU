@@ -10,7 +10,6 @@ import { AuthActionTypes, AuthLogin, AuthLoginFailed, AuthLoginSuccess, AuthLogo
 import { IUser } from '../protected/user-profile/interfaces/iuser';
 import { ILocalStorage } from '../core/interfaces/iLocalStorage';
 import { GENERAL_CONST } from '../core/constants/general.constant';
-import { GlobalLoaderService } from '../core/services/global-loader.service';
 import { UIHideLoader, UIShowLoader } from '../actions/ui.actions';
 
 @Injectable()
@@ -30,7 +29,6 @@ export class AuthEffects {
   constructor(private actions$: Actions<AuthLogin>,
               private authService: AuthService,
               private router: Router,
-              private loaderService: GlobalLoaderService,
               @Inject('LOCALSTORAGE') private localStorage: ILocalStorage) {
   }
 
