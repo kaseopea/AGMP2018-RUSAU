@@ -18,7 +18,7 @@ export const ROUTES: Route[] = [
   {
     path: 'app',
     component: MainLayoutComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     children: [
       {
         path: 'courses',
