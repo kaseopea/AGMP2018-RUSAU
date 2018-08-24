@@ -5,6 +5,7 @@ import { CoursesService } from '../../services/courses.service';
 import { Store } from '@ngrx/store';
 import { State } from '../../../../reducers';
 import { AddCourse, UpdateCourse } from '../../../../actions/courses.actions';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-edit-course',
@@ -14,7 +15,20 @@ import { AddCourse, UpdateCourse } from '../../../../actions/courses.actions';
 export class AddEditCourseComponent implements OnInit {
   @Input() public course: ICourse;
   public isNew = true;
-  public courseData: ICourse;
+  public courseForm =  new FormGroup({
+    id: new FormControl('', [Validators.required]),
+    name: new FormControl('', [
+      Validators.required,
+      Validators.maxLength(50)
+    ]),
+    description: new FormControl('', [
+      Validators.required,
+      Validators.maxLength(500)
+    ]),
+    date: new FormControl('', [Validators.required]),
+    length: new FormControl('', [Validators.required]),
+    authors: new FormControl('', [Validators.required])
+  });
 
   constructor(private coursesService: CoursesService,
               private route: ActivatedRoute,
@@ -22,15 +36,23 @@ export class AddEditCourseComponent implements OnInit {
               private store: Store<State>) {
   }
 
+  get id() { return this.courseForm.get('id'); }
+  get name() { return this.courseForm.get('name'); }
+  get description() { return this.courseForm.get('description'); }
+  get date() { return this.courseForm.get('date'); }
+  get length() { return this.courseForm.get('length'); }
+  get authors() { return this.courseForm.get('authors'); }
+
   ngOnInit() {
     this.isNew = !this.course.id;
-    this.courseData = this.course;
+    this.courseForm.patchValue({...this.course});
   }
 
   onSubmit() {
-    const action = (this.isNew) ? new AddCourse(this.courseData) : new UpdateCourse(this.courseData);
-    this.store.dispatch(action);
-    return false;
+    console.warn(this.courseForm.value);
+    // const action = (this.isNew) ? new AddCourse(this.courseForm.value) : new UpdateCourse(this.courseForm.value);
+    // this.store.dispatch(action);
+    // return false;
   }
 
   cancelHandler() {
