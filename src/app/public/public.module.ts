@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CoursesModule } from '../features/courses/courses.module';
@@ -18,7 +18,8 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
     CoursesModule,
     RouterModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [DashboardComponent, LoginComponent],
   declarations: [DashboardComponent, LoginComponent, ManageCourseComponent, NotfoundComponent, MainLayoutComponent]

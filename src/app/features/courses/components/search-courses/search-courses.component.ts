@@ -18,17 +18,17 @@ export class SearchCoursesComponent implements OnInit, OnDestroy, AfterViewInit 
     debounce: 1000,
     minQueryLength: 3
   };
-  private queryFormControl: FormControl;
   private searchQueryInputSubscription;
 
   constructor() {}
 
   ngOnInit() {
-    this.queryFormControl = <FormControl>this.searchForm.get('query');
   }
 
+  get query() { return this.searchForm.get('query'); }
+
   ngAfterViewInit(): void {
-    this.searchQueryInputSubscription = this.queryFormControl.valueChanges
+    this.searchQueryInputSubscription = this.query.valueChanges
       .pipe(
         filter((text) => text.length >= this.CONFIG.minQueryLength),
         debounceTime(this.CONFIG.debounce),
@@ -41,14 +41,14 @@ export class SearchCoursesComponent implements OnInit, OnDestroy, AfterViewInit 
   }
 
   public resetSearch() {
-    this.queryFormControl.setValue(this.placeHolderText);
+    this.query.setValue(this.placeHolderText);
     this.isSearchPerformed = false;
     this.searchHandler.emit('');
   }
 
   public clearPlaceholder() {
-    if (this.queryFormControl.value === this.placeHolderText) {
-      this.queryFormControl.setValue('');
+    if (this.query.value === this.placeHolderText) {
+      this.query.setValue('');
     }
   }
 

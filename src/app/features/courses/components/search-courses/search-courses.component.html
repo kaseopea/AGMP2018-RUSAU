@@ -6,7 +6,7 @@
                    id="searchQuery"
                    class="form-control"
                    (click)="clearPlaceholder()"
-                   [formControlName]="'query'" />
+                   formControlName="query" />
 
             <div class="input-group-append" *ngIf="isSearchPerformed">
                 <button type="button" id="reset-button"
