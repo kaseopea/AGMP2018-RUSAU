@@ -1,16 +1,13 @@
-<form>
+<form [formGroup]="searchForm">
     <div class="form-row align-items-center">
         <div class="col input-group">
             <label class="sr-only" for="searchQuery">Search</label>
             <input type="text"
                    id="searchQuery"
-                   #searchQuery
-                   name="query"
                    class="form-control"
-                   [(ngModel)]="query"
-                   (ngModelChange)="onChange($event)"
                    (click)="clearPlaceholder()"
-                   (placeholder)="placeHolderText"/>
+                   [formControlName]="'query'" />
+
             <div class="input-group-append" *ngIf="isSearchPerformed">
                 <button type="button" id="reset-button"
                         class="btn btn-outline-secondary"
