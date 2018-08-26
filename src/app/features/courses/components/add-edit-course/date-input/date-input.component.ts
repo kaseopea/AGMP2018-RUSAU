@@ -29,13 +29,16 @@ export class DateInputComponent implements ControlValueAccessor {
   }
 
   writeValue(date: any): void {
+    console.warn('### writeValue');
     this.date.setValue(new Date(date));
   }
 
   registerOnChange(fn: any): void {
+    console.warn('### registerOnChange');
   }
 
   registerOnTouched(fn: any): void {
+    console.warn('### registerOnTouched');
   }
 
 }

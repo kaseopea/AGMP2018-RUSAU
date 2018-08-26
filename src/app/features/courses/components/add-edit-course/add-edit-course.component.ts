@@ -2,10 +2,13 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ICourse } from '../../interfaces/icourse';
 import { CoursesService } from '../../services/courses.service';
-import { Store } from '@ngrx/store';
-import { State } from '../../../../reducers';
-import { AddCourse, UpdateCourse } from '../../../../actions/courses.actions';
+import { select, Store } from '@ngrx/store';
+import { selectAuthorsList, selectCoursesData, State } from '../../../../reducers';
+import { AddCourse, LoadCourses, UpdateCourse } from '../../../../actions/courses.actions';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { IAuthor } from '../../interfaces/iauthor';
+import { LoadAuthors } from '../../../../actions/authors.actions';
 
 @Component({
   selector: 'app-add-edit-course',
@@ -29,6 +32,7 @@ export class AddEditCourseComponent implements OnInit {
     length: new FormControl('', [Validators.required]),
     authors: new FormControl('', [Validators.required])
   });
+  public authorsList$: Observable<IAuthor[]>;
 
   constructor(private coursesService: CoursesService,
               private route: ActivatedRoute,
@@ -46,6 +50,11 @@ export class AddEditCourseComponent implements OnInit {
   ngOnInit() {
     this.isNew = !this.course.id;
     this.courseForm.patchValue({...this.course});
+
+    // Test Authors List
+    this.authorsList$ = this.store.pipe(select(selectAuthorsList));
+    this.store.dispatch(new LoadAuthors());
+    this.authorsList$.subscribe(data => console.warn(data));
   }
 
   onSubmit() {

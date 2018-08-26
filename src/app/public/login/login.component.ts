@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ICreds } from '../../core/interfaces/icreds';
-import { selectUserSate, State } from '../../reducers';
+import { selectUserState, State } from '../../reducers';
 import { select, Store } from '@ngrx/store';
 import { AuthLogin } from '../../actions/auth.actions';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   get password() { return this.loginForm.get('password'); }
 
   ngOnInit() {
-    this.userDataSubscription = this.store.pipe(select(selectUserSate))
+    this.userDataSubscription = this.store.pipe(select(selectUserState))
       .subscribe(userData => {
         if (!userData.isLoggedIn && userData.errorMessage) {
           this.isAccessDenied = true;
