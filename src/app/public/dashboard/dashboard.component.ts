@@ -1,9 +1,12 @@
-import { Component, Inject, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CoursesService } from '../../features/courses/services/courses.service';
 import { ActivatedRoute } from '@angular/router';
 import { ICourse } from '../../features/courses/interfaces/icourse';
 import { APPCONFIG } from '../../config';
-import { GlobalLoaderService } from '../../core/services/global-loader.service';
+import { select, Store } from '@ngrx/store';
+import { selectCoursesData, selectCoursesIsLoaded, selectCoursesIsLoading, State } from '../../reducers';
+import { LoadCourses } from '../../actions/courses.actions';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,82 +14,56 @@ import { GlobalLoaderService } from '../../core/services/global-loader.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-  public coursesData: ICourse[];
-  public filterCoursesBy;
+  public courses$: Observable<ICourse[]>;
+  public isLoading$: Observable<boolean>;
+  public isLoaded$: Observable<boolean>;
   public pageTitle = '';
-  public isLoading = true;
-  public isSearchInProgress = false;
-  public pageNumber = 1;
-  public itemsCount = APPCONFIG.courses.itemsPerPage;
   public noMoreItems = false;
+  private pageNumber = 1;
+  private itemsPerPage = APPCONFIG.courses.itemsPerPage;
   private coursesSubscription;
-  private DATA_LOADING_DELAY = 1000;
 
   constructor(private coursesService: CoursesService,
               private route: ActivatedRoute,
-              private loaderService: GlobalLoaderService) {
+              private store: Store<State>) {
   }
 
   ngOnInit() {
     this.pageTitle = this.route.snapshot.data['title'];
-    this.isLoading = true;
-    this.loaderService.show();
-    this.coursesSubscription = this.getData().subscribe((data: ICourse[]) => {
-      this.coursesData = data;
-      this.isLoading = false;
-      this.loaderService.hide();
-    });
+
+    this.courses$ = this.store.pipe(select(selectCoursesData));
+    this.isLoading$ = this.store.pipe(select(selectCoursesIsLoading));
+    this.isLoaded$ = this.store.pipe(select(selectCoursesIsLoaded));
+
+    this.coursesSubscription = this.courses$.subscribe((data) => this.noMoreItems = ((data.length === 0) && (this.pageNumber > 1)));
+
+    // Load courses event
+    this.store.dispatch(new LoadCourses({
+      pageNumber: this.pageNumber,
+      count: this.itemsPerPage
+    }));
   }
 
 
   onSearch(query: string): boolean {
-    this.filterCoursesBy = query;
-    this.pageNumber = 1; // resetting page number
-    this.isLoading = true;
-    this.coursesSubscription = this.getData().subscribe((data: ICourse[]) => {
-      this.coursesData = data;
-      this.isLoading = false;
-    });
+    this.pageNumber = 1;
+    this.store.dispatch(new LoadCourses({
+      pageNumber: this.pageNumber,
+      count: this.itemsPerPage,
+      searchFor: query,
+      hideLoader: true
+    }));
     return false;
   }
 
   onLoadMore(pageNumber: number): boolean {
     this.pageNumber = pageNumber;
-    this.isSearchInProgress = true;
-
-    setTimeout(() => {
-      this.coursesSubscription = this.getData().subscribe((data: ICourse[]) => {
-        this.isSearchInProgress = false;
-        if (data.length) {
-          this.coursesData = this.coursesData.concat(data);
-        } else {
-          this.noMoreItems = true;
-        }
-      });
-
-    }, this.DATA_LOADING_DELAY);
-    return false;
-  }
-
-  onRefresh(isNeedUpdate: boolean) {
-    if (isNeedUpdate) {
-      this.isLoading = true;
-      this.loaderService.show();
-      this.coursesSubscription = this.getData().subscribe((data: ICourse[]) => {
-        this.coursesData = data;
-        this.isLoading = false;
-        this.loaderService.hide();
-      });
-    }
-  }
-
-
-  private getData() {
-    return this.coursesService.getCoursesWithParams({
+    this.store.dispatch(new LoadCourses({
       pageNumber: this.pageNumber,
-      count: this.itemsCount,
-      searchFor: this.filterCoursesBy
-    });
+      count: this.itemsPerPage,
+      hideLoader: true
+    }));
+    return false;
   }
 
   ngOnDestroy() {
@@ -94,4 +71,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.coursesSubscription.unsubscribe();
     }
   }
+
 }

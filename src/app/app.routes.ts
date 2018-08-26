@@ -32,6 +32,9 @@ export const ROUTES: Route[] = [
         path: 'courses/new',
         component: ManageCourseComponent,
         canActivate: [AuthGuardService],
+        resolve: {
+          course: CourseDetailResolveService
+        },
         data: {
           title: 'Add new course'
         }

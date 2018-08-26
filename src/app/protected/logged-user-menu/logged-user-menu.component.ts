@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { IUser } from '../user-profile/interfaces/iuser';
-import { GlobalLoaderService } from '../../core/services/global-loader.service';
+import { select, Store } from '@ngrx/store';
+import { selectUserProfile, State } from '../../reducers';
+import { AuthLogout } from '../../actions/auth.actions';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-logged-user-menu',
@@ -10,20 +13,18 @@ import { GlobalLoaderService } from '../../core/services/global-loader.service';
   styleUrls: ['./logged-user-menu.component.css']
 })
 export class LoggedUserMenuComponent implements OnInit {
-  public userProfile: IUser;
+  public profile$: Observable<IUser>;
 
   constructor(private authService: AuthService,
               private router: Router,
-              private loaderService: GlobalLoaderService) {
+              private store: Store<State>) {
   }
 
   ngOnInit() {
-    this.authService.GetUserInfo().subscribe((data) => this.userProfile = data);
+    this.profile$ = this.store.pipe(select(selectUserProfile));
   }
 
   public makeLogout(): void {
-    this.loaderService.show();
-    this.authService.Logout().subscribe(() => this.loaderService.hide());
-    this.router.navigateByUrl('/login');
+    this.store.dispatch(new AuthLogout());
   }
 }

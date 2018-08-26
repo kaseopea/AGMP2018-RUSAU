@@ -1,14 +1,14 @@
-<div *ngIf="coursesList.length" class="row">
+<div *ngIf="data$ | async" class="row">
     <app-course-item
             class="col-md-6"
-            *ngFor="let course of coursesList | orderBy:'date'"
+            *ngFor="let course of data$ | async | orderBy:'date'"
             [courseItem]="course"
             (delHandler)="onDeleted($event)"></app-course-item>
 </div>
 
-<div *ngIf="!coursesList.length" class="no-data">
+<div *ngIf="!(data$ | async)?.length" class="no-data">
     <div class="no-data-icon">
-        <i class="far fa-surprise"></i>
+        <i class="fas fa-exclamation-triangle"></i>
     </div>
     <div class="no-data-message">{{ noDataMessage | uppercase }}</div>
 </div>

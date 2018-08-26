@@ -21,9 +21,10 @@ module.exports = (server) => {
 	});
 		
 	router.post('/auth/userinfo', (req, res, next) => {
+		console.log('### HA', req.header('Authorization'));
 		let users = server.db.getState().users,
 			matchedUser = users.find((user) => {
-				console.log(user);
+				// console.log(user);
 				return user.fakeToken === req.header('Authorization');
 			});
 

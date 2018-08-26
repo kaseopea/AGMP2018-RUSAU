@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../../core/services/auth.service';
 import { ICreds } from '../../core/interfaces/icreds';
-import { GlobalLoaderService } from '../../core/services/global-loader.service';
+import { selectUserSate, State } from '../../reducers';
+import { select, Store } from '@ngrx/store';
+import { AuthLogin } from '../../actions/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -15,37 +15,30 @@ export class LoginComponent implements OnInit, OnDestroy {
     login: 'Morales',
     password: 'id'
   };
-  private loginSubscription;
+  private userDataSubscription;
 
-  constructor(private authService: AuthService,
-              private router: Router,
-              private loaderService: GlobalLoaderService) {
+  constructor(private store: Store<State>) {
   }
 
   ngOnInit() {
+    this.userDataSubscription = this.store.pipe(select(selectUserSate))
+      .subscribe(userData => {
+        if (!userData.isLoggedIn && userData.errorMessage) {
+          this.isAccessDenied = true;
+        }
+      });
   }
 
   doLogin() {
-    this.loaderService.show();
-    this.loginSubscription = this.authService.Login({
+    this.store.dispatch(new AuthLogin({
       login: this.userCreds.login,
       password: this.userCreds.password
-    }).subscribe(
-      (isAuthorized) => {
-        if (isAuthorized) {
-          this.loaderService.hide();
-          this.router.navigateByUrl('app/courses');
-        }
-      },
-      (error) => {
-        this.loaderService.hide();
-        this.isAccessDenied = true;
-        console.warn(error);
-      }
-    );
+    }));
   }
 
   ngOnDestroy() {
-    this.loginSubscription.unsubscribe();
+    if (this.userDataSubscription) {
+      this.userDataSubscription.unsubscribe();
+    }
   }
 }

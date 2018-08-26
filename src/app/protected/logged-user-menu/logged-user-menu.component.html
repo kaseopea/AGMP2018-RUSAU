@@ -1,6 +1,9 @@
 <div>
-    Hello, {{ userProfile.name.first }} {{ userProfile.name.last }}!
-    <button type="button" (click)="makeLogout()" class="btn btn-outline-warning btn-sm btn-logout">
-        <i class="fas fa-sign-out-alt"></i>
-    </button>
+    <span *ngIf="profile$ | async as profile">
+      Hello, {{profile.name.first }} {{ profile.name.last }}!
+    </span>
+
+  <button type="button" (click)="makeLogout()" class="btn btn-outline-warning btn-sm btn-logout">
+    <i class="fas fa-sign-out-alt"></i>
+  </button>
 </div>

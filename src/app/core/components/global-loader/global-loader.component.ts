@@ -1,29 +1,22 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { GlobalLoaderService } from '../../services/global-loader.service';
-import { Subscription } from 'rxjs/internal/Subscription';
-import { IGlobalLoaderState } from '../../interfaces/iGlobalLoaderState';
+import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { selectUIIsLoading, State } from '../../../reducers';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-global-loader',
   templateUrl: './global-loader.component.html',
   styleUrls: ['./global-loader.component.css']
 })
-export class GlobalLoaderComponent implements OnInit, OnDestroy {
-  public show = false;
-  private subscription: Subscription;
+export class GlobalLoaderComponent implements OnInit {
+  public show$: Observable<boolean>;
 
-  constructor(private loaderService: GlobalLoaderService) {
-  }
+  constructor(private store: Store<State>) {}
 
   ngOnInit() {
-    this.subscription = this.loaderService.loaderState
-      .subscribe((state: IGlobalLoaderState) => {
-        this.show = state.show;
-      });
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.show$ = this.store.pipe(
+      select(selectUIIsLoading)
+    );
   }
 
 }

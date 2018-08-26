@@ -1,12 +1,12 @@
 <app-breadcrumbs [pageTitle]="pageTitle"></app-breadcrumbs>
 
 <div class="container">
-    <div class="heading" *ngIf="!course; else elseBlock">
+    <div class="heading" *ngIf="isNew; else elseBlock">
         <h3 class="heading-title">Add course</h3>
     </div>
     <ng-template #elseBlock>
         <h3 class="heading-title">Edit course</h3>
     </ng-template>
 
-    <app-add-edit-course></app-add-edit-course>
+    <app-add-edit-course [course]="course"></app-add-edit-course>
 </div>
