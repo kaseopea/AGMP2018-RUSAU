@@ -18,7 +18,7 @@ import { LoadAuthors } from '../../../../actions/authors.actions';
 export class AddEditCourseComponent implements OnInit {
   @Input() public course: ICourse;
   public isNew = true;
-  public courseForm =  new FormGroup({
+  public courseForm = new FormGroup({
     id: new FormControl('', [Validators.required]),
     name: new FormControl('', [
       Validators.required,
@@ -40,12 +40,29 @@ export class AddEditCourseComponent implements OnInit {
               private store: Store<State>) {
   }
 
-  get id() { return this.courseForm.get('id'); }
-  get name() { return this.courseForm.get('name'); }
-  get description() { return this.courseForm.get('description'); }
-  get date() { return this.courseForm.get('date'); }
-  get length() { return this.courseForm.get('length'); }
-  get authors() { return this.courseForm.get('authors'); }
+  get id() {
+    return this.courseForm.get('id');
+  }
+
+  get name() {
+    return this.courseForm.get('name');
+  }
+
+  get description() {
+    return this.courseForm.get('description');
+  }
+
+  get date() {
+    return this.courseForm.get('date');
+  }
+
+  get length() {
+    return this.courseForm.get('length');
+  }
+
+  get authors() {
+    return this.courseForm.get('authors');
+  }
 
   ngOnInit() {
     this.isNew = !this.course.id;
@@ -58,7 +75,6 @@ export class AddEditCourseComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn(this.courseForm.value);
     // const action = (this.isNew) ? new AddCourse(this.courseForm.value) : new UpdateCourse(this.courseForm.value);
     // this.store.dispatch(action);
     // return false;

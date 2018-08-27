@@ -1,7 +1,8 @@
 <form [formGroup]="dateForm">
-<label for="inputDate">Creation date</label>
-<input type="text"
-       formControlName="date"
-       id="inputDate"
-       class="form-control">
+    <label for="inputDate">Creation date</label>
+    <input type="text"
+           formControlName="date"
+           id="inputDate"
+           mask="00/00/0000"
+           class="form-control">
 </form>

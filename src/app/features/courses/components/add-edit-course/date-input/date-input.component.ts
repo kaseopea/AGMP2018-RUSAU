@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, forwardRef, Input, OnDestroy, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { distinctUntilChanged } from 'rxjs/operators';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-date-input',
@@ -45,7 +44,7 @@ export class DateInputComponent implements ControlValueAccessor, OnDestroy, Afte
   public transformDate(dateInput: string) {
     const date = new Date(dateInput);
     const month = date.getMonth() + 1;
-    return `${date.getDate()}.${(month < 10) ? `0${month}` : month}.${date.getFullYear()}`;
+    return `${date.getDate()}/${(month < 10) ? `0${month}` : month}/${date.getFullYear()}`;
   }
 
   writeValue(date: any): void {

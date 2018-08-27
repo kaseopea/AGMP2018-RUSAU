@@ -1,0 +1,12 @@
+.duration-formatted {
+   display: inline-block;
+   padding: .35rem .75rem;
+}
+
+:host.ng-valid.ng-touched .form-control {
+   border: 2px solid green;
+}
+
+:host.ng-invalid.ng-touched .form-control {
+   border: 2px solid red;
+}

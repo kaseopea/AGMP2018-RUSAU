@@ -13,7 +13,7 @@ export class CourseDetailResolveService implements Resolve<ICourse> {
   private DEFAULT_EMPTY_COURSE = {
     name: 'Default empty title to test',
     date: new Date(Date.now()),
-    length: 0,
+    length: 100,
     description: '',
     isTopRated: false,
     authors: []

@@ -1,60 +1,76 @@
 <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
-  <div class="row">
-    <div class="col-sm-8">
-      <div class="form-group">
-        <label for="inputTitle">Course title</label>
-        <input type="text"
-               required
-               formControlName="name"
-               class="form-control"
-               name="inputTitle"
-               id="inputTitle"
-               placeholder="Enter course title">
-      </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="form-group">
+                <label for="inputTitle">Course title</label>
+                <input type="text"
+                       required
+                       formControlName="name"
+                       class="form-control"
+                       name="inputTitle"
+                       id="inputTitle"
+                       placeholder="Enter course title">
+            </div>
 
-      <div class="form-group">
-        <label for="taDescription">Course description</label>
-        <textarea class="form-control"
-                  required
-                  formControlName="description"
-                  id="taDescription"
-                  placeholder="Enter course description"
-                  rows="3"></textarea>
-      </div>
+            <div class="form-group">
+                <label for="taDescription">Course description</label>
+                <textarea class="form-control"
+                          required
+                          formControlName="description"
+                          id="taDescription"
+                          placeholder="Enter course description"
+                          rows="3"></textarea>
+            </div>
 
-      <div class="form-group">
-        <app-date-input formControlName="date" ngDefaultControl></app-date-input>
-      </div>
+            <!--<div class="form-group">-->
+            <!--<app-date-input formControlName="date" ngDefaultControl></app-date-input>-->
+            <!--</div>-->
 
-      <!--<div class="form-group">-->
-        <!--<app-duration-input-->
-          <!--formControlName="length"-->
-          <!--required-->
-          <!--name="inputDuration"></app-duration-input>-->
-      <!--</div>-->
+            <div class="form-group">
+                <app-duration-input
+                        formControlName="length"
+                        appDurationRequired
+                        appValidDurationValidator
+                        ngDefaultControl></app-duration-input>
 
-      <!--<div class="form-group">-->
-        <!--<app-authors-tags formControlName="authors"></app-authors-tags>-->
-      <!--</div>-->
+                <div *ngIf="length.invalid && (length.dirty || length.touched)" class="alert alert-danger">
+                    <div *ngIf="length.errors['required']">Length is required.</div>
+                    <div *ngIf="length.errors['validNumber']">{{length.errors['validNumber']}}</div>
+                </div>
+            </div>
 
-      <hr>
-      <pre>{{ courseForm.value | json }}</pre>
-      <hr>
+            <div class="alert alert-secondary" role="alert">
+                <pre>Length Field validity - {{ length.valid | json }}</pre>
+                <hr>
+                <pre>Length Field validity - {{ length.errors | json }}</pre>
+            </div>
 
-      <div class="row">
-        <div class="col-sm-6">
-          <button type="submit"
-                  (click)="cancelHandler()"
-                  class="btn btn-outline-secondary">Cancel
-          </button>
+
+            <!--<div class="form-group">-->
+            <!--<app-authors-tags formControlName="authors"></app-authors-tags>-->
+            <!--</div>-->
+
+            <div class="alert alert-secondary" role="alert">
+                <pre>Form validity - {{ courseForm.valid | json }}</pre>
+                <hr>
+                <pre>{{ courseForm.value | json }}</pre>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <button type="submit"
+                            (click)="cancelHandler()"
+                            class="btn btn-outline-secondary">Cancel
+                    </button>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <!--[disabled]="!courseForm.valid"-->
+                    <button type="submit"
+                            class="btn btn-primary">Submit
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-6 text-right">
-          <!--[disabled]="!courseForm.valid"-->
-          <button type="submit"
-                  class="btn btn-primary">Submit
-          </button>
-        </div>
-      </div>
     </div>
-  </div>
 </form>

@@ -13,12 +13,16 @@ import { FilterByPipe } from './pipes/filter-by.pipe';
 import { DateInputComponent } from './components/add-edit-course/date-input/date-input.component';
 import { DurationInputComponent } from './components/add-edit-course/duration-input/duration-input.component';
 import { AuthorsTagsComponent } from './components/add-edit-course/authors-tags/authors-tags.component';
+import { NgxMaskModule } from 'ngx-mask';
+import { ValidDurationValidatorDirective } from './components/add-edit-course/duration-input/validators/valid-duration-validator.directive';
+import { DurationRequiredValidatorDirective } from './components/add-edit-course/duration-input/validators/duration-required-validator.directive';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot()
   ],
   exports: [
     CoursesListComponent,
@@ -39,7 +43,9 @@ import { AuthorsTagsComponent } from './components/add-edit-course/authors-tags/
     FilterByPipe,
     DateInputComponent,
     DurationInputComponent,
-    AuthorsTagsComponent
+    AuthorsTagsComponent,
+    ValidDurationValidatorDirective,
+    DurationRequiredValidatorDirective
   ],
   providers: [
     FilterByPipe
