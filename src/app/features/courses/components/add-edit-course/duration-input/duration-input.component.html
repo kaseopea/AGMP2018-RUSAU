@@ -1,9 +1,15 @@
 <form [formGroup]="durationForm">
     <label for="inputDuration">Duration</label>
+    <div *ngIf="length.invalid && (length.dirty || length.touched)" class="alert alert-danger">
+        <div *ngIf="length.errors['required']">Length is required.</div>
+        <div *ngIf="length.errors['validNumber']">{{length.errors['validNumber']}}</div>
+    </div>
     <div class="row">
         <div class="col-6">
             <input type="text"
                    formControlName="length"
+                   appDurationRequired
+                   appValidDurationValidator
                    class="form-control"
                    id="inputDuration">
         </div>
@@ -14,3 +20,9 @@
         </div>
     </div>
 </form>
+
+<div class="alert alert-secondary" role="alert">
+    <pre>Length Field validity - {{ length.valid | json }}</pre>
+    <hr>
+    <pre>Length Field validity - {{ length.errors | json }}</pre>
+</div>
