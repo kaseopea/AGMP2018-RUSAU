@@ -26,7 +26,8 @@ export class DurationInputComponent implements ControlValueAccessor, OnInit, OnD
   });
   private lengthInputSubscription;
   private onChange: (value: number) => void;
-  private onTouched = () => {};
+  private onTouched = () => {
+  };
 
   constructor() {
   }
@@ -42,7 +43,9 @@ export class DurationInputComponent implements ControlValueAccessor, OnInit, OnD
     this.lengthInputSubscription = this.length.valueChanges
       .pipe(distinctUntilChanged())
       .subscribe((value) => {
-        this.onChange(value);
+        if (this.length.valid) {
+          this.onChange(parseInt(value, 10));
+        }
         this.onTouched();
       });
   }
