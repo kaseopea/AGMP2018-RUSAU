@@ -17,6 +17,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { ValidDurationValidatorDirective } from './components/add-edit-course/duration-input/validators/valid-duration-validator.directive';
 import { ValidDateValidatorDirective } from './components/add-edit-course/date-input/validators/valid-date-validator.directive';
 import { FilterDateInputDirective } from './components/add-edit-course/date-input/validators/filter-date-input.directive';
+import { DateTransformPipe } from './components/add-edit-course/date-input/pipes/date-transform.pipe';
 
 @NgModule({
   imports: [
@@ -42,15 +43,17 @@ import { FilterDateInputDirective } from './components/add-edit-course/date-inpu
     DurationPipe,
     OrderByPipe,
     FilterByPipe,
+    DateTransformPipe,
     DateInputComponent,
     DurationInputComponent,
     AuthorsTagsComponent,
     ValidDurationValidatorDirective,
     ValidDateValidatorDirective,
-    FilterDateInputDirective
+    FilterDateInputDirective,
   ],
   providers: [
-    FilterByPipe
+    FilterByPipe,
+    DateTransformPipe
   ]
 })
 export class CoursesModule {

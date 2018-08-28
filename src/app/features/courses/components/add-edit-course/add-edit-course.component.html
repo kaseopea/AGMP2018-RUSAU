@@ -22,13 +22,55 @@
                           rows="3"></textarea>
             </div>
 
+            <!-- DATE CUSTOM FORM ELEMENT -->
             <div class="form-group">
-                <app-date-input formControlName="date" ngDefaultControl></app-date-input>
+                <label for="inputDate">Creation date (dd/MM/yyyy format)</label>
+
+                <div *ngIf="date.invalid && (date.dirty || date.touched)" class="alert alert-danger">
+                    <div *ngIf="date.errors['required']">Date is required.</div>
+                    <div *ngIf="date.errors['validDate']">{{date.errors['validDate']}}</div>
+                </div>
+
+                <app-date-input
+                        formControlName="date"
+                        id="inputDate"
+                        appFilterDateInput
+                        appValidDate
+                        ngDefaultControl></app-date-input>
+
+                <div class="alert alert-secondary" role="alert">
+                    <pre>Date Field validity - {{ date.valid | json }}</pre>
+                    <hr>
+                    <pre>Date Field validity - {{ date.errors | json }}</pre>
+                </div>
             </div>
 
+
+            <!-- DURATION (LENGTH) CUSTOM FORM ELEMENT -->
             <div class="form-group">
-                <app-duration-input formControlName="length" ngDefaultControl></app-duration-input>
+                <label for="inputDuration">Duration</label>
+
+                <!-- Duration Input Validation -->
+                <div *ngIf="length.invalid && (length.dirty || length.touched)" class="alert alert-danger">
+                    <div *ngIf="length.errors['required']">Length is required.</div>
+                    <div *ngIf="length.errors['validNumber']">{{length.errors['validNumber']}}</div>
+                </div>
+
+                <!-- Custom Duration Form Control-->
+                <app-duration-input
+                        formControlName="length"
+                        id="inputDuration"
+                        appValidDurationValidator
+                        ngDefaultControl></app-duration-input>
+
+                <div class="alert alert-secondary" role="alert">
+                    <pre>Length Field validity - {{ length.valid | json }}</pre>
+                    <hr>
+                    <pre>Length Field validity - {{ length.errors | json }}</pre>
+                </div>
             </div>
+
+
 
             <!--<div class="form-group">-->
             <!--<app-authors-tags formControlName="authors"></app-authors-tags>-->

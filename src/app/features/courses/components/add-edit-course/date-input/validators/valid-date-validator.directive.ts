@@ -1,5 +1,6 @@
 import { Directive, forwardRef } from '@angular/core';
 import { FormControl, NG_VALIDATORS } from '@angular/forms';
+import { DateTransformPipe } from '../pipes/date-transform.pipe';
 
 @Directive({
   selector: '[appValidDate]',
@@ -12,18 +13,19 @@ import { FormControl, NG_VALIDATORS } from '@angular/forms';
   ]
 })
 export class ValidDateValidatorDirective {
+  private INVALID_DATE_ERROR = {
+    'validDate': 'Please fill in correct date format'
+  };
 
-  constructor() {
+  constructor(private dateTransformPipe: DateTransformPipe) {
   }
 
   validate(control: FormControl) {
-    const match = control.value.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
-    console.log(`@@@@ ${control.value}`);
-    console.log(`@@@@ Match`, match);
-    if (!match) {
-      return {
-        'validDate': 'Please fill in correct date format'
-      };
+    const cValue = (typeof control.value === 'string') ? control.value : this.dateTransformPipe.transform(control.value);
+    const dateMatch = (cValue) ? cValue.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/) : null;
+
+    if (!dateMatch) {
+      return this.INVALID_DATE_ERROR;
     }
 
     return null;

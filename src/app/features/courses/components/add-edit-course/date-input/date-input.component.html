@@ -1,19 +1,7 @@
 <form [formGroup]="dateForm">
-    <label for="inputDate">Creation date (dd/MM/yyyy format)</label>
-    <div *ngIf="date.invalid && (date.dirty || date.touched)" class="alert alert-danger">
-        <div *ngIf="date.errors['required']">Date is required.</div>
-        <div *ngIf="date.errors['validDate']">{{date.errors['validDate']}}</div>
-    </div>
+
     <input type="text"
            formControlName="date"
            id="inputDate"
-           appFilterDateInput
-           appValidDate
            class="form-control">
 </form>
-
-<!--<div class="alert alert-secondary" role="alert">-->
-    <!--<pre>Date Field validity - {{ date.valid | json }}</pre>-->
-    <!--<hr>-->
-    <!--<pre>Date Field validity - {{ date.errors | json }}</pre>-->
-<!--</div>-->

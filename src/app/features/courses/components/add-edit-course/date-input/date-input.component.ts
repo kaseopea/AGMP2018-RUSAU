@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, forwardRef, Input, OnDestroy, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { distinctUntilChanged } from 'rxjs/operators';
+import { DateTransformPipe } from './pipes/date-transform.pipe';
 
 @Component({
   selector: 'app-date-input',
@@ -17,43 +18,30 @@ import { distinctUntilChanged } from 'rxjs/operators';
 export class DateInputComponent implements ControlValueAccessor, OnDestroy, AfterViewInit {
   @Input() public dateInput: string;
   public dateForm = new FormGroup({
-    date: new FormControl('', [
-      Validators.required
-    ])
+    date: new FormControl('')
   });
   private dateInputSubscription;
   private onChange: (value: string) => void;
   private onTouched = () => {};
 
   get date() {
-    // const date = this.dateForm.get('date').value;
-    // console.warn(`Date: ${date.toString()} | Type: ${typeof date}`);
     return this.dateForm.get('date');
   }
 
-  constructor() {
+  constructor(private dateTransformPipe: DateTransformPipe) {
   }
 
   ngAfterViewInit(): void {
     this.dateInputSubscription = this.date.valueChanges
       .pipe(distinctUntilChanged())
       .subscribe((date) => {
-        console.log(this.date);
-        if (this.date.valid) {
-          this.onChange(date);
-        }
+        this.onChange(date);
         this.onTouched();
       });
   }
 
-  public transformDate(dateInput: string) {
-    const date = new Date(dateInput);
-    const month = date.getMonth() + 1;
-    return `${date.getDate()}/${(month < 10) ? `0${month}` : month}/${date.getFullYear()}`;
-  }
-
   writeValue(date: any): void {
-    this.date.setValue(this.transformDate(date));
+    this.date.setValue(this.dateTransformPipe.transform(date));
   }
 
   registerOnChange(onChange: (value: string) => void): void {

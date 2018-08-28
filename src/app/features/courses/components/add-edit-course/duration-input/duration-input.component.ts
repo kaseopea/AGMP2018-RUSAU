@@ -3,7 +3,7 @@ import {
   ControlValueAccessor,
   FormControl,
   FormGroup,
-  NG_VALUE_ACCESSOR, Validators
+  NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { distinctUntilChanged } from 'rxjs/operators';
 
@@ -22,16 +22,13 @@ import { distinctUntilChanged } from 'rxjs/operators';
 export class DurationInputComponent implements ControlValueAccessor, OnDestroy, AfterViewInit {
   @Input() public durationInput: number;
   public durationForm = new FormGroup({
-    length: new FormControl(0, [
-      Validators.required
-    ])
+    length: new FormControl(0)
   });
   private lengthInputSubscription;
   private onChange: (value: number) => void;
   private onTouched = () => {};
 
-  constructor() {
-  }
+  constructor() {}
 
   get length() {
     return this.durationForm.get('length');
@@ -41,9 +38,7 @@ export class DurationInputComponent implements ControlValueAccessor, OnDestroy, 
     this.lengthInputSubscription = this.length.valueChanges
       .pipe(distinctUntilChanged())
       .subscribe((value) => {
-        if (this.length.valid) {
-          this.onChange(parseInt(value, 10));
-        }
+        this.onChange(value);
         this.onTouched();
       });
   }
