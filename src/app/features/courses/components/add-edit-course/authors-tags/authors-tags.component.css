@@ -1,0 +1,59 @@
+.tags-input {
+
+}
+
+.tag {
+    border: 1px solid #7f8c8d;
+    border-radius: 2px;
+    display: block;
+    float: left;
+    padding: 5px;
+    text-decoration: none;
+    background: #bdc3c7;
+    color: #34495e;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.tag-remove-icon {
+    margin-left: 5px;
+    margin-right: 3px;
+    color: white;
+    cursor: pointer;
+}
+
+.add-tag {
+    display: block;
+    float: left;
+}
+.form-control-borderless {
+    border: 0;
+}
+.form-control-borderless:focus {
+    box-shadow: none;
+}
+
+/* AUTHOR SUGGESTS */
+.authors-suggest-popup {
+    position: absolute;
+    display: inline-block;
+    min-width: 500px;
+    max-height: 300px;
+    overflow-y: scroll;
+    z-index: 999;
+    background-color: white;
+}
+.authors-suggest-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.authors-suggest-item {
+    padding: 15px 20px;
+    cursor: pointer;
+}
+
+.authors-suggest-item:hover {
+    font-weight: bold;
+    background-color: #ecf0f1;
+}

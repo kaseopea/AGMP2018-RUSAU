@@ -20,7 +20,6 @@ import { distinctUntilChanged } from 'rxjs/operators';
   ]
 })
 export class DurationInputComponent implements ControlValueAccessor, OnDestroy, AfterViewInit {
-  @Input() public durationInput: number;
   public durationForm = new FormGroup({
     length: new FormControl(0)
   });

@@ -1,2 +1,24 @@
-<label for="inputAuthors">Authors (not implemented yet)</label>
-<input disabled="disabled" type="text" class="form-control" id="inputAuthors" placeholder="Add authors">
+<div class="tags-input form-control clearfix">
+
+    <div *ngFor="let tag of _authors"
+          class="tag"><i class="fas fa-user-graduate"></i> {{ tag.name }}
+        <span class="tag-remove-icon" (click)="onTagDelete(tag.id)"><i class="fas fa-times-circle"></i></span>
+    </div>
+
+    <div class="add-tag">
+        <form [formGroup]="authorsForm" novalidate>
+            <input type="text"
+                   formControlName="addAuthor"
+                   class="form-control form-control-borderless">
+        </form>
+    </div>
+
+</div>
+
+<div class="authors-suggest-popup shadow-lg" *ngIf="filteredAuthorsList.length">
+    <ul class="authors-suggest-list">
+        <li class="authors-suggest-item"
+             *ngFor="let author of filteredAuthorsList"
+             (click)="onAddAuthorToList(author)">{{ author.name }}</li>
+    </ul>
+</div>

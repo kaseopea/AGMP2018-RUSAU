@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, forwardRef, Input, OnDestroy, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { AfterViewInit, Component, forwardRef, OnDestroy } from '@angular/core';
+import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { DateTransformPipe } from './pipes/date-transform.pipe';
 
@@ -16,7 +16,6 @@ import { DateTransformPipe } from './pipes/date-transform.pipe';
   ]
 })
 export class DateInputComponent implements ControlValueAccessor, OnDestroy, AfterViewInit {
-  @Input() public dateInput: string;
   public dateForm = new FormGroup({
     date: new FormControl('')
   });
@@ -40,7 +39,7 @@ export class DateInputComponent implements ControlValueAccessor, OnDestroy, Afte
       });
   }
 
-  writeValue(date: any): void {
+  writeValue(date: Date): void {
     this.date.setValue(this.dateTransformPipe.transform(date));
   }
 
