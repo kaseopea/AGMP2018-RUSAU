@@ -26,6 +26,8 @@ export class DateInputComponent implements ControlValueAccessor, OnDestroy, Afte
   private onTouched = () => {};
 
   get date() {
+    // const date = this.dateForm.get('date').value;
+    // console.warn(`Date: ${date.toString()} | Type: ${typeof date}`);
     return this.dateForm.get('date');
   }
 

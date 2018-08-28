@@ -53,6 +53,8 @@ export class AddEditCourseComponent implements OnInit {
   }
 
   get date() {
+    const date =  this.courseForm.get('date');
+    console.warn(`Date: ${date} | Type: ${typeof date}`);
     return this.courseForm.get('date');
   }
 
