@@ -18,8 +18,8 @@ export class ValidDateValidatorDirective {
 
   validate(control: FormControl) {
     const match = control.value.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
-    // console.log(`@@@@ ${control.value}`);
-    // console.log(`@@@@ Match`, match);
+    console.log(`@@@@ ${control.value}`);
+    console.log(`@@@@ Match`, match);
     if (!match) {
       return {
         'validDate': 'Please fill in correct date format'

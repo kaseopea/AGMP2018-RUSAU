@@ -38,6 +38,7 @@ export class DateInputComponent implements ControlValueAccessor, OnDestroy, Afte
     this.dateInputSubscription = this.date.valueChanges
       .pipe(distinctUntilChanged())
       .subscribe((date) => {
+        console.log(this.date);
         if (this.date.valid) {
           this.onChange(date);
         }

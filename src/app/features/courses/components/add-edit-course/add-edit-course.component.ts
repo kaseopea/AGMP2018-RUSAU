@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ICourse } from '../../interfaces/icourse';
 import { CoursesService } from '../../services/courses.service';
 import { select, Store } from '@ngrx/store';
-import { selectAuthorsList, selectCoursesData, State } from '../../../../reducers';
+import { selectAuthorsList, State } from '../../../../reducers';
 import { AddCourse, LoadCourses, UpdateCourse } from '../../../../actions/courses.actions';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -19,7 +19,7 @@ export class AddEditCourseComponent implements OnInit {
   @Input() public course: ICourse;
   public isNew = true;
   public courseForm = new FormGroup({
-    id: new FormControl('', [Validators.required]),
+    id: new FormControl(0, [Validators.required]),
     name: new FormControl('', [
       Validators.required,
       Validators.maxLength(50)
@@ -30,7 +30,7 @@ export class AddEditCourseComponent implements OnInit {
     ]),
     date: new FormControl('', [Validators.required]),
     length: new FormControl('', [Validators.required]),
-    authors: new FormControl('', [Validators.required])
+    authors: new FormControl('')
   });
   public authorsList$: Observable<IAuthor[]>;
 
@@ -53,8 +53,6 @@ export class AddEditCourseComponent implements OnInit {
   }
 
   get date() {
-    const date =  this.courseForm.get('date');
-    console.warn(`Date: ${date} | Type: ${typeof date}`);
     return this.courseForm.get('date');
   }
 

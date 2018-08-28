@@ -14,7 +14,7 @@ export class CourseDetailResolveService implements Resolve<ICourse> {
     name: 'Default empty title to test',
     date: new Date(Date.now()),
     length: 100,
-    description: '',
+    description: 'Default course description',
     isTopRated: false,
     authors: []
   };
