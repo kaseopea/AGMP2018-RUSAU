@@ -17,12 +17,13 @@ import { distinctUntilChanged } from 'rxjs/operators';
 export class DateInputComponent implements ControlValueAccessor, OnDestroy, AfterViewInit {
   @Input() public dateInput: string;
   public dateForm = new FormGroup({
-    date: new FormControl('Enter date', [
+    date: new FormControl('', [
       Validators.required
     ])
   });
-  private _maskOriginal: string;
   private dateInputSubscription;
+  private onChange: (value: string) => void;
+  private onTouched = () => {};
 
   get date() {
     return this.dateForm.get('date');
@@ -35,9 +36,10 @@ export class DateInputComponent implements ControlValueAccessor, OnDestroy, Afte
     this.dateInputSubscription = this.date.valueChanges
       .pipe(distinctUntilChanged())
       .subscribe((date) => {
-        this._maskOriginal = date;
-        // set transformed date to input
-        this.date.setValue(this.transformDate(date));
+        if (this.date.valid) {
+          this.onChange(date);
+        }
+        this.onTouched();
       });
   }
 
@@ -48,16 +50,15 @@ export class DateInputComponent implements ControlValueAccessor, OnDestroy, Afte
   }
 
   writeValue(date: any): void {
-    console.warn('### writeValue');
     this.date.setValue(this.transformDate(date));
   }
 
-  registerOnChange(fn: any): void {
-    console.warn('### registerOnChange');
+  registerOnChange(onChange: (value: string) => void): void {
+    this.onChange = onChange;
   }
 
-  registerOnTouched(fn: any): void {
-    console.warn('### registerOnTouched');
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
   }
 
   ngOnDestroy() {

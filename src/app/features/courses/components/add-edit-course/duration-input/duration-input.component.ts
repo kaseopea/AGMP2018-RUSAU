@@ -1,9 +1,9 @@
-import { AfterViewInit, Component, forwardRef, Input, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, forwardRef, Input, OnDestroy } from '@angular/core';
 import {
   ControlValueAccessor,
   FormControl,
   FormGroup,
-  NG_VALUE_ACCESSOR
+  NG_VALUE_ACCESSOR, Validators
 } from '@angular/forms';
 import { distinctUntilChanged } from 'rxjs/operators';
 
@@ -19,24 +19,22 @@ import { distinctUntilChanged } from 'rxjs/operators';
     }
   ]
 })
-export class DurationInputComponent implements ControlValueAccessor, OnInit, OnDestroy, AfterViewInit {
+export class DurationInputComponent implements ControlValueAccessor, OnDestroy, AfterViewInit {
   @Input() public durationInput: number;
   public durationForm = new FormGroup({
-    length: new FormControl(0)
+    length: new FormControl(0, [
+      Validators.required
+    ])
   });
   private lengthInputSubscription;
   private onChange: (value: number) => void;
-  private onTouched = () => {
-  };
+  private onTouched = () => {};
 
   constructor() {
   }
 
   get length() {
     return this.durationForm.get('length');
-  }
-
-  ngOnInit() {
   }
 
   ngAfterViewInit(): void {
