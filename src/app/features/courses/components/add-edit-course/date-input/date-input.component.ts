@@ -21,8 +21,7 @@ export class DateInputComponent implements ControlValueAccessor, OnDestroy, Afte
   });
   private dateInputSubscription;
   private onChange: (value: string) => void;
-  private onTouched = () => {
-  };
+  private onTouched = () => {};
 
   get date() {
     return this.dateForm.get('date');

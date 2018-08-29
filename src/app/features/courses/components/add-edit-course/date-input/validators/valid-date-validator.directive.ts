@@ -1,6 +1,5 @@
 import { Directive, forwardRef } from '@angular/core';
 import { FormControl, NG_VALIDATORS } from '@angular/forms';
-import { DateTransformPipe } from '../pipes/date-transform.pipe';
 import * as moment from 'moment';
 
 @Directive({
@@ -18,7 +17,7 @@ export class ValidDateValidatorDirective {
     'validDate': 'Please fill in correct date format'
   };
 
-  constructor(private dateTransformPipe: DateTransformPipe) {
+  constructor() {
   }
 
   validate(control: FormControl) {

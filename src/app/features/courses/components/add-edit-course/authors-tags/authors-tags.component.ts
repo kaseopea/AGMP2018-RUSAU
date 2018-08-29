@@ -33,8 +33,7 @@ export class AuthorsTagsComponent implements ControlValueAccessor, AfterViewInit
   private authorsList$: Observable<IAuthor[]>;
   private addAuthorTagSubscription;
   private onChange: (value: IAuthor[]) => void;
-  private onTouched = () => {
-  };
+  private onTouched = () => {};
 
   constructor(private store: Store<State>) {
   }
