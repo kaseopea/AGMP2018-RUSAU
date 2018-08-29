@@ -4,3 +4,26 @@
    padding: 15px;
    margin: 0 auto;
 }
+
+/* ================== Form Controls Validation ================== */
+.validation-error-message {
+   font-size: 80%;
+   padding: .5rem 1.25rem;
+}
+
+/* ================== Validation Details ================== */
+.form-details {
+   padding-top: 2em;
+   background-color: #ecf0f1;
+}
+.form-data-contents {
+   font-size: 70%;
+}
+.form-valid {
+   font-size: 400%;
+   color: #27ae60;
+}
+.form-invalid {
+   font-size: 400%;
+   color: #c0392b;
+}

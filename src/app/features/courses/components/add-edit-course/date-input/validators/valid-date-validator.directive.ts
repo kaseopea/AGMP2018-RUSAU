@@ -1,6 +1,7 @@
 import { Directive, forwardRef } from '@angular/core';
 import { FormControl, NG_VALIDATORS } from '@angular/forms';
 import { DateTransformPipe } from '../pipes/date-transform.pipe';
+import * as moment from 'moment';
 
 @Directive({
   selector: '[appValidDate]',
@@ -21,13 +22,10 @@ export class ValidDateValidatorDirective {
   }
 
   validate(control: FormControl) {
-    const cValue = (typeof control.value === 'string') ? control.value : this.dateTransformPipe.transform(control.value);
-    const dateMatch = (cValue) ? cValue.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/) : null;
-
-    if (!dateMatch) {
+    const checkDate = moment(control.value);
+    if (!checkDate.isValid()) {
       return this.INVALID_DATE_ERROR;
     }
-
     return null;
 
   }

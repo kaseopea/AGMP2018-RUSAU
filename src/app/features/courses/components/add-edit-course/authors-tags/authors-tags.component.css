@@ -1,15 +1,15 @@
-.tags-input {
-
+:host {
+    display: block;
 }
 
 .tag {
-    border: 1px solid #7f8c8d;
+    border: 1px solid #bdc3c7;
     border-radius: 2px;
     display: block;
     float: left;
     padding: 5px;
     text-decoration: none;
-    background: #bdc3c7;
+    background: #ecf0f1;
     color: #34495e;
     margin-right: 5px;
     margin-bottom: 5px;
@@ -18,7 +18,7 @@
 .tag-remove-icon {
     margin-left: 5px;
     margin-right: 3px;
-    color: white;
+    color: #95a5a6;
     cursor: pointer;
 }
 

@@ -3,6 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ICourse } from '../../interfaces/icourse';
 import { CoursesService } from '../../services/courses.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { State } from '../../../../reducers';
+import { Store } from '@ngrx/store';
+import { AddCourse, UpdateCourse } from '../../../../actions/courses.actions';
 
 @Component({
   selector: 'app-add-edit-course',
@@ -12,16 +15,20 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class AddEditCourseComponent implements OnInit {
   @Input() public course: ICourse;
   public isNew = true;
+  public CONFIG = {
+    nameMaxLength: 50,
+    descriptionMaxLength: 500
+  };
 
   public courseForm = new FormGroup({
     id: new FormControl(0, [Validators.required]),
     name: new FormControl('', [
       Validators.required,
-      Validators.maxLength(50)
+      Validators.maxLength(this.CONFIG.nameMaxLength)
     ]),
     description: new FormControl('', [
       Validators.required,
-      Validators.maxLength(500)
+      Validators.maxLength(this.CONFIG.descriptionMaxLength)
     ]),
     date: new FormControl('', [Validators.required]),
     length: new FormControl('', [Validators.required]),
@@ -31,7 +38,8 @@ export class AddEditCourseComponent implements OnInit {
 
   constructor(private coursesService: CoursesService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private store: Store<State>) {
   }
 
   get id() {
@@ -64,9 +72,9 @@ export class AddEditCourseComponent implements OnInit {
   }
 
   onSubmit() {
-    // const action = (this.isNew) ? new AddCourse(this.courseForm.value) : new UpdateCourse(this.courseForm.value);
-    // this.store.dispatch(action);
-    // return false;
+    const action = (this.isNew) ? new AddCourse(this.courseForm.value) : new UpdateCourse(this.courseForm.value);
+    this.store.dispatch(action);
+    return false;
   }
 
   cancelHandler() {

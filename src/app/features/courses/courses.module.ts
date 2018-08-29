@@ -13,18 +13,17 @@ import { FilterByPipe } from './pipes/filter-by.pipe';
 import { DateInputComponent } from './components/add-edit-course/date-input/date-input.component';
 import { DurationInputComponent } from './components/add-edit-course/duration-input/duration-input.component';
 import { AuthorsTagsComponent } from './components/add-edit-course/authors-tags/authors-tags.component';
-import { NgxMaskModule } from 'ngx-mask';
 import { ValidDurationValidatorDirective } from './components/add-edit-course/duration-input/validators/valid-duration-validator.directive';
 import { ValidDateValidatorDirective } from './components/add-edit-course/date-input/validators/valid-date-validator.directive';
 import { FilterDateInputDirective } from './components/add-edit-course/date-input/validators/filter-date-input.directive';
 import { DateTransformPipe } from './components/add-edit-course/date-input/pipes/date-transform.pipe';
+import { RequiredAuthorsValidatorDirective } from './components/add-edit-course/authors-tags/validators/required-authors-validator.directive';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
-    NgxMaskModule.forRoot()
+    ReactiveFormsModule
   ],
   exports: [
     CoursesListComponent,
@@ -50,6 +49,7 @@ import { DateTransformPipe } from './components/add-edit-course/date-input/pipes
     ValidDurationValidatorDirective,
     ValidDateValidatorDirective,
     FilterDateInputDirective,
+    RequiredAuthorsValidatorDirective
   ],
   providers: [
     FilterByPipe,

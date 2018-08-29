@@ -26,15 +26,14 @@ export class AuthorsTagsComponent implements ControlValueAccessor, AfterViewInit
   public authorsForm = new FormGroup({
     addAuthor: new FormControl('')
   });
+  private CONFIG = {
+    debounce: 1000,
+    minQueryLength: 3
+  };
   private authorsList$: Observable<IAuthor[]>;
   private addAuthorTagSubscription;
   private onChange: (value: IAuthor[]) => void;
   private onTouched = () => {
-  };
-
-  private CONFIG = {
-    debounce: 1000,
-    minQueryLength: 3
   };
 
   constructor(private store: Store<State>) {
@@ -59,6 +58,7 @@ export class AuthorsTagsComponent implements ControlValueAccessor, AfterViewInit
       )
       .subscribe((query) => {
         this.filteredAuthorsList = [];
+        this.onTouched();
         if (this._authorsListFromServer.length) {
           this.filteredAuthorsList = this._authorsListFromServer.filter((author) => author.name.toLowerCase().includes(query));
         }
@@ -66,9 +66,14 @@ export class AuthorsTagsComponent implements ControlValueAccessor, AfterViewInit
 
   }
 
+  onClicked() {
+    this.onTouched();
+  }
+
   onTagDelete(tagId: string) {
     this._authors = this._authors.filter((item) => item.id !== tagId);
     this.onChange(this._authors);
+    this.onTouched();
   }
 
   onAddAuthorToList(author: IAuthor) {
@@ -76,6 +81,7 @@ export class AuthorsTagsComponent implements ControlValueAccessor, AfterViewInit
     this._authors.push(author);
 
     this.onChange(this._authors);
+    this.onTouched();
 
     // clear filtered results
     this.filteredAuthorsList = [];

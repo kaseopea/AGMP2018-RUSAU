@@ -1,12 +1,8 @@
+:host {
+   display: block;
+}
+
 .duration-formatted {
    display: inline-block;
    padding: .35rem .75rem;
-}
-
-.ng-valid.ng-touched .form-control {
-   border: 2px solid green;
-}
-
-.ng-invalid.ng-touched .form-control {
-   border: 2px solid red;
 }

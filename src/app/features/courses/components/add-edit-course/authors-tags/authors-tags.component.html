@@ -1,4 +1,4 @@
-<div class="tags-input form-control clearfix">
+<div class="tags-input form-element form-control clearfix" (click)="onClicked()">
 
     <div *ngFor="let tag of _authors"
           class="tag"><i class="fas fa-user-graduate"></i> {{ tag.name }}

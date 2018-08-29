@@ -1,15 +1,16 @@
 <div class="row">
-    <div class="col-6">
+    <div class="col-4">
         <form [formGroup]="durationForm">
+        <div class="input-group">
             <input type="text"
                    formControlName="length"
-                   class="form-control"
+                   appValidDurationValidator
+                   class="form-control form-element"
                    id="inputDuration">
-        </form>
-    </div>
-    <div class="col-6">
-        <div class="alert alert-primary duration-formatted" role="alert">
-            {{ length.value | duration }}
+            <div class="input-group-append">
+                <span class="input-group-text">{{ length.value | duration }}</span>
+            </div>
         </div>
+        </form>
     </div>
 </div>

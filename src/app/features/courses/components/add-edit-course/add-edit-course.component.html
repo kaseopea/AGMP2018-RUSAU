@@ -1,25 +1,37 @@
 <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-7">
             <div class="form-group">
                 <label for="inputTitle">Course title</label>
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="validation-error-message alert alert-danger">
+                    <div *ngIf="name.errors?.required">Date is required.</div>
+                    <div *ngIf="name.errors?.maxlength">Too long! Maximum amount is {{name.errors?.maxlength.requiredLength}} characters.</div>
+                </div>
                 <input type="text"
                        required
                        formControlName="name"
-                       class="form-control"
+                       class="form-control form-element"
                        name="inputTitle"
                        id="inputTitle"
                        placeholder="Enter course title">
+                <small class="name-details form-text text-muted text-right">You have entered <strong>{{name.value.length}}</strong> of {{CONFIG.nameMaxLength}}</small>
             </div>
 
             <div class="form-group">
                 <label for="taDescription">Course description</label>
-                <textarea class="form-control"
+
+                <div *ngIf="description.invalid && (description.dirty || description.touched)" class="validation-error-message alert alert-danger">
+                    <div *ngIf="description.errors?.required">Date is required.</div>
+                    <div *ngIf="description.errors?.maxlength">Too long! Maximum amount is {{description.errors?.maxlength.requiredLength}} characters.</div>
+                </div>
+
+                <textarea class="form-control form-element"
                           required
                           formControlName="description"
                           id="taDescription"
                           placeholder="Enter course description"
                           rows="3"></textarea>
+                <small class="description-details form-text text-muted text-right">You have entered <strong>{{description.value.length}}</strong> of {{CONFIG.descriptionMaxLength}}</small>
             </div>
 
             <!-- DATE CUSTOM FORM ELEMENT -->
@@ -27,7 +39,7 @@
                 <label for="inputDate">Creation date (dd/MM/yyyy format)</label>
 
                 <div *ngIf="date.invalid && (date.dirty || date.touched)"
-                     class="alert alert-danger">
+                     class="validation-error-message alert alert-danger">
                     <div *ngIf="date.errors['required']">Date is required.</div>
                     <div *ngIf="date.errors['validDate']">{{date.errors['validDate']}}</div>
                 </div>
@@ -35,15 +47,8 @@
                 <app-date-input
                         formControlName="date"
                         id="inputDate"
-                        appFilterDateInput
                         appValidDate
                         ngDefaultControl></app-date-input>
-
-                <!--<div class="alert alert-secondary" role="alert">-->
-                    <!--<pre>Date Field validity - {{ date.valid | json }}</pre>-->
-                    <!--<hr>-->
-                    <!--<pre>Date Field validity - {{ date.errors | json }}</pre>-->
-                <!--</div>-->
             </div>
 
 
@@ -53,7 +58,7 @@
 
                 <!-- Duration Input Validation -->
                 <div *ngIf="length.invalid && (length.dirty || length.touched)"
-                     class="alert alert-danger">
+                     class="validation-error-message alert alert-danger">
                     <div *ngIf="length.errors['required']">Length is required.</div>
                     <div *ngIf="length.errors['validNumber']">{{length.errors['validNumber']}}</div>
                 </div>
@@ -64,37 +69,27 @@
                         id="inputDuration"
                         appValidDurationValidator
                         ngDefaultControl></app-duration-input>
-
-                <!--<div class="alert alert-secondary" role="alert">-->
-                    <!--<pre>Length Field validity - {{ length.valid | json }}</pre>-->
-                    <!--<hr>-->
-                    <!--<pre>Length Field validity - {{ length.errors | json }}</pre>-->
-                <!--</div>-->
             </div>
 
 
             <!-- AUTHORS CUSTOM FORM ELEMENT -->
             <div class="form-group">
                 <label for="inputAuthors">Authors</label>
+                <div *ngIf="authors.invalid && (authors.dirty || authors.touched)"
+                     class="validation-error-message alert alert-danger">
+                    <div *ngIf="authors.errors['authorRequired']">{{authors.errors['authorRequired']}}</div>
+                </div>
+
                 <app-authors-tags
+                        class="form-element"
                         formControlName="authors"
                         id="inputAuthors"
+                        appValidAuthors
                         ngDefaultControl></app-authors-tags>
-
-                <div class="alert alert-secondary" role="alert">
-                    <pre>Authors Field validity - {{ authors.valid | json }}</pre>
-                    <hr>
-                    <pre>Authors Field validity - {{ authors.errors | json }}</pre>
-                </div>
+                <small class="authors-details form-text text-muted">Minimum 3 characters to trigger suggestions. Case insensetive. Sample queries: Albert, Shelby, Gill, Solomon, Patrick.</small>
             </div>
 
-            <div class="alert alert-secondary" role="alert">
-                <pre>Form validity - {{ courseForm.valid | json }}</pre>
-                <hr>
-                <pre>{{ courseForm.value | json }}</pre>
-            </div>
-
-
+            <input type="hidden" formControlName="id" />
 
             <div class="row">
                 <div class="col-sm-6">
@@ -110,6 +105,17 @@
                     </button>
                 </div>
             </div>
+        </div>
+        <div class="col-sm-5 form-details">
+            <h4>Form Validity</h4>
+            <div class="heading" *ngIf="courseForm.valid; else elseBlock">
+                <span class="form-valid"><i class="fas fa-check-circle"></i></span>
+            </div>
+            <ng-template #elseBlock>
+                <span class="form-invalid"><i class="fas fa-times-circle"></i></span>
+            </ng-template>
+            <hr>
+            <pre class="form-data-contents">{{ courseForm.value | json }}</pre>
         </div>
     </div>
 </form>

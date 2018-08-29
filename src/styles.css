@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* FORM VALIDATION STYLES */
+.ng-valid.ng-touched.form-element, .ng-valid.ng-touched.form-element .form-control {
+   -webkit-box-shadow: 0 0 5px 1px #27ae60;
+   box-shadow: 0 0 5px 1px #27ae60;
+}
+
+.ng-invalid.ng-touched.form-element, .ng-invalid.ng-touched.form-element .form-control {
+   -webkit-box-shadow: 0 0 5px 1px #c0392b;
+   box-shadow: 0 0 5px 1px #c0392b;
+}
