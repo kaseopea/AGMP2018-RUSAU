@@ -19,6 +19,14 @@
 `ng generate @ngrx/schematics:effect Courses --module app.module.ts --group` - generate Courses effects
 
 
+## Authors
+`ng generate @ngrx/schematics:reducer Authors --group` - generate Authors reducer
+
+`ng generate @ngrx/schematics:action Authors --group` - generate Authors actions
+
+`ng generate @ngrx/schematics:effect Authors --module app.module.ts --group` - generate Authors effects
+
+
 ## UI
 `ng generate @ngrx/schematics:reducer UI --group` - generate UI reducer
 

@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ICreds } from '../../core/interfaces/icreds';
-import { selectUserSate, State } from '../../reducers';
+import { selectUserState, State } from '../../reducers';
 import { select, Store } from '@ngrx/store';
 import { AuthLogin } from '../../actions/auth.actions';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -15,13 +16,19 @@ export class LoginComponent implements OnInit, OnDestroy {
     login: 'Morales',
     password: 'id'
   };
+  public loginForm = new FormGroup({
+    login: new FormControl(this.userCreds.login, [Validators.required]),
+    password: new FormControl(this.userCreds.password, [Validators.required]),
+  });
   private userDataSubscription;
 
-  constructor(private store: Store<State>) {
-  }
+  constructor(private store: Store<State>) {}
+
+  get login() { return this.loginForm.get('login'); }
+  get password() { return this.loginForm.get('password'); }
 
   ngOnInit() {
-    this.userDataSubscription = this.store.pipe(select(selectUserSate))
+    this.userDataSubscription = this.store.pipe(select(selectUserState))
       .subscribe(userData => {
         if (!userData.isLoggedIn && userData.errorMessage) {
           this.isAccessDenied = true;
@@ -30,10 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   doLogin() {
-    this.store.dispatch(new AuthLogin({
-      login: this.userCreds.login,
-      password: this.userCreds.password
-    }));
+    this.store.dispatch(new AuthLogin({...this.loginForm.value}));
   }
 
   ngOnDestroy() {

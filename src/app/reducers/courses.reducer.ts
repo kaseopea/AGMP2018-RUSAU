@@ -6,14 +6,13 @@ export interface CoursesState {
   isLoading: boolean;
   loaded: boolean;
   data: Array<ICourse>;
-  errorMessage: string | undefined;
+  errorMessage?: string;
 }
 
 export const initialState: CoursesState = {
   isLoading: false,
   loaded: false,
-  data: [],
-  errorMessage: undefined
+  data: []
 };
 
 export function coursesReducer(state = initialState, action: CoursesActions): CoursesState {

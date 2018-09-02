@@ -13,10 +13,23 @@ export class CourseDetailResolveService implements Resolve<ICourse> {
   private DEFAULT_EMPTY_COURSE = {
     name: 'Default empty title to test',
     date: new Date(Date.now()),
-    length: 0,
-    description: '',
+    length: 100,
+    description: 'Default course description',
     isTopRated: false,
-    authors: []
+    authors: [
+      {
+        id: '5b7a8462863c25502ed32168',
+        name: 'Janna Kelly'
+      },
+      {
+        id: '5b7a846270affc8f0438eddf',
+        name: 'Solomon Dotson'
+      },
+      {
+        id: '5b7a846297d0714fe5e92db8',
+        name: 'Patrick Macdonald'
+      }
+    ]
   };
 
   constructor(private router: Router,

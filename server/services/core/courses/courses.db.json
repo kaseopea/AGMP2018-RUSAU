@@ -8,9 +8,8 @@
     "date": "2017-09-28T04:39:24+00:00",
     "authors": [
       {
-        "id": 1370,
-        "firstName": "Polly",
-        "lastName": "Sosa"
+        "id": "1370",
+        "name": "Polly Sosa"
       }
     ],
     "length": 157
@@ -23,19 +22,16 @@
     "date": "2016-05-31T02:02:36+00:00",
     "authors": [
       {
-        "id": 8413,
-        "firstName": "Greta",
-        "lastName": "Richardson"
+        "id": "8413",
+        "name": "Greta Richardson"
       },
       {
-        "id": 7458,
-        "firstName": "Deana",
-        "lastName": "Bruce"
+        "id": "7458",
+        "name": "Deana Bruce"
       },
       {
-        "id": 5508,
-        "firstName": "Patsy",
-        "lastName": "Bright"
+        "id": "5508",
+        "name": "Patsy Bright"
       }
     ],
     "length": 207
@@ -48,14 +44,12 @@
     "date": "2017-03-25T12:57:37+00:00",
     "authors": [
       {
-        "id": 3618,
-        "firstName": "Laura",
-        "lastName": "Kirby"
+        "id": "3618",
+        "name": "Laura Kirby"
       },
       {
-        "id": 9064,
-        "firstName": "Quinn",
-        "lastName": "Cain"
+        "id": "9064",
+        "name": "Quinn Cain"
       }
     ],
     "length": 197
@@ -68,19 +62,16 @@
     "date": "2016-03-18T06:36:07+00:00",
     "authors": [
       {
-        "id": 9926,
-        "firstName": "Burt",
-        "lastName": "Holland"
+        "id": "9926",
+        "name": "Burt Holland"
       },
       {
-        "id": 6440,
-        "firstName": "Andrews",
-        "lastName": "Byers"
+        "id": "6440",
+        "name": "Andrews Byers"
       },
       {
-        "id": 8509,
-        "firstName": "Shawn",
-        "lastName": "Craig"
+        "id": "8509",
+        "name": "Shawn Craig"
       }
     ],
     "length": 232
@@ -93,24 +84,20 @@
     "date": "2017-01-18T19:10:51+00:00",
     "authors": [
       {
-        "id": 21,
-        "firstName": "Maddox",
-        "lastName": "Diaz"
+        "id": "21",
+        "name": "Maddox Diaz"
       },
       {
-        "id": 800,
-        "firstName": "Glenda",
-        "lastName": "Juarez"
+        "id": "800",
+        "name": "Glenda Juarez"
       },
       {
-        "id": 1772,
-        "firstName": "Hilda",
-        "lastName": "Gaines"
+        "id": "1772",
+        "name": "Hilda Gaines"
       },
       {
-        "id": 3003,
-        "firstName": "Abbott",
-        "lastName": "Mckay"
+        "id": "3003",
+        "name": "Abbott Mckay"
       }
     ],
     "length": 42
@@ -123,19 +110,16 @@
     "date": "2017-06-06T00:07:32+00:00",
     "authors": [
       {
-        "id": 1167,
-        "firstName": "Garrison",
-        "lastName": "Chambers"
+        "id": "1167",
+        "name": "Garrison Chambers"
       },
       {
-        "id": 9215,
-        "firstName": "Ofelia",
-        "lastName": "Rodgers"
+        "id": "9215",
+        "name": "Ofelia Rodgers"
       },
       {
-        "id": 978,
-        "firstName": "Avila",
-        "lastName": "Bolton"
+        "id": "978",
+        "name": "Avila Bolton"
       }
     ],
     "length": 52
@@ -148,19 +132,16 @@
     "date": "2016-11-03T04:24:34+00:00",
     "authors": [
       {
-        "id": 612,
-        "firstName": "Pam",
-        "lastName": "Vazquez"
+        "id": "612",
+        "name": "Pam Vazquez"
       },
       {
-        "id": 6050,
-        "firstName": "Norman",
-        "lastName": "Love"
+        "id": "6050",
+        "name": "Norman Love"
       },
       {
-        "id": 2252,
-        "firstName": "Reba",
-        "lastName": "Perez"
+        "id": "2252",
+        "name": "Reba Perez"
       }
     ],
     "length": 31
@@ -173,19 +154,16 @@
     "date": "2017-07-07T10:38:59+00:00",
     "authors": [
       {
-        "id": 5524,
-        "firstName": "Cobb",
-        "lastName": "Hudson"
+        "id": "5524",
+        "name": "Cobb Hudson"
       },
       {
-        "id": 5341,
-        "firstName": "Nettie",
-        "lastName": "Sanford"
+        "id": "5341",
+        "name": "Nettie Sanford"
       },
       {
-        "id": 7333,
-        "firstName": "Michele",
-        "lastName": "Cunningham"
+        "id": "7333",
+        "name": "Michele Cunningham"
       }
     ],
     "length": 269
@@ -198,9 +176,8 @@
     "date": "2016-04-30T18:46:36+00:00",
     "authors": [
       {
-        "id": 8318,
-        "firstName": "Rowland",
-        "lastName": "Vasquez"
+        "id": "8318",
+        "name": "Rowland Vasquez"
       }
     ],
     "length": 310
@@ -213,24 +190,20 @@
     "date": "2017-02-18T22:01:43+00:00",
     "authors": [
       {
-        "id": 4441,
-        "firstName": "Willa",
-        "lastName": "Cortez"
+        "id": "4441",
+        "name": "Willa Cortez"
       },
       {
-        "id": 9562,
-        "firstName": "Dejesus",
-        "lastName": "Snow"
+        "id": "9562",
+        "name": "Dejesus Snow"
       },
       {
-        "id": 4998,
-        "firstName": "Doyle",
-        "lastName": "Webster"
+        "id": "4998",
+        "name": "Doyle Webster"
       },
       {
-        "id": 2138,
-        "firstName": "Torres",
-        "lastName": "Farley"
+        "id": "2138",
+        "name": "Torres Farley"
       }
     ],
     "length": 274
@@ -243,24 +216,20 @@
     "date": "2016-09-09T12:00:31+00:00",
     "authors": [
       {
-        "id": 3509,
-        "firstName": "Jessie",
-        "lastName": "Kelly"
+        "id": "3509",
+        "name": "Jessie Kelly"
       },
       {
-        "id": 7653,
-        "firstName": "Miranda",
-        "lastName": "Christian"
+        "id": "7653",
+        "name": "Miranda Christian"
       },
       {
-        "id": 6185,
-        "firstName": "Yvette",
-        "lastName": "Foster"
+        "id": "6185",
+        "name": "Yvette Foster"
       },
       {
-        "id": 5186,
-        "firstName": "Russell",
-        "lastName": "Butler"
+        "id": "5186",
+        "name": "Russell Butler"
       }
     ],
     "length": 71
@@ -273,19 +242,16 @@
     "date": "2017-11-18T09:06:11+00:00",
     "authors": [
       {
-        "id": 9364,
-        "firstName": "Berger",
-        "lastName": "Powell"
+        "id": "9364",
+        "name": "Berger Powell"
       },
       {
-        "id": 3477,
-        "firstName": "Daugherty",
-        "lastName": "Guy"
+        "id": "3477",
+        "name": "Daugherty Guy"
       },
       {
-        "id": 2005,
-        "firstName": "Dotson",
-        "lastName": "Hernandez"
+        "id": "2005",
+        "name": "Dotson Hernandez"
       }
     ],
     "length": 171
@@ -298,9 +264,8 @@
     "date": "2017-07-14T10:57:08+00:00",
     "authors": [
       {
-        "id": 1416,
-        "firstName": "Ashlee",
-        "lastName": "Hines"
+        "id": "1416",
+        "name": "Ashlee Hines"
       }
     ],
     "length": 191
@@ -313,24 +278,20 @@
     "date": "2017-10-27T01:46:08+00:00",
     "authors": [
       {
-        "id": 5907,
-        "firstName": "Jacobson",
-        "lastName": "Riddle"
+        "id": "5907",
+        "name": "Jacobson Riddle"
       },
       {
-        "id": 8339,
-        "firstName": "Claire",
-        "lastName": "Battle"
+        "id": "8339",
+        "name": "Claire Battle"
       },
       {
-        "id": 2017,
-        "firstName": "Orr",
-        "lastName": "Conrad"
+        "id": "2017",
+        "name": "Orr Conrad"
       },
       {
-        "id": 7614,
-        "firstName": "Moody",
-        "lastName": "Cash"
+        "id": "7614",
+        "name": "Moody Cash"
       }
     ],
     "length": 41
@@ -343,9 +304,8 @@
     "date": "2016-12-11T18:16:42+00:00",
     "authors": [
       {
-        "id": 4165,
-        "firstName": "Gilda",
-        "lastName": "Huff"
+        "id": "4165",
+        "name": "Gilda Huff"
       }
     ],
     "length": 119
@@ -358,24 +318,20 @@
     "date": "2016-03-21T19:22:57+00:00",
     "authors": [
       {
-        "id": 4290,
-        "firstName": "Latonya",
-        "lastName": "Hester"
+        "id": "4290",
+        "name": "Latonya Hester"
       },
       {
-        "id": 9190,
-        "firstName": "Gregory",
-        "lastName": "Ratliff"
+        "id": "9190",
+        "name": "Gregory Ratliff"
       },
       {
-        "id": 2309,
-        "firstName": "Williamson",
-        "lastName": "Phillips"
+        "id": "2309",
+        "name": "Williamson Phillips"
       },
       {
-        "id": 5583,
-        "firstName": "Katharine",
-        "lastName": "Hopkins"
+        "id": "5583",
+        "name": "Katharine Hopkins"
       }
     ],
     "length": 358
@@ -388,14 +344,12 @@
     "date": "2016-11-13T19:23:11+00:00",
     "authors": [
       {
-        "id": 1980,
-        "firstName": "Leona",
-        "lastName": "Bailey"
+        "id": "1980",
+        "name": "Leona Bailey"
       },
       {
-        "id": 5365,
-        "firstName": "Edwards",
-        "lastName": "Nunez"
+        "id": "5365",
+        "name": "Edwards Nunez"
       }
     ],
     "length": 52
@@ -408,24 +362,20 @@
     "date": "2016-08-13T02:14:40+00:00",
     "authors": [
       {
-        "id": 3455,
-        "firstName": "Leah",
-        "lastName": "Sweet"
+        "id": "3455",
+        "name": "Leah Sweet"
       },
       {
-        "id": 3060,
-        "firstName": "Landry",
-        "lastName": "Valdez"
+        "id": "3060",
+        "name": "Landry Valdez"
       },
       {
-        "id": 8635,
-        "firstName": "Juliana",
-        "lastName": "Holden"
+        "id": "8635",
+        "name": "Juliana Holden"
       },
       {
-        "id": 7407,
-        "firstName": "Price",
-        "lastName": "Britt"
+        "id": "7407",
+        "name": "Price Britt"
       }
     ],
     "length": 55
@@ -438,14 +388,12 @@
     "date": "2017-05-13T09:35:20+00:00",
     "authors": [
       {
-        "id": 248,
-        "firstName": "Millie",
-        "lastName": "Schneider"
+        "id": "248",
+        "name": "Millie Schneider"
       },
       {
-        "id": 3517,
-        "firstName": "Burke",
-        "lastName": "Eaton"
+        "id": "3517",
+        "name": "Burke Eaton"
       }
     ],
     "length": 284
@@ -458,24 +406,20 @@
     "date": "2017-03-18T16:27:27+00:00",
     "authors": [
       {
-        "id": 7827,
-        "firstName": "Lorna",
-        "lastName": "Joyce"
+        "id": "7827",
+        "name": "Lorna Joyce"
       },
       {
-        "id": 8335,
-        "firstName": "Ronda",
-        "lastName": "Dean"
+        "id": "8335",
+        "name": "Ronda Dean"
       },
       {
-        "id": 57,
-        "firstName": "Lola",
-        "lastName": "Glass"
+        "id": "57",
+        "name": "Lola Glass"
       },
       {
-        "id": 4831,
-        "firstName": "Noreen",
-        "lastName": "Sullivan"
+        "id": "4831",
+        "name": "Noreen Sullivan"
       }
     ],
     "length": 226
@@ -488,9 +432,8 @@
     "date": "2016-05-29T11:05:03+00:00",
     "authors": [
       {
-        "id": 3343,
-        "firstName": "Margie",
-        "lastName": "Cote"
+        "id": "3343",
+        "name": "Margie Cote"
       }
     ],
     "length": 283
@@ -503,9 +446,8 @@
     "date": "2017-09-08T19:51:30+00:00",
     "authors": [
       {
-        "id": 441,
-        "firstName": "Vance",
-        "lastName": "Reynolds"
+        "id": "441",
+        "name": "Vance Reynolds"
       }
     ],
     "length": 346
@@ -518,14 +460,12 @@
     "date": "2017-08-15T15:27:05+00:00",
     "authors": [
       {
-        "id": 9101,
-        "firstName": "Singleton",
-        "lastName": "Ellison"
+        "id": "9101",
+        "name": "Singleton Ellison"
       },
       {
-        "id": 638,
-        "firstName": "Weeks",
-        "lastName": "Santos"
+        "id": "638",
+        "name": "Weeks Santos"
       }
     ],
     "length": 267
@@ -538,14 +478,12 @@
     "date": "2017-11-05T23:17:58+00:00",
     "authors": [
       {
-        "id": 8781,
-        "firstName": "Carson",
-        "lastName": "Suarez"
+        "id": "8781",
+        "name": "Carson Suarez"
       },
       {
-        "id": 3399,
-        "firstName": "Schmidt",
-        "lastName": "Cooke"
+        "id": "3399",
+        "name": "Schmidt Cooke"
       }
     ],
     "length": 59
@@ -558,24 +496,20 @@
     "date": "2017-11-01T00:46:22+00:00",
     "authors": [
       {
-        "id": 7987,
-        "firstName": "Anthony",
-        "lastName": "Mcguire"
+        "id": "7987",
+        "name": "Anthony Mcguire"
       },
       {
-        "id": 80,
-        "firstName": "Knight",
-        "lastName": "York"
+        "id": "80",
+        "name": "Knight York"
       },
       {
-        "id": 5892,
-        "firstName": "Hope",
-        "lastName": "Boyer"
+        "id": "5892",
+        "name": "Hope Boyer"
       },
       {
-        "id": 7134,
-        "firstName": "Kim",
-        "lastName": "Brewer"
+        "id": "7134",
+        "name": "Kim Brewer"
       }
     ],
     "length": 155
@@ -588,24 +522,20 @@
     "date": "2016-05-23T19:39:12+00:00",
     "authors": [
       {
-        "id": 3121,
-        "firstName": "Twila",
-        "lastName": "Jennings"
+        "id": "3121",
+        "name": "Twila Jennings"
       },
       {
-        "id": 6880,
-        "firstName": "Irma",
-        "lastName": "Martinez"
+        "id": "6880",
+        "name": "Irma Martinez"
       },
       {
-        "id": 6039,
-        "firstName": "Mcgowan",
-        "lastName": "Nelson"
+        "id": "6039",
+        "name": "Mcgowan Nelson"
       },
       {
-        "id": 8235,
-        "firstName": "Parks",
-        "lastName": "Mack"
+        "id": "8235",
+        "name": "Parks Mack"
       }
     ],
     "length": 280
@@ -618,24 +548,20 @@
     "date": "2016-12-03T04:50:39+00:00",
     "authors": [
       {
-        "id": 1861,
-        "firstName": "Michael",
-        "lastName": "Stout"
+        "id": "1861",
+        "name": "Michael Stout"
       },
       {
-        "id": 9950,
-        "firstName": "Roy",
-        "lastName": "George"
+        "id": "9950",
+        "name": "Roy George"
       },
       {
-        "id": 3907,
-        "firstName": "Macdonald",
-        "lastName": "Ward"
+        "id": "3907",
+        "name": "Macdonald Ward"
       },
       {
-        "id": 4388,
-        "firstName": "Oneil",
-        "lastName": "Carlson"
+        "id": "4388",
+        "name": "Oneil Carlson"
       }
     ],
     "length": 390
@@ -648,24 +574,20 @@
     "date": "2017-10-07T09:23:08+00:00",
     "authors": [
       {
-        "id": 2700,
-        "firstName": "Wynn",
-        "lastName": "Knowles"
+        "id": "2700",
+        "name": "Wynn Knowles"
       },
       {
-        "id": 1048,
-        "firstName": "Casey",
-        "lastName": "Terry"
+        "id": "1048",
+        "name": "Casey Terry"
       },
       {
-        "id": 5187,
-        "firstName": "Etta",
-        "lastName": "Key"
+        "id": "5187",
+        "name": "Etta Key"
       },
       {
-        "id": 1939,
-        "firstName": "Hilary",
-        "lastName": "Mcdowell"
+        "id": "1939",
+        "name": "Hilary Mcdowell"
       }
     ],
     "length": 46
@@ -678,9 +600,8 @@
     "date": "2017-04-14T08:15:30+00:00",
     "authors": [
       {
-        "id": 5653,
-        "firstName": "Leblanc",
-        "lastName": "Bradley"
+        "id": "5653",
+        "name": "Leblanc Bradley"
       }
     ],
     "length": 262
@@ -693,19 +614,16 @@
     "date": "2017-09-19T18:41:40+00:00",
     "authors": [
       {
-        "id": 2148,
-        "firstName": "Joyce",
-        "lastName": "Sparks"
+        "id": "2148",
+        "name": "Joyce Sparks"
       },
       {
-        "id": 728,
-        "firstName": "Rosetta",
-        "lastName": "Barton"
+        "id": "728",
+        "name": "Rosetta Barton"
       },
       {
-        "id": 3733,
-        "firstName": "Patti",
-        "lastName": "Sampson"
+        "id": "3733",
+        "name": "Patti Sampson"
       }
     ],
     "length": 45

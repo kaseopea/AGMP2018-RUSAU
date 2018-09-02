@@ -5,13 +5,12 @@ import { AuthActions, AuthActionTypes } from '../actions/auth.actions';
 export interface AuthState {
   isLoggedIn: boolean;
   profile: IUser | undefined;
-  errorMessage: string | undefined;
+  errorMessage?: string;
 }
 
 export const initialState: AuthState = {
   isLoggedIn: false,
-  profile: undefined,
-  errorMessage: undefined
+  profile: undefined
 };
 
 export function authReducer(state = initialState, action: AuthActions): AuthState {

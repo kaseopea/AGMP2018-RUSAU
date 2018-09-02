@@ -3,7 +3,7 @@
         <h3 class="card-title"><span class="top-rated-star"><i class="fas fa-star"></i></span> {{ courseItem.name | uppercase}}</h3>
         <p class="authors-list">
             <span *ngFor="let author of courseItem.authors; let last = last" class="author-info">
-                  {{author.firstName}} {{author.lastName}}<span *ngIf="!last">, </span>
+                  {{author.name}}<span *ngIf="!last">, </span>
                 </span>
         </p>
         <p class="card-text">{{ courseItem.description }}</p>

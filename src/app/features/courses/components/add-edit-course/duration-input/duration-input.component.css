@@ -1,0 +1,8 @@
+:host {
+   display: block;
+}
+
+.duration-formatted {
+   display: inline-block;
+   padding: .35rem .75rem;
+}

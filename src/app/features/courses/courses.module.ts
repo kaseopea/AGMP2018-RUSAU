@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoursesListComponent } from './components/courses-list/courses-list.component';
 import { CourseItemComponent } from './components/course-item/course-item.component';
 import { AddEditCourseComponent } from './components/add-edit-course/add-edit-course.component';
@@ -13,11 +13,14 @@ import { FilterByPipe } from './pipes/filter-by.pipe';
 import { DateInputComponent } from './components/add-edit-course/date-input/date-input.component';
 import { DurationInputComponent } from './components/add-edit-course/duration-input/duration-input.component';
 import { AuthorsTagsComponent } from './components/add-edit-course/authors-tags/authors-tags.component';
+import { FilterDateInputDirective } from './components/add-edit-course/date-input/validators/filter-date-input.directive';
+import { DateTransformPipe } from './components/add-edit-course/date-input/pipes/date-transform.pipe';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     CoursesListComponent,
@@ -36,12 +39,15 @@ import { AuthorsTagsComponent } from './components/add-edit-course/authors-tags/
     DurationPipe,
     OrderByPipe,
     FilterByPipe,
+    DateTransformPipe,
     DateInputComponent,
     DurationInputComponent,
-    AuthorsTagsComponent
+    AuthorsTagsComponent,
+    FilterDateInputDirective
   ],
   providers: [
-    FilterByPipe
+    FilterByPipe,
+    DateTransformPipe
   ]
 })
 export class CoursesModule {
