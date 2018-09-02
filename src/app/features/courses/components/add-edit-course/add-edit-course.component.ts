@@ -6,6 +6,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { State } from '../../../../reducers';
 import { Store } from '@ngrx/store';
 import { AddCourse, UpdateCourse } from '../../../../actions/courses.actions';
+import { validateDuration } from './validators/valid-duration.validator';
+import { validateRequiredAuthors } from './validators/required-authors.validator';
+import { validateDate } from './validators/valid-date.validator';
 
 @Component({
   selector: 'app-add-edit-course',
@@ -30,9 +33,17 @@ export class AddEditCourseComponent implements OnInit {
       Validators.required,
       Validators.maxLength(this.CONFIG.descriptionMaxLength)
     ]),
-    date: new FormControl('', [Validators.required]),
-    length: new FormControl('', [Validators.required]),
-    authors: new FormControl('')
+    date: new FormControl('', [
+      Validators.required,
+      validateDate
+    ]),
+    length: new FormControl('', [
+      Validators.required,
+      validateDuration
+    ]),
+    authors: new FormControl([], [
+      validateRequiredAuthors
+    ])
   });
 
 

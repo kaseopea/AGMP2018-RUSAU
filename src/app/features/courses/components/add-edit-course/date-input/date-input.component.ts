@@ -34,7 +34,7 @@ export class DateInputComponent implements ControlValueAccessor, OnDestroy, Afte
     this.dateInputSubscription = this.date.valueChanges
       .pipe(distinctUntilChanged())
       .subscribe((date) => {
-        this.onChange(this.convertDate(date).toString());
+        this.onChange(date);
         this.onTouched();
       });
   }
@@ -49,12 +49,6 @@ export class DateInputComponent implements ControlValueAccessor, OnDestroy, Afte
 
   registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
-  }
-
-  convertDate(dateFormat: string) {
-    const from = dateFormat.split('/');
-    const radix = 10;
-    return new Date(parseInt(from[2], radix), parseInt(from[1], radix) - 1, parseInt(from[0], radix));
   }
 
   ngOnDestroy() {

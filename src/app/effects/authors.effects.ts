@@ -19,12 +19,10 @@ export class AuthorsEffects {
   @Effect()
   loadAuthors$: Observable<any> = this.actions$.pipe(
     ofType(AuthorsActionTypes.LoadAuthors),
-    mergeMap(action => {
-      return this.authorsService.getAuthors().pipe(
-        delay(this.REQUEST_DELAY),
-        map((data) => new LoadAuthorsSuccess(data)),
-        catchError((err) => of(new LoadAuthorsFailed(err)))
-      );
-    })
+    mergeMap(() => this.authorsService.getAuthors().pipe(
+      delay(this.REQUEST_DELAY),
+      map((data) => new LoadAuthorsSuccess(data)),
+      catchError((err) => of(new LoadAuthorsFailed(err)))
+    ))
   );
 }

@@ -47,7 +47,7 @@
                 <app-date-input
                         formControlName="date"
                         id="inputDate"
-                        appValidDate
+                        class="form-element"
                         ngDefaultControl></app-date-input>
             </div>
 
@@ -67,7 +67,6 @@
                 <app-duration-input
                         formControlName="length"
                         id="inputDuration"
-                        appValidDurationValidator
                         ngDefaultControl></app-duration-input>
             </div>
 
@@ -84,7 +83,6 @@
                         class="form-element"
                         formControlName="authors"
                         id="inputAuthors"
-                        appValidAuthors
                         ngDefaultControl></app-authors-tags>
                 <small class="authors-details form-text text-muted">Minimum 3 characters to trigger suggestions. Case insensetive. Sample queries: Albert, Shelby, Gill, Solomon, Patrick.</small>
             </div>
